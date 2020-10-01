@@ -6,7 +6,7 @@ import {
   deleteMovie,
   findAll,
   updateMovie,
-} from '../controllers/movie'
+} from '../controllers/Movie'
 
 const router = express.Router()
 

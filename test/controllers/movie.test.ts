@@ -20,9 +20,7 @@ async function createMovie(override?: Partial<MovieDocument>) {
     movie = { ...movie, ...override }
   }
 
-  return await request(app)
-    .post('/api/v1/movies')
-    .send(movie)
+  return await request(app).post('/api/v1/movies').send(movie)
 }
 
 describe('movie controller', () => {
@@ -65,15 +63,13 @@ describe('movie controller', () => {
     expect(res.status).toBe(200)
 
     const movieId = res.body._id
-    res = await request(app)
-      .get(`/api/v1/movies/${movieId}`)
+    res = await request(app).get(`/api/v1/movies/${movieId}`)
 
     expect(res.body._id).toEqual(movieId)
   })
 
   it('should not get back a non-existing movie', async () => {
-    const res = await request(app)
-      .get(`/api/v1/movies/${nonExistingMovieId}`)
+    const res = await request(app).get(`/api/v1/movies/${nonExistingMovieId}`)
     expect(res.status).toBe(404)
   })
 
@@ -87,8 +83,7 @@ describe('movie controller', () => {
       publishedYear: 2019,
     })
 
-    const res3 = await request(app)
-      .get(`/api/v1/movies`)
+    const res3 = await request(app).get(`/api/v1/movies`)
 
     expect(res3.body.length).toEqual(2)
     expect(res3.body[0]._id).toEqual(res1.body._id)
@@ -102,12 +97,10 @@ describe('movie controller', () => {
     const movieId = res.body._id
     const update = {
       name: 'Angrybirds 1',
-      publishedYear: 2016
+      publishedYear: 2016,
     }
 
-    res = await request(app)
-      .put(`/api/v1/movies/${movieId}`)
-      .send(update)
+    res = await request(app).put(`/api/v1/movies/${movieId}`).send(update)
 
     expect(res.status).toEqual(200)
     expect(res.body.name).toEqual('Angrybirds 1')
@@ -119,13 +112,11 @@ describe('movie controller', () => {
     expect(res.status).toBe(200)
     const movieId = res.body._id
 
-    res = await request(app)
-      .delete(`/api/v1/movies/${movieId}`)
+    res = await request(app).delete(`/api/v1/movies/${movieId}`)
 
     expect(res.status).toEqual(204)
 
-    res = await request(app)
-      .get(`/api/v1/movies/${movieId}`)
+    res = await request(app).get(`/api/v1/movies/${movieId}`)
     expect(res.status).toBe(404)
   })
 })

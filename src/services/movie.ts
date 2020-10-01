@@ -7,7 +7,7 @@ function create(movie: MovieDocument): Promise<MovieDocument> {
 function findById(movieId: string): Promise<MovieDocument> {
   return Movie.findById(movieId)
     .exec() // .exec() will return a true Promise
-    .then(movie => {
+    .then((movie) => {
       if (!movie) {
         throw new Error(`Movie ${movieId} not found`)
       }
@@ -16,9 +16,7 @@ function findById(movieId: string): Promise<MovieDocument> {
 }
 
 function findAll(): Promise<MovieDocument[]> {
-  return Movie.find()
-    .sort({ name: 1, publishedYear: -1 })
-    .exec() // Return a Promise
+  return Movie.find().sort({ name: 1, publishedYear: -1 }).exec() // Return a Promise
 }
 
 function update(
@@ -27,7 +25,7 @@ function update(
 ): Promise<MovieDocument> {
   return Movie.findById(movieId)
     .exec()
-    .then(movie => {
+    .then((movie) => {
       if (!movie) {
         throw new Error(`Movie ${movieId} not found`)
       }
