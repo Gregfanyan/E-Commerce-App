@@ -4,7 +4,8 @@ import JsonWebToken from 'jsonwebtoken'
 
 import { Products, Users } from '../models'
 import UserService from '../services/Users'
-
+/* import { VerifyToken } from './VerifyToken'
+ */
 import { JWT_SECRET } from '../util/secrets'
 
 import {
@@ -44,6 +45,31 @@ export const createUser = async (
     } else {
       next(new InternalServerError('Internal Server Error', error))
     }
+  }
+}
+export const logInUser = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body
+    if (email) {
+      const loggedUser = await UserService.findUserByEmail(email).then(
+        async (user) => {
+          if (!user) res.status(404).json({ message: 'email not found' })
+          else {
+            const logInSuccess = await bcrypt.compare(password, user!.password)
+            logInSuccess ? user : res.status(404).json('Incorrect password')
+            return user
+          }
+          /*           const users = await Users.findOne(email)
+           */
+        }
+      )
+      const token = JsonWebToken.sign({ loggedUser }, JWT_SECRET)
+      res.header('auth_token', token).send(token)
+      /*       return res.status(200).json({ loggedUser, message: 'logIn successfully' })
+       */
+    }
+  } catch (error) {
+    return res.status(404).json({ message: 'user not found' })
   }
 }
 
@@ -100,30 +126,6 @@ export const findAll = async (
     res.json(await UserService.findAll())
   } catch (error) {
     next(new NotFoundError('User not found', error))
-  }
-}
-
-export const logInUser = async (req: Request, res: Response) => {
-  try {
-    const { email, password } = req.body
-    if (email) {
-      const result = await UserService.findUserByEmail(email).then(
-        async (user) => {
-          if (!user) res.status(404).json({ message: 'email not found' })
-          else {
-            const logInSuccess = await bcrypt.compare(password, user!.password)
-            logInSuccess ? user : res.status(404).json('Incorrect password')
-            return user
-          }
-          /* const users = await Users.findOne(email)
-          const token = JsonWebToken.sign({ users }, {process.env.JWT_SECRET}),
-          res.json({ token:token }) */
-        }
-      )
-      return res.status(200).json({ result, message: 'logIn successfully' })
-    }
-  } catch (error) {
-    return res.status(404).json({ message: 'user not found' })
   }
 }
 
