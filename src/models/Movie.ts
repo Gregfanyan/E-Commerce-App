@@ -12,19 +12,18 @@ export type MovieDocument = Document & {
 const movieSchema = new mongoose.Schema({
   name: {
     type: String,
-    /*     index: true,
-     */
+    index: true,
   },
   publishedYear: {
     type: Number,
-    /*     required: true,
-     */ min: 1900,
+    required: true,
+    min: 1900,
   },
   genres: [String],
   duration: {
     type: Number,
-    /*         required: true,
-     */ min: 1,
+    required: true,
+    min: 1,
   },
   rating: {
     type: Number,

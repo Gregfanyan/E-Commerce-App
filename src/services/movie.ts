@@ -40,7 +40,6 @@ function update(
         movie.duration = update.duration
       }
 
-      // Add more fields here if needed
       return movie.save()
     })
 }

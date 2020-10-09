@@ -8,7 +8,7 @@ const nonExistingMovieId = '5e57b77b5744fa0b461c7906'
 
 async function createMovie(override?: Partial<MovieDocument>) {
   let movie = {
-    name: 'Angrybirds 2',
+    name: 'AngryBirds',
     publishedYear: 2019,
     rating: 3.5,
     duration: 120,
@@ -40,14 +40,14 @@ describe('movie controller', () => {
     const res = await createMovie()
     expect(res.status).toBe(200)
     expect(res.body).toHaveProperty('_id')
-    expect(res.body.name).toBe('Angrybirds 2')
+    expect(res.body.name).toBe('AngryBirds')
   })
 
   it('should not create a movie with wrong data', async () => {
     const res = await request(app)
       .post('/api/v1/movies')
       .send({
-        name: 'Angrybirds 2',
+        name: 'AngryBirds',
         publishedYear: 2019,
         // These fields should be included
         // rating: 3.5,
@@ -75,15 +75,15 @@ describe('movie controller', () => {
 
   it('should get back all movie', async () => {
     const res1 = await createMovie({
-      name: 'Angrybirds 1',
+      name: 'AngryBirds 1',
       publishedYear: 2016,
     })
     const res2 = await createMovie({
-      name: 'Angrybirds 2',
+      name: 'AngryBirds 2',
       publishedYear: 2019,
     })
 
-    const res3 = await request(app).get(`/api/v1/movies`)
+    const res3 = await request(app).get('/api/v1/movies')
 
     expect(res3.body.length).toEqual(2)
     expect(res3.body[0]._id).toEqual(res1.body._id)
@@ -96,14 +96,14 @@ describe('movie controller', () => {
 
     const movieId = res.body._id
     const update = {
-      name: 'Angrybirds 1',
+      name: 'AngryBirds 1',
       publishedYear: 2016,
     }
 
     res = await request(app).put(`/api/v1/movies/${movieId}`).send(update)
 
     expect(res.status).toEqual(200)
-    expect(res.body.name).toEqual('Angrybirds 1')
+    expect(res.body.name).toEqual('AngryBirds 1')
     expect(res.body.publishedYear).toEqual(2016)
   })
 

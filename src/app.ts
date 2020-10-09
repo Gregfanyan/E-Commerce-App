@@ -14,6 +14,7 @@ import { MONGODB_URI, SESSION_SECRET } from './util/secrets'
 
 import movieRouter from './routers/movie'
 import productRouter from './routers/Products'
+import userRouter from './routers/Users'
 
 import apiErrorHandler from './middlewares/apiErrorHandler'
 import apiContentType from './middlewares/apiContentType'
@@ -27,6 +28,7 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   })
   .then(() => {
     console.log('database connected')
@@ -48,6 +50,7 @@ app.use(lusca.xssProtection(true))
 
 app.use('/api/v1/movies', movieRouter)
 app.use('/api/v1/products', productRouter)
+app.use('/api/v1/user', userRouter)
 
 app.use(apiErrorHandler)
 

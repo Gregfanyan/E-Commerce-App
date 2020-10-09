@@ -1,5 +1,4 @@
-import Products from '../models/Products'
-import Movie, { ProductDocument } from '../models/Products'
+import Products, { ProductDocument } from '../models/Products'
 
 function create(product: ProductDocument): Promise<ProductDocument> {
   return product.save()
@@ -28,7 +27,7 @@ function update(
     .exec()
     .then((product) => {
       if (!product) {
-        throw new Error(`Movie ${productId} not found`)
+        throw new Error(`Product ${productId} not found`)
       }
 
       if (update.name) {
@@ -46,6 +45,7 @@ function update(
       if (update.sizes) {
         product.sizes = update.sizes
       }
+
       return product.save()
     })
 }
