@@ -9,6 +9,7 @@ import path from 'path'
 import mongoose from 'mongoose'
 import passport from 'passport'
 import bluebird from 'bluebird'
+import cors from 'cors'
 
 import { MONGODB_URI, SESSION_SECRET } from './util/secrets'
 
@@ -47,6 +48,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(lusca.xframe('SAMEORIGIN'))
 app.use(lusca.xssProtection(true))
+app.use(cors())
 
 app.use('/api/v1/movies', movieRouter)
 app.use('/api/v1/products', productRouter)

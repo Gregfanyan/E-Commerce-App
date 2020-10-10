@@ -86,7 +86,8 @@ export const findAll = async (
   next: NextFunction
 ) => {
   try {
-    res.json(await MovieService.findAll())
+    /*     return res.json(await MovieService.findAll())
+     */ return res.send({ message: 'We did it!' })
   } catch (error) {
     next(new NotFoundError('Movies not found', error))
   }
