@@ -8,13 +8,15 @@ import {
   updateProduct,
 } from '../controllers/Products'
 
+import { VerifyToken } from '../controllers/VerifyToken'
+
 const router = express.Router()
 
 // Every path we define here will get /api/v1/products prefix
 router.get('/', findAll)
 router.get('/:productId', findById)
-router.put('/:productId', updateProduct)
-router.delete('/:productId', deleteProduct)
-router.post('/', createProduct)
+router.put('/:productId', VerifyToken, updateProduct)
+router.delete('/:productId', VerifyToken, deleteProduct)
+router.post('/', VerifyToken, createProduct)
 
 export default router

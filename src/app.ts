@@ -41,7 +41,7 @@ mongoose
     process.exit(1)
   })
 
-app.set('port', process.env.PORT || 3000)
+app.set('port', process.env.PORT || 5000)
 
 app.use(compression())
 app.use(bodyParser.json())
