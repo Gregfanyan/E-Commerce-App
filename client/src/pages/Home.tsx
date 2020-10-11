@@ -13,5 +13,5 @@ export default function Home() {
     console.log(res.data.message)
   })
 
-  return <h1>Hello from client side</h1>
+  return <h1>Hello world</h1>
 }
