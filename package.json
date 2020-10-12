@@ -25,6 +25,7 @@
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\""
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.2.6",
     "@types/bcrypt": "^3.0.0",
     "@types/cors": "^2.8.7",
     "@types/jsonwebtoken": "^8.3.7",
@@ -48,6 +49,7 @@
     "lint-staged": "^10.0.8",
     "lodash": "^4.17.15",
     "lusca": "^1.6.1",
+    "mailgen": "^2.0.14",
     "mongodb-memory-server": "^6.3.1",
     "mongoose": "^5.9.2",
     "mongoose-bcrypt": "^1.9.0",
