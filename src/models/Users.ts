@@ -7,7 +7,8 @@ export type UserDocument = Document & {
   password: string;
   email: string;
   isAdmin: boolean;
-  cart: ProductDocument[];
+  cart: any[];
+  resetLink: string;
 }
 
 const userSchema = new mongoose.Schema({
@@ -42,6 +43,10 @@ const userSchema = new mongoose.Schema({
       ref: 'Products',
     },
   ],
+  resetLink: {
+    data: String,
+    default: '',
+  },
 })
 
 export default mongoose.model<UserDocument>('Users', userSchema)
