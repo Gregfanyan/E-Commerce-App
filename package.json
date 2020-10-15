@@ -62,7 +62,8 @@
     "pug": "^2.0.4",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "@types/async": "^3.0.8",
