@@ -1,11 +1,6 @@
 import React, { useState } from 'react'
 
-import {
-  Formik,
-  Form,
-  Field,
-  ErrorMessage,
-} from 'formik'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 
 function Register() {
@@ -35,12 +30,11 @@ function Register() {
     email: '',
     lastName: '',
     firstName: '',
-    password: ''
-
+    password: '',
   }
 
   const onSubmit = (values, { setSubmitting }) => {
-    setSubmitting(true);
+    setSubmitting(true)
     saveRegister(values)
     setSubmitting(false)
   }
@@ -49,64 +43,44 @@ function Register() {
     firstName: Yup.string().required('Required'),
     lastName: Yup.string().required('Required'),
     password: Yup.string().required('Required'),
-    email: Yup.string()
-      .email('Invalid email format').required('Required'),
+    email: Yup.string().email('Invalid email format').required('Required'),
   })
 
   return (
-
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-
       {({ values, isSubmitting }) => (
-        <Form >
+        <Form>
           <div>
-            <label htmlFor='email'>E-mail</label>
-            <Field
-              type='text'
-              id='email'
-              name='email'
-            />
-            <ErrorMessage name='email' />
+            <label htmlFor="email">E-mail</label>
+            <Field type="text" id="email" name="email" />
+            <ErrorMessage name="email" />
           </div>
           <div>
-            <label htmlFor='firstName'>firstName</label>
-            <Field
-              type='text'
-              id='firstName'
-              name='firstName'
-            />
-            <ErrorMessage name='lastName' />
+            <label htmlFor="firstName">firstName</label>
+            <Field type="text" id="firstName" name="firstName" />
+            <ErrorMessage name="lastName" />
           </div>
           <div>
-            <label htmlFor='lastName'>lastName</label>
-            <Field
-              type='text'
-              id='lastName'
-              name='lastName'
-            />
-            <ErrorMessage name='lastName' />
+            <label htmlFor="lastName">lastName</label>
+            <Field type="text" id="lastName" name="lastName" />
+            <ErrorMessage name="lastName" />
           </div>
 
-          <div >
-            <label htmlFor='password'>password</label>
-            <Field
-              type='password'
-              id='password'
-              name='password'
-            />
-            <ErrorMessage name='password' />
+          <div>
+            <label htmlFor="password">password</label>
+            <Field type="password" id="password" name="password" />
+            <ErrorMessage name="password" />
           </div>
 
-          <button type='submit'>register</button>
+          <button type="submit">register</button>
         </Form>
       )}
     </Formik>
-
   )
 }
 
-export default Register 
+export default Register

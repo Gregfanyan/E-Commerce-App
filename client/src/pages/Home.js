@@ -7,9 +7,7 @@ export const Home = ({ query }) => {
   const [products] = useProduct(query);
   return (
     <div>
-
       <MainTable products={products} />
-
     </div>
   );
 };

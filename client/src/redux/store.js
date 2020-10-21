@@ -5,8 +5,8 @@ import thunk from 'redux-thunk'
 import RootReducer from './RootReducer'
 
 const store = createStore(
-    RootReducer,
-    composeWithDevTools(applyMiddleware(thunk))
+  RootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
 )
 
 export default store
