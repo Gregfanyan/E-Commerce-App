@@ -1,3 +1,5 @@
+export * from "./Product";
+
 export type CountryProps = {
   population: number
   name: string

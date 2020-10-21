@@ -7,7 +7,7 @@ export type UserDocument = Document & {
   password: string;
   email: string;
   isAdmin: boolean;
-  cart: any[];
+  cart: ProductDocument[];
   resetLink: string;
 }
 

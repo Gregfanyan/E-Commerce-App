@@ -22,10 +22,11 @@ router.get('/', VerifyToken, findAll)
 router.get('/:userId', VerifyToken, findById)
 router.put('/forgotPassword', forgotPassword)
 router.put('/resetPassword', resetPassword)
-router.put('/:userId', VerifyToken, updateUser)
 router.delete('/:userId', VerifyToken, deleteUser)
 router.post('/', createUser)
 router.post('/logIn', logInUser)
-router.post('/:userId/cart', VerifyToken, getProduct)
+router.put('/:userId/cart', VerifyToken, getProduct)
 router.get('/:userId/cart', VerifyToken, getCart)
+router.put('/:userId/update', VerifyToken, updateUser)
+
 export default router
