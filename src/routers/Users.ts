@@ -7,8 +7,8 @@ import {
   findAll,
   logInUser,
   updateUser,
-  getProduct,
-  getCart,
+/*   getProduct,
+ */  getCart,
   forgotPassword,
   resetPassword,
 } from '../controllers/Users'
@@ -25,8 +25,9 @@ router.put('/resetPassword', resetPassword)
 router.delete('/:userId', VerifyToken, deleteUser)
 router.post('/', createUser)
 router.post('/logIn', logInUser)
-router.put('/:userId/cart', VerifyToken, getProduct)
-router.get('/:userId/cart', VerifyToken, getCart)
-router.put('/:userId/update', VerifyToken, updateUser)
+/* router.put('/:userId/cart', VerifyToken, getProduct)
+ */
+ router.get('/:userId/cart', VerifyToken, getCart)
+ router.put('/:userId/update', VerifyToken, updateUser)
 
 export default router

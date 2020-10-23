@@ -134,7 +134,7 @@ export const findAll = async (
 }
 
 //POST /users/:userId/cart
-export const getProduct = async (req: Request, res: Response) => {
+/* export const getProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = await req.body
     const productBought = await Products.findOne({ _id: productId }).then(
@@ -145,8 +145,8 @@ export const getProduct = async (req: Request, res: Response) => {
 
     const updated = await Users.findOneAndUpdate(
       { _id: req.params.userId },
-      /*          { $push: { cart: productBought } },
-       */ { new: true }
+            { $push: { cart: productBought } },
+     { new: true }
     )
 
       .populate('cart')
@@ -156,7 +156,7 @@ export const getProduct = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(404).json({ message: 'something went work' })
   }
-}
+} */
 
 //GET /users/:userId/cart
 export const getCart = async (

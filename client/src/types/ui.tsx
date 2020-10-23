@@ -1,10 +1,9 @@
-export * from "./Product";
+import { Product } from './ProductType'
 
-export type CountryProps = {
-  population: number
-  name: string
-  region: string
-  language: string
+export * from './ProductType'
+
+export type HomeProps = {
+  query: string
 }
 
 export type TableRowProps = {
@@ -18,4 +17,8 @@ export type TableRowProps = {
 export type SearchBarProps = {
   handleChange: React.ReactEventHandler<HTMLInputElement>
   search: string
+}
+
+export type MainTableProps = {
+  products: string
 }

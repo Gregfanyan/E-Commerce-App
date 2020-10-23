@@ -2,7 +2,8 @@ import {
   FETCH_PRODUCT_REQUEST,
   FETCH_PRODUCT_SUCCESS,
   FETCH_PRODUCT_FAILURE,
-} from './ProductTypes'
+  ProductActions
+} from "./ProductTypes"
 
 const initialState = {
   loading: false,
@@ -10,7 +11,7 @@ const initialState = {
   error: '',
 }
 
-const ProductReducers = (state = initialState, action) => {
+const ProductReducers = (state = initialState, action:ProductActions) => {
   switch (action.type) {
     case FETCH_PRODUCT_REQUEST:
       return {

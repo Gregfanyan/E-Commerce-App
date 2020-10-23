@@ -1,7 +1,11 @@
 import React from 'react'
-import TableRow from '../TableRow'
 
-const MainTable = ({ products }) => {
+import TableRow from '../TableRow'
+import { Product } from '../../types/ui'
+
+const MainTable = ({ products }: any) => {
+  console.log(products)
+
   return (
     <div>
       {products.loading ? (
@@ -11,10 +15,16 @@ const MainTable = ({ products }) => {
       ) : (
         <>
           {products.products &&
-            products.products.map((product) => (
+            products.products.map((product: Product) => (
               <TableRow
                 key={product._id}
+                _id={product._id}
                 name={product.name}
+                description={product.description}
+                categories={product.categories}
+                variants={product.variants}
+                sizes={product.sizes}
+                price={product.price}
                 img={product.img}
               />
             ))}
