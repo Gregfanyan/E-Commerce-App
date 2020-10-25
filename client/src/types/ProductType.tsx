@@ -12,6 +12,11 @@ export type Product = {
   img: string
   price: number
 }
+export type MainTableProps = {
+  products: any
+  query: any
+}
+
 export type ReceiveProductsAction = {
   type: typeof FETCH_PRODUCT_SUCCESS
   payload: {

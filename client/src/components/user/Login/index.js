@@ -1,11 +1,19 @@
-/* import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useCookies } from 'react-cookie'
 import axios from 'axios'
-
+import { Link } from 'react-router-dom'
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Message,
+  Segment,
+} from 'semantic-ui-react'
 
 const Login = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['my-cookies'])
-  const [data, setData] = useState([])
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -17,6 +25,7 @@ const Login = () => {
       })
       .then(function (response) {
         setCookie('auth-token', response.data)
+        window.location.href = '/home'
       })
       .catch(function (error) {
         console.log(error)
@@ -29,7 +38,7 @@ const Login = () => {
     setEmail('')
     setPassword('')
   }
-  const logout = (e) => {
+  const logout = () => {
     removeCookie('auth-token')
   }
   const handleEmail = (e) => {
@@ -41,34 +50,57 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={(event) => handleSubmit(event, setCookie)}>
-        <input
-          type="text"
-          name="email"
-          onChange={handleEmail}
-          value={email}
-          placeholder="email"
-        />
-        <input
-          type="text"
-          name="password"
-          onChange={handlePassword}
-          value={password}
-          placeholder="password"
-        />
+    <Grid textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as="h2" color="teal" textAlign="center">
+          <Image src="https://thumbs.dreamstime.com/z/vector-illustration-isolated-white-background-login-button-icon-126999949.jpg" />{' '}
+          Log-in to your account
+        </Header>
+        <Form size="large" onSubmit={(event) => handleSubmit(event, setCookie)}>
+          <Segment stacked>
+            <Form.Input
+              fluid
+              icon="user"
+              onChange={handleEmail}
+              value={email}
+              iconPosition="left"
+              placeholder="E-mail address"
+            />
+            <Form.Input
+              fluid
+              icon="lock"
+              iconPosition="left"
+              placeholder="Password"
+              type="password"
+              onChange={handlePassword}
+              value={password}
+            />
 
-        <button type="submit">login</button>
-      </form>
-      <form>
-        <button type="submit" onClick={(e) => logout(e, removeCookie)}>
+            <Button color="teal" fluid size="large">
+              Login
+            </Button>
+          </Segment>
+        </Form>
+        <Button
+          style={{ display: 'none' }}
+          as={Link}
+          to="/home"
+          onClick={(e) => logout(e, removeCookie)}
+        >
           logout
-        </button>
-      </form>
-    </div>
+        </Button>
+
+        <Message>
+          New to us?
+          <Button as={Link} color="teal" to="/register">
+            Sign Up
+          </Button>
+        </Message>
+      </Grid.Column>
+    </Grid>
   )
 }
-export default Login */
+export default Login
 
 /* import React from 'react'
 import { useCookies } from 'react-cookie'
@@ -168,7 +200,7 @@ function Login() {
 
 export default Login  */
 
-import React, { useState } from 'react'
+/* import React, { useState } from 'react'
 import { useCookies } from 'react-cookie'
 
 
@@ -268,4 +300,4 @@ function Login() {
   )
 }
 
-export default Login 
+export default Login  */

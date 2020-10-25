@@ -1,7 +1,7 @@
 import { BUY_CAR } from './CarTypes'
 
 const initialState = {
-  numOfCars: 10,
+  numOfCars: 0,
 }
 
 const carReducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const carReducer = (state = initialState, action) => {
     case BUY_CAR:
       return {
         ...state,
-        numOfCars: state.numOfCars - action.payload,
+        numOfCars: state.numOfCars + action.payload,
       }
 
     default:

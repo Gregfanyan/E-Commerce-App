@@ -5,6 +5,7 @@ export * from './ProductType'
 export type HomeProps = {
   query: string
 }
+export type searchProps = 'string'
 
 export type TableRowProps = {
   flagUrl: string
@@ -21,4 +22,9 @@ export type SearchBarProps = {
 
 export type MainTableProps = {
   products: string
+}
+
+export type handleItemClick = {
+  event: KeyboardEvent
+  name: any
 }

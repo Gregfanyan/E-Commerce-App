@@ -1,19 +1,18 @@
 import React from 'react'
+import { Card, Icon } from 'semantic-ui-react'
 
 import TableRow from '../TableRow'
 import { Product } from '../../types/ui'
 
 const MainTable = ({ products }: any) => {
-  console.log(products)
-
   return (
     <div>
       {products.loading ? (
-        <h2>Loading...</h2>
+        <Icon loading name="spinner" />
       ) : products.error ? (
         <h2>{products.error}</h2>
       ) : (
-        <>
+        <Card.Group itemsPerRow={4}>
           {products.products &&
             products.products.map((product: Product) => (
               <TableRow
@@ -28,7 +27,7 @@ const MainTable = ({ products }: any) => {
                 img={product.img}
               />
             ))}
-        </>
+        </Card.Group>
       )}
     </div>
   )

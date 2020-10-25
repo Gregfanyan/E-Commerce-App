@@ -33,10 +33,11 @@ function Register() {
     password: '',
   }
 
-  const onSubmit = (values, { setSubmitting }) => {
+  const onSubmit = (values, { setSubmitting, resetForm }) => {
     setSubmitting(true)
     saveRegister(values)
     setSubmitting(false)
+    resetForm({})
   }
 
   const validationSchema = Yup.object({
@@ -52,33 +53,31 @@ function Register() {
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      {({ values, isSubmitting }) => (
-        <Form>
-          <div>
-            <label htmlFor="email">E-mail</label>
-            <Field type="text" id="email" name="email" />
-            <ErrorMessage name="email" />
-          </div>
-          <div>
-            <label htmlFor="firstName">firstName</label>
-            <Field type="text" id="firstName" name="firstName" />
-            <ErrorMessage name="lastName" />
-          </div>
-          <div>
-            <label htmlFor="lastName">lastName</label>
-            <Field type="text" id="lastName" name="lastName" />
-            <ErrorMessage name="lastName" />
-          </div>
+      <Form>
+        <div>
+          <label htmlFor="email">E-mail</label>
+          <Field type="text" id="email" name="email" />
+          <ErrorMessage name="email" />
+        </div>
+        <div>
+          <label htmlFor="firstName">firstName</label>
+          <Field type="text" id="firstName" name="firstName" />
+          <ErrorMessage name="lastName" />
+        </div>
+        <div>
+          <label htmlFor="lastName">lastName</label>
+          <Field type="text" id="lastName" name="lastName" />
+          <ErrorMessage name="lastName" />
+        </div>
 
-          <div>
-            <label htmlFor="password">password</label>
-            <Field type="password" id="password" name="password" />
-            <ErrorMessage name="password" />
-          </div>
+        <div>
+          <label htmlFor="password">password</label>
+          <Field type="password" id="password" name="password" />
+          <ErrorMessage name="password" />
+        </div>
 
-          <button type="submit">register</button>
-        </Form>
-      )}
+        <button type="submit">register</button>
+      </Form>
     </Formik>
   )
 }

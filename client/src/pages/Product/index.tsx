@@ -2,10 +2,10 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { AppState } from '../types'
+import { AppState } from '../../types'
 
 export default function Product() {
-  const { id } = useParams()
+  const { id }: any = useParams()
 
   const product = useSelector((state: AppState) =>
     state.product.inCart.find((p) => p.id === id)

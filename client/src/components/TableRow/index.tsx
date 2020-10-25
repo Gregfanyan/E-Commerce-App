@@ -1,38 +1,47 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Card, Icon, Image, Button } from 'semantic-ui-react'
+import { useDispatch } from 'react-redux'
+import { buyCar } from '../../redux'
 
 import { Product } from '../../types/ui'
-import { Wrapper, Heading } from './StyledTableRow'
 
-const TableRow = ({
-  name,
-  img,
-  description,
-  price,
-  categories,
-  variants,
-  _id,
-}: Product) => {
+const TableRow = ({ name, img, price, _id }: Product) => {
+  const dispatch = useDispatch()
+
   return (
-    <Wrapper>
-      <Heading>Header</Heading>
+    <Card raised style={{ marginTop: '100px' }}>
+      <Image
+        src={img}
+        style={{
+          minWidth: 'auto',
+          height: 450,
+          resizeMode: 'contain',
+        }}
+      />
 
-      <Link
-        to={`/country/${_id}`}
-        style={{ color: 'inherit', textDecoration: 'inherit' }}
-      >
-        <div>{name}</div>
-      </Link>
-      <div>{description}</div>
-      <div>{categories}</div>
-      <div>{price} euro</div>
-      <div>
-        {variants && variants.map((lang) => <div key={lang}> {lang}</div>)}
-      </div>
-      <div>
-        <img src={img} alt="product" />
-      </div>
-    </Wrapper>
+      <Card.Content style={{ backgroundColor: 'grey' }}>
+        <Card.Header as={Link} to={`/country/${_id}`}>
+          {name}
+        </Card.Header>
+      </Card.Content>
+      <Card.Content extra>
+        <a>
+          <Icon name="dollar" />
+          {price}
+        </a>
+      </Card.Content>
+      <Card.Content extra>
+        <div className="ui two buttons">
+          <Button as={Link} to={`/country/${_id}`} color="violet">
+            More Details
+          </Button>
+          <Button color="green" onClick={() => dispatch(buyCar())}>
+            Add to Basket
+          </Button>
+        </div>
+      </Card.Content>
+    </Card>
   )
 }
 
