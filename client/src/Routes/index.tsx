@@ -1,22 +1,23 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-/* import Car from '../components/Car'
- */ import { Home } from '../pages/Home'
-import SingleCountry from '../pages/SingleCountry'
+import { Home } from '../pages/Home'
+import SingleProduct from '../pages/SingleProduct'
 import Login from '../components/user/Login'
 import Register from '../components/user/Register'
 import FirstPage from '../components/FirstPage'
+import Categories from '../components/Categories'
+import About from '../components/About'
 
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={FirstPage} />
     <Route path="/home" component={Home} />
-    {/*     <Route path="/Car" component={Car} />
-     */}{' '}
-    <Route path="/country/:id" component={SingleCountry} />
+    <Route path="/product/:id" component={SingleProduct} />
     <Route path="/Login" component={Login} />
     <Route path="/register" component={Register} />
+    <Route path="/categories" component={Categories} />
+    <Route path="/about" component={About} />
   </Switch>
 )
 

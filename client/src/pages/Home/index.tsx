@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import MainTable from '../../components/MainTable'
 import Header from '../../components/Header'
 
 import useProduct from '../../Hooks/useProduct'
 
-export const Home = ({ query }: any) => {
-  const [products] = useProduct(query)
+export const Home = () => {
+  const [query, setQuery] = useState('')
+  const [data] = useProduct(query)
+
+  const handleChange: React.ReactEventHandler<HTMLInputElement> = (e) => {
+    setQuery(e.currentTarget.value)
+  }
 
   return (
     <div>
-      <Header />
-      <MainTable products={products} query={query} />
+      <Header handleChange={handleChange} search={query} />
+      <MainTable products={data} />
     </div>
   )
 }

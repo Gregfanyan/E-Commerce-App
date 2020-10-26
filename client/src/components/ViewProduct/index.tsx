@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Card, Icon, Image, Button } from 'semantic-ui-react'
+import { Card, Icon, Image, Button, Input, Menu } from 'semantic-ui-react'
 
 import { Product } from '../../types/ProductType'
 
@@ -26,6 +26,23 @@ function ViewProduct({
       <Button primary onClick={handleClick}>
         <Icon name="home"> </Icon>
         Back
+      </Button>
+      <Button>
+        <Menu.Item>
+          <Icon name="shopping cart">
+            <div
+              style={{
+                fontSize: '18px',
+                position: 'absolute',
+                top: 10,
+                right: 33,
+              }}
+            >
+              {/*             {counter}
+               */}
+            </div>
+          </Icon>
+        </Menu.Item>
       </Button>
       <Card.Group itemsPerRow={4} centered>
         <Card>

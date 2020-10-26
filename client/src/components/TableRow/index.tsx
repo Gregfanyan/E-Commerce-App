@@ -33,7 +33,7 @@ const TableRow = ({ name, img, price, _id }: Product) => {
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button as={Link} to={`/country/${_id}`} color="violet">
+          <Button as={Link} to={`/product/${_id}`} color="violet">
             More Details
           </Button>
           <Button color="green" onClick={() => dispatch(buyCar())}>

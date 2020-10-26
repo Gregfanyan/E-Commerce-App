@@ -30,6 +30,8 @@ function FirstPage() {
         Get Started
         <Icon name="arrow right"> </Icon>
       </Button>
+      {/*       <Image src="https://source.unsplash.com/user/erondu/7rDNSLMKiuc" />
+       */}
     </Container>
   )
 }

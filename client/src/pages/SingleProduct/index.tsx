@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 import ViewProduct from '../../components/ViewProduct'
 
-const SingleCountry = () => {
+const SingleProduct = () => {
   const { id } = useParams<any>()
 
   const products = useSelector((state: any) =>
@@ -31,4 +31,4 @@ const SingleCountry = () => {
     </div>
   )
 }
-export default SingleCountry
+export default SingleProduct

@@ -13,8 +13,8 @@ const MainTable = ({ products }: any) => {
         <h2>{products.error}</h2>
       ) : (
         <Card.Group itemsPerRow={4}>
-          {products.products &&
-            products.products.map((product: Product) => (
+          {products &&
+            products.map((product: Product) => (
               <TableRow
                 key={product._id}
                 _id={product._id}
