@@ -1,10 +1,12 @@
 import React from 'react'
-import { Icon, Button, Container, Header } from 'semantic-ui-react'
+import { Icon, Button, Container, Header, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 function FirstPage() {
   return (
     <Container text>
+      <Image src="https://source.unsplash.com/user/erondu/7rDNSLMKiuc" fluid />
+
       <Header
         as="h1"
         content="E-Commerce"

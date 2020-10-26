@@ -3,7 +3,7 @@ import { Input, Menu, Icon, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-function Home({ handleChange, search }: any) {
+function Header({ handleChange, search }: any) {
   const counter = useSelector((state: any) => state.car.numOfCars)
   return (
     <Menu inverted size="massive" fixed="top">
@@ -25,22 +25,24 @@ function Home({ handleChange, search }: any) {
           </Button>
         </Menu.Item>
         <Menu.Item>
-          <Icon name="shopping cart">
-            <div
-              style={{
-                fontSize: '18px',
-                position: 'absolute',
-                top: 10,
-                right: 33,
-              }}
-            >
-              {counter}
-            </div>
-          </Icon>
+          <Button color="black">
+            <Icon name="shopping cart" /*  as={Link} to={`/country/${_id}`} */>
+              <div
+                style={{
+                  fontSize: '18px',
+                  position: 'absolute',
+                  top: 2,
+                  right: 38,
+                }}
+              >
+                {counter}
+              </div>
+            </Icon>
+          </Button>
         </Menu.Item>
       </Menu.Menu>
     </Menu>
   )
 }
 
-export default Home
+export default Header
