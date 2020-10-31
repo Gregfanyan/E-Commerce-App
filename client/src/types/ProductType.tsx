@@ -1,6 +1,7 @@
 export const FETCH_PRODUCT_REQUEST = 'FETCH_PRODUCT_REQUEST'
 export const FETCH_PRODUCT_SUCCESS = 'FETCH_PRODUCT_SUCCESS'
 export const FETCH_PRODUCT_FAILURE = 'FETCH_PRODUCT_FAILURE'
+export const ADD_PRODUCT = 'ADD_PRODUCT'
 
 export type Product = {
   _id: string
@@ -13,8 +14,7 @@ export type Product = {
   price: number
 }
 export type MainTableProps = {
-  products: any
-  query: any
+  products: Product
 }
 
 export type ReceiveProductsAction = {
@@ -24,11 +24,19 @@ export type ReceiveProductsAction = {
   }
 }
 
+export type AddProductAction = {
+  type: typeof ADD_PRODUCT
+  payload: {
+    product: Product
+  }
+}
+
 export type ProductActions =
   | ReceiveProductsAction
   | fetchProduct
   | fetchProductSuccess
   | fetchProductRequest
+  | AddProductAction
 
 export type fetchProduct = {
   type: typeof FETCH_PRODUCT_FAILURE
@@ -39,6 +47,7 @@ export type fetchProduct = {
 
 export type fetchProductRequest = {
   type: typeof FETCH_PRODUCT_REQUEST
+  loading: boolean
   payload: {
     product: Product
   }
@@ -49,4 +58,14 @@ export type fetchProductSuccess = {
   payload: {
     product: Product
   }
+}
+
+export type ProductState = {
+  products: Product[]
+  inCart: Product[]
+}
+
+export type AppState = {
+  products: ProductState
+  filter: ''
 }

@@ -1,8 +1,10 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Card, Icon, Image, Button, Input, Menu } from 'semantic-ui-react'
+import { Card, Icon, Image, Button, Menu } from 'semantic-ui-react'
+import { useDispatch } from 'react-redux'
 
 import { Product } from '../../types/ProductType'
+import { buyCar } from '../../redux'
 
 function ViewProduct({
   name,
@@ -12,7 +14,9 @@ function ViewProduct({
   variants,
   categories,
 }: Product) {
-  let history = useHistory()
+  const history = useHistory()
+  const dispatch = useDispatch()
+  const HandleClickBuyCar = () => dispatch(buyCar())
 
   function handleClick() {
     if (!history) {
@@ -65,7 +69,9 @@ function ViewProduct({
           </Card.Content>
           <Card.Content extra>
             <div className="ui two buttons">
-              <Button color="green">Add to Basket</Button>
+              <Button color="green" onClick={HandleClickBuyCar}>
+                Add to Basket
+              </Button>
             </div>
           </Card.Content>
         </Card>

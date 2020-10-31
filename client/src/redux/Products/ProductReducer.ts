@@ -2,14 +2,19 @@ import {
   FETCH_PRODUCT_REQUEST,
   FETCH_PRODUCT_SUCCESS,
   FETCH_PRODUCT_FAILURE,
-  ProductActions
-} from "./ProductTypes"
+  ProductActions,
+  ADD_PRODUCT,
+  
+} from "../../types/ProductType"
 
 const initialState = {
   loading: false,
   products: [],
+  inCart: [],
   error: '',
 }
+
+console.log(initialState.products)
 
 const ProductReducers = (state = initialState, action:ProductActions) => {
   switch (action.type) {
@@ -30,6 +35,13 @@ const ProductReducers = (state = initialState, action:ProductActions) => {
         products: [],
         error: action.payload,
       }
+   case ADD_PRODUCT: {
+            const { product } = action.payload;
+      if (state.inCart.find((p:any) => p.name === product.name)) {
+        return state;
+            }
+      return { ...state, inCart: [...state.inCart, product] };
+        }    
     default:
       return state
   }

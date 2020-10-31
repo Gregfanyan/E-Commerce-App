@@ -93,7 +93,7 @@ const Login = () => {
         <Message>
           New to us?
           <Button as={Link} color="teal" to="/register">
-            Sign Up
+            Register
           </Button>
         </Message>
       </Grid.Column>

@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { fetchProducts } from '../redux/Products/ProductActions'
-import { Product } from '../types/ProductType'
+import { Product, AppState } from '../types/ProductType'
 
-const useProduct = (query: any) => {
+const useProduct = (query: string) => {
   const [data, setData] = useState<Product[]>([])
   const dispatch = useDispatch()
-  const products = useSelector((state: any) => state.products.products)
+  const products = useSelector((state: AppState) => state.products.products)
 
   useEffect(() => {
     dispatch(fetchProducts())
@@ -16,14 +16,12 @@ const useProduct = (query: any) => {
     setData(products)
   }, [products])
 
-  console.log(products)
-
-    useEffect(() => {
-    const sorted = [...products].filter((product: any) =>
+  useEffect(() => {
+    const sorted = [...products].filter((product: Product) =>
       product.name.toLowerCase().includes(query.toLowerCase())
     )
     setData(sorted)
-  }, [query, products]) 
+  }, [query, products])
 
   return [data]
 }

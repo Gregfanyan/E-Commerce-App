@@ -1,9 +1,22 @@
 import React from 'react'
 import { Input, Menu, Icon, Button } from 'semantic-ui-react'
+import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 function Header({ handleChange, search }: any) {
+  /* const { id } = useParams<any>()
+  const products = useSelector((state: any) =>
+    state.products.products.find((product: any) => product._id === id)
+  ) */
+
+  const CartStyle = {
+    fontSize: '18px',
+    position: 'absolute' as 'absolute',
+    top: 2,
+    right: 38,
+  }
+
   const counter = useSelector((state: any) => state.car.numOfCars)
   return (
     <Menu inverted size="massive" fixed="top">
@@ -25,18 +38,9 @@ function Header({ handleChange, search }: any) {
           </Button>
         </Menu.Item>
         <Menu.Item>
-          <Button color="black">
-            <Icon name="shopping cart" /*  as={Link} to={`/country/${_id}`} */>
-              <div
-                style={{
-                  fontSize: '18px',
-                  position: 'absolute',
-                  top: 2,
-                  right: 38,
-                }}
-              >
-                {counter}
-              </div>
+          <Button color="black" /* as={Link} to={`/product/${_id}`} */>
+            <Icon name="shopping cart">
+              <div style={CartStyle}>{counter}</div>
             </Icon>
           </Button>
         </Menu.Item>

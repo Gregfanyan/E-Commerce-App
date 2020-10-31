@@ -5,8 +5,10 @@ import {
   FETCH_PRODUCT_REQUEST,
   FETCH_PRODUCT_SUCCESS,
   FETCH_PRODUCT_FAILURE,
+  ProductActions,
+  ADD_PRODUCT,
     Product
-} from "./ProductTypes"
+} from "../../types/ProductType"
 
 
 export const fetchProductRequest = () => {
@@ -27,6 +29,15 @@ export const fetchProductFailure = (error: any) => {
     type: FETCH_PRODUCT_FAILURE,
     payload: error,
   }
+}
+
+export const  addProduct =(product: Product) : ProductActions=>  {
+    return {
+        type: ADD_PRODUCT,
+        payload: {
+            product,
+        },
+    };
 }
 
 export const fetchProducts = () => {

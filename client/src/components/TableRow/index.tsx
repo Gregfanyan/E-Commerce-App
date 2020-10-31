@@ -2,15 +2,20 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
 import { useDispatch } from 'react-redux'
-import { buyCar } from '../../redux'
 
+import { buyCar } from '../../redux'
 import { Product } from '../../types/ui'
 
 const TableRow = ({ name, img, price, _id }: Product) => {
   const dispatch = useDispatch()
 
+  const CardStyle = { marginTop: '100px' }
+  const ContentStyle = { backgroundColor: 'grey' }
+
+  const HandleClickBuyCar = () => dispatch(buyCar())
+
   return (
-    <Card raised style={{ marginTop: '100px' }}>
+    <Card raised style={CardStyle}>
       <Image
         src={img}
         style={{
@@ -20,8 +25,8 @@ const TableRow = ({ name, img, price, _id }: Product) => {
         }}
       />
 
-      <Card.Content style={{ backgroundColor: 'grey' }}>
-        <Card.Header as={Link} to={`/country/${_id}`}>
+      <Card.Content style={ContentStyle}>
+        <Card.Header as={Link} to={`/product/${_id}`}>
           {name}
         </Card.Header>
       </Card.Content>
@@ -36,7 +41,7 @@ const TableRow = ({ name, img, price, _id }: Product) => {
           <Button as={Link} to={`/product/${_id}`} color="violet">
             More Details
           </Button>
-          <Button color="green" onClick={() => dispatch(buyCar())}>
+          <Button color="green" onClick={HandleClickBuyCar}>
             Add to Basket
           </Button>
         </div>

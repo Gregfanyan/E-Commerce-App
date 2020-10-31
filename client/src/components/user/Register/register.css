@@ -1,0 +1,33 @@
+
+.head2 {
+  font-family: 'Metal Mania', Arial, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 3rem;
+  color: #660000;
+  text-shadow: 0 0 0.6rem #fff;
+  margin-bottom: 40px;
+}
+.head2-sm {
+  font-family: 'Metal Mania', Arial, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2rem;
+  color: #660000;
+  text-shadow: 0 0 0.6rem #fff;
+}
+
+
+.jumbo {
+  padding-top: 5px;
+}
+
+.centered{
+  display: inline-block;
+  margin-left: 320px;
+}
+
+.btn{
+  margin-right: 150px;
+}
+
