@@ -31,8 +31,8 @@ export const fetchProductFailure = (error: any) => {
   }
 }
 
-export const  addProduct =(product: Product) : ProductActions=>  {
-    return {
+export const addProduct = (product: Product): ProductActions => {
+  return {
         type: ADD_PRODUCT,
         payload: {
             product,
@@ -47,7 +47,6 @@ export const fetchProducts = () => {
       .get('http://localhost:8000/api/v1/products')
       .then((response) => {
         const products = response.data
-
         dispatch(fetchProductSuccess(products))
       })
       .catch((error) => {

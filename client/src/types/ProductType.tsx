@@ -63,6 +63,8 @@ export type fetchProductSuccess = {
 export type ProductState = {
   products: Product[]
   inCart: Product[]
+  loading: boolean
+  error: string
 }
 
 export type AppState = {

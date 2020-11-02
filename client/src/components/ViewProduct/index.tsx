@@ -25,6 +25,8 @@ function ViewProduct({
       history.push('/home')
     }
   }
+
+  console.log(buyCar)
   return (
     <div>
       <Button primary onClick={handleClick}>

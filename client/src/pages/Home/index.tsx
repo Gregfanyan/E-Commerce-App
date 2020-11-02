@@ -15,7 +15,7 @@ export const Home = () => {
 
   return (
     <div>
-      <Header handleChange={handleChange} search={query} />
+      <Header handleChange={handleChange} search={query} product={data} />
       <MainTable products={data} />
     </div>
   )
