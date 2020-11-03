@@ -64,10 +64,8 @@ function ViewProduct({
             <Card.Description>{description}</Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <a>
-              <Icon name="dollar" />
-              {price}
-            </a>
+            <Icon name="dollar" />
+            {price}
           </Card.Content>
           <Card.Content extra>
             <div className="ui two buttons">

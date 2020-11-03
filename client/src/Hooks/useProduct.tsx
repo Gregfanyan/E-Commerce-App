@@ -10,7 +10,6 @@ const useProduct = (query: string) => {
   const products = useSelector((state: AppState) => state.products.products)
 
   useEffect(() => {
-    console.log('1')
     dispatch(fetchProducts())
   }, [dispatch])
 

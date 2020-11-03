@@ -7,6 +7,7 @@ import {
   FETCH_PRODUCT_FAILURE,
   ProductActions,
   ADD_PRODUCT,
+  REMOVE_PRODUCT,
     Product
 } from "../../types/ProductType"
 
@@ -34,6 +35,14 @@ export const fetchProductFailure = (error: any) => {
 export const addProduct = (product: Product): ProductActions => {
   return {
         type: ADD_PRODUCT,
+        payload: {
+            product,
+        },
+    };
+}
+export const removeProduct = (product: Product): ProductActions => {
+  return {
+        type: REMOVE_PRODUCT,
         payload: {
             product,
         },

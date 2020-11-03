@@ -5,7 +5,7 @@ import {
   ProductActions,
   ADD_PRODUCT,
   ProductState,
-Product
+  REMOVE_PRODUCT
 } from "../../types/ProductType"
 
 const initialState: ProductState = {
@@ -13,6 +13,8 @@ const initialState: ProductState = {
   products: [],
   inCart: [] ,
   error: '',
+  counter: 0,
+
 }
 
 const ProductReducers = (state = initialState, action:ProductActions) => {
@@ -23,9 +25,8 @@ const ProductReducers = (state = initialState, action:ProductActions) => {
         loading: true,
       }
     case FETCH_PRODUCT_SUCCESS:
-console.log("3", action.payload)
       return {
-...state,
+        ...state,
         loading: false,
         products: action.payload,
         error: '',
@@ -39,12 +40,23 @@ console.log("3", action.payload)
       }
     case ADD_PRODUCT: {
       const { product } = action.payload;
-      if (state.inCart.find((p:any) => p.name === product.name)) {
+      if (state.inCart.find(p => p.name === product.name)) {
         return state;
             }
-      return { ...state, inCart: [...state.inCart, product] };
+      return {
+        ...state, inCart: [...state.inCart, product],
+         counter: state.counter + 1,
+ }  
     }    
-      
+       case REMOVE_PRODUCT: {
+            const { product } = action.payload;
+            const index = state.inCart.findIndex(p => p.name === product.name);
+            if (index >= 0) {
+                state.inCart.splice(index, 1);
+              return { ...state, inCart: [...state.inCart], counter: state.counter - 1, }; 
+            }
+            return state;
+        }    
     default:
       return state
   }

@@ -29,3 +29,7 @@ export type handleItemClick = {
   event: KeyboardEvent
   name: any
 }
+
+export type CartItemProps = {
+  cart: any
+}

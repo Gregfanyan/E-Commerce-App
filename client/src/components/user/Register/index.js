@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Row, Col, Button, Jumbotron, Container, Form } from 'react-bootstrap'
+import { Col, Button, Jumbotron, Container, Form } from 'react-bootstrap'
 
 import './register.css'
 
@@ -10,7 +10,7 @@ const styles = {
 }
 
 export default () => {
-  const [data, setData] = useState([])
+  const [/* data, */ setData] = useState([])
   const [firstName, setFirstName] = useState([])
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -102,7 +102,6 @@ export default () => {
                     placeholder="Password"
                     onChange={handlePassword}
                     value={password}
-                    placeholder="password"
                   />
                 </Form.Group>
               </Form.Row>

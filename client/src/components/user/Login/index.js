@@ -13,7 +13,7 @@ import {
 } from 'semantic-ui-react'
 
 const Login = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(['my-cookies'])
+  const [/* cookies, */ setCookie, removeCookie] = useCookies(['my-cookies'])
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 

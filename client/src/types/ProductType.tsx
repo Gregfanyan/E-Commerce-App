@@ -2,6 +2,7 @@ export const FETCH_PRODUCT_REQUEST = 'FETCH_PRODUCT_REQUEST'
 export const FETCH_PRODUCT_SUCCESS = 'FETCH_PRODUCT_SUCCESS'
 export const FETCH_PRODUCT_FAILURE = 'FETCH_PRODUCT_FAILURE'
 export const ADD_PRODUCT = 'ADD_PRODUCT'
+export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 
 export type Product = {
   _id: string
@@ -37,6 +38,7 @@ export type ProductActions =
   | fetchProductSuccess
   | fetchProductRequest
   | AddProductAction
+  | RemoveProductAction
 
 export type fetchProduct = {
   type: typeof FETCH_PRODUCT_FAILURE
@@ -59,12 +61,19 @@ export type fetchProductSuccess = {
     product: Product
   }
 }
+export type RemoveProductAction = {
+  type: typeof REMOVE_PRODUCT
+  payload: {
+    product: Product
+  }
+}
 
 export type ProductState = {
   products: Product[]
   inCart: Product[]
   loading: boolean
   error: string
+  counter: number
 }
 
 export type AppState = {

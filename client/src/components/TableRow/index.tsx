@@ -3,15 +3,11 @@ import { Link } from 'react-router-dom'
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
 import { useDispatch } from 'react-redux'
 
-/* import { buyCar } from '../../redux'
- */
-
 import { Product } from '../../types/ui'
-import { addProduct } from '../../redux/Products/ProductActions'
+import { addProduct } from '../../redux'
 
 const TableRow = (product: Product) => {
   const { name, price, img, _id } = product
-
   const dispatch = useDispatch()
 
   const CardStyle = { marginTop: '100px' }
@@ -22,9 +18,6 @@ const TableRow = (product: Product) => {
   const handleAddProduct = () => {
     dispatch(addProduct(product))
   }
-
-  /*   const HandleClickBuyCar = () => dispatch(buyCar())
-   */
 
   return (
     <Card raised style={CardStyle}>
@@ -43,10 +36,8 @@ const TableRow = (product: Product) => {
         </Card.Header>
       </Card.Content>
       <Card.Content extra>
-        <a>
-          <Icon name="dollar" />
-          {price}
-        </a>
+        <Icon name="dollar" />
+        {price}
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
@@ -56,7 +47,6 @@ const TableRow = (product: Product) => {
           <Button
             color="green"
             onClick={handleAddProduct}
-            /*  onClick={HandleClickBuyCar} */
           >
             Add to Basket
           </Button>
