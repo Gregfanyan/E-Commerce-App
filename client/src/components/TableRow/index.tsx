@@ -18,17 +18,15 @@ const TableRow = (product: Product) => {
   const handleAddProduct = () => {
     dispatch(addProduct(product))
   }
+  const ImgStyles = {
+    minWidth: 'auto',
+    height: 450,
+    resizeMode: 'contain',
+  }
 
   return (
     <Card raised style={CardStyle}>
-      <Image
-        src={img}
-        style={{
-          minWidth: 'auto',
-          height: 450,
-          resizeMode: 'contain',
-        }}
-      />
+      <Image src={img} style={ImgStyles} />
 
       <Card.Content style={ContentStyle}>
         <Card.Header as={Link} to={`/product/${_id}`}>
@@ -44,10 +42,7 @@ const TableRow = (product: Product) => {
           <Button as={Link} to={`/product/${_id}`} color="violet">
             More Details
           </Button>
-          <Button
-            color="green"
-            onClick={handleAddProduct}
-          >
+          <Button color="green" onClick={handleAddProduct}>
             Add to Basket
           </Button>
         </div>
