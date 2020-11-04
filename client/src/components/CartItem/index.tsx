@@ -17,9 +17,6 @@ function CartItem({ cart }: any) {
         <Image src={img} alt="product" wrapped ui={false} size="small" />
         <Card.Content>
           <Card.Header>{name}</Card.Header>
-          <Card.Meta>
-            <span className="date">{categories}</span>
-          </Card.Meta>
           <Card.Description>{description}</Card.Description>
         </Card.Content>
         <Card.Content extra>

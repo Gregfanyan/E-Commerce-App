@@ -3,7 +3,7 @@ import carReducer from './Car/CarReducer'
 import ProductReducer from "./Products/ProductReducer"
 
 const rootReducer = combineReducers({
-    car: carReducer,
+     car: carReducer,
     products: ProductReducer
 })
 
