@@ -17,16 +17,7 @@ const SingleProduct = () => {
   return (
     <div>
       <div>
-        <ViewProduct
-          _id={products._id}
-          name={products.name}
-          description={products.description}
-          categories={products.categories}
-          variants={products.variants}
-          img={products.img}
-          sizes={products.sizes}
-          price={products.price}
-        />
+        <ViewProduct product={products} />
       </div>
     </div>
   )

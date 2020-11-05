@@ -6,6 +6,7 @@ export * from './ProductType'
 export type HomeProps = {
   query: string
 }
+
 export type searchProps = 'string'
 
 export type TableRowProps = {
@@ -31,5 +32,9 @@ export type handleItemClick = {
 }
 
 export type CartItemProps = {
-  cart: any
+  cart: Product
+}
+
+export type ViewProductProps = {
+  product: Product
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { Icon, Button } from 'semantic-ui-react'
+import { Icon, Button, Card } from 'semantic-ui-react'
 
 import { AppState } from '../../types/ProductType'
 import CartItem from '../../components/CartItem'
@@ -20,16 +20,14 @@ function ProductCart() {
 
   return (
     <div>
-      <div>cart products</div>
-      <div>
-        <Button primary onClick={handleClick}>
-          <Icon name="home"> </Icon>
-          Back
-        </Button>
-      </div>
-
       {cartProduct.length > 0 ? (
         <>
+          <Card.Content>
+            <Button primary onClick={handleClick}>
+              <Icon name="home"> </Icon>
+              Home
+            </Button>
+          </Card.Content>
           {cartProduct &&
             cartProduct.map((cart) => {
               return <CartItem key={cart._id} cart={cart} />

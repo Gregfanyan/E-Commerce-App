@@ -3,6 +3,8 @@ import { Input, Menu, Icon, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
+import Categories from '../Categories'
+
 function Header({ handleChange, search }: any) {
   const counter = useSelector((state: any) => state.products.counter)
 
@@ -14,9 +16,13 @@ function Header({ handleChange, search }: any) {
   }
   return (
     <Menu inverted size="massive" fixed="top">
-      <Menu.Item as={Link} to="/home" name="home" />
-      <Menu.Item as={Link} to="/categories" name="Categories" />
-      <Menu.Item as={Link} to="/about" name="About" />
+      <Menu.Item as={Link} to="/home" name="home">
+        <h3>Home</h3>
+      </Menu.Item>
+      <Categories />
+      <Menu.Item as={Link} to="/about" name="About">
+        <h3>Save</h3>
+      </Menu.Item>
       <Menu.Menu position="right">
         <Menu.Item>
           <Input

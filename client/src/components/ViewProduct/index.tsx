@@ -1,13 +1,19 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory /* Link */ } from 'react-router-dom'
 import { Card, Icon, Image, Button, Menu } from 'semantic-ui-react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
-import { Product, AppState } from '../../types/ProductType'
+import { addProduct } from '../../redux'
+import { AppState } from '../../types/ProductType'
+import { ViewProductProps } from '../../types/ui'
 
-function ViewProduct({ name, description, img, price, categories }: Product) {
+function ViewProduct({ product }: ViewProductProps) {
+  const { name, description, img, price, categories } = product
   const history = useHistory()
   const counter = useSelector((state: AppState) => state.products.counter)
+  const dispatch = useDispatch()
+
+  //ToDo: fix link
 
   function handleClick() {
     if (!history) {
@@ -17,28 +23,36 @@ function ViewProduct({ name, description, img, price, categories }: Product) {
     }
   }
 
+  const handleAddProduct = () => {
+    dispatch(addProduct(product))
+  }
+
   const CartStyle = {
     fontSize: '18px',
     position: 'absolute' as 'absolute',
-    top: 2,
-    right: 38,
+    top: 12,
+    right: 44,
   }
 
   return (
     <div>
-      <Button primary onClick={handleClick}>
-        <Icon name="home"> </Icon>
-        Back
-      </Button>
-      <Menu.Item>
-        <Button>
-          <Icon name="shopping cart">
-            <div style={CartStyle}>{counter}</div>
-          </Icon>
-        </Button>
-      </Menu.Item>
       <Card.Group itemsPerRow={4} centered>
         <Card>
+          <Card.Content extra>
+            <div className="ui two buttons">
+              <Button primary onClick={handleClick}>
+                <Icon name="home"> </Icon>
+                Back
+              </Button>
+              <Menu.Item /* as={Link} to="cart" */>
+                <Button>
+                  <Icon name="shopping cart">
+                    <div style={CartStyle}>{counter}</div>
+                  </Icon>
+                </Button>
+              </Menu.Item>
+            </div>
+          </Card.Content>
           <Image src={img} alt="product" wrapped ui={false} />
           <Card.Content>
             <Card.Header>{name}</Card.Header>
@@ -53,7 +67,9 @@ function ViewProduct({ name, description, img, price, categories }: Product) {
           </Card.Content>
           <Card.Content extra>
             <div className="ui two buttons">
-              <Button color="green">Add to Basket</Button>
+              <Button color="green" onClick={handleAddProduct}>
+                Add to Basket
+              </Button>
             </div>
           </Card.Content>
         </Card>

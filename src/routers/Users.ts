@@ -25,8 +25,6 @@ router.put('/resetPassword', resetPassword)
 router.delete('/:userId', VerifyToken, deleteUser)
 router.post('/', createUser)
 router.post('/logIn', logInUser)
-/* router.put('/:userId/cart', VerifyToken, getProduct)
- */
 router.get('/:userId/cart', VerifyToken, getCart)
 router.put('/:userId/update', VerifyToken, updateUser)
 

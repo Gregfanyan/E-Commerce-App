@@ -3,8 +3,10 @@ import { useDispatch } from 'react-redux'
 import { removeProduct } from '../../redux'
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
 
-function CartItem({ cart }: any) {
-  const { name, description, categories, img, price } = cart
+import { CartItemProps } from '../../types/ui'
+
+function CartItem({ cart }: CartItemProps) {
+  const { name, description, img, price } = cart
 
   const dispatch = useDispatch()
 

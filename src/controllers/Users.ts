@@ -133,31 +133,6 @@ export const findAll = async (
   }
 }
 
-//POST /users/:userId/cart
-/* export const getProduct = async (req: Request, res: Response) => {
-  try {
-    const { productId } = await req.body
-    const productBought = await Products.findOne({ _id: productId }).then(
-      (product) => {
-        return product
-      }
-    )
-
-    const updated = await Users.findOneAndUpdate(
-      { _id: req.params.userId },
-            { $push: { cart: productBought } },
-     { new: true }
-    )
-
-      .populate('cart')
-      .exec()
-    return res.json(updated)
-    console.log(updated)
-  } catch (error) {
-    return res.status(404).json({ message: 'something went work' })
-  }
-} */
-
 //GET /users/:userId/cart
 export const getCart = async (
   req: Request,
