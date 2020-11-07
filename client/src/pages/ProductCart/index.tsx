@@ -20,14 +20,13 @@ function ProductCart() {
 
   return (
     <div>
+      <Button primary onClick={handleClick}>
+        <Icon name="home"> </Icon>
+        Home
+      </Button>
       {cartProduct.length > 0 ? (
         <>
-          <Card.Content>
-            <Button primary onClick={handleClick}>
-              <Icon name="home"> </Icon>
-              Home
-            </Button>
-          </Card.Content>
+          <Card.Content></Card.Content>
           {cartProduct &&
             cartProduct.map((cart) => {
               return <CartItem key={cart._id} cart={cart} />

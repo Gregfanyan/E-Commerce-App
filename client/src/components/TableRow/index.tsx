@@ -13,15 +13,16 @@ const TableRow = (product: Product) => {
   const CardStyle = { marginTop: '100px' }
   const ContentStyle = {
     backgroundColor: 'grey',
+    marginBottom: '0.3px',
+  }
+  const ImgStyles = {
+    minWidth: 'auto',
+    height: 400,
+    resizeMode: 'contain',
   }
 
   const handleAddProduct = () => {
     dispatch(addProduct(product))
-  }
-  const ImgStyles = {
-    minWidth: 'auto',
-    height: 450,
-    resizeMode: 'contain',
   }
 
   return (
@@ -33,7 +34,7 @@ const TableRow = (product: Product) => {
           {name}
         </Card.Header>
       </Card.Content>
-      <Card.Content extra>
+      <Card.Content extra style={ContentStyle}>
         <Icon name="dollar" />
         {price}
       </Card.Content>

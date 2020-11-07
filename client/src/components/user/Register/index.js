@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Col, Button, Jumbotron, Container, Form } from 'react-bootstrap'
 
 import './register.css'
