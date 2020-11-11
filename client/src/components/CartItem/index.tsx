@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { removeProduct } from '../../redux'
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
 
 import { CartItemProps } from '../../types/ui'
+import { removeProduct } from '../../redux'
 
 function CartItem({ cart }: CartItemProps) {
   const { name, description, img, price } = cart

@@ -38,3 +38,9 @@ export type CartItemProps = {
 export type ViewProductProps = {
   product: Product
 }
+
+export type HeaderProps = {
+  search: any
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  product: Product[]
+}

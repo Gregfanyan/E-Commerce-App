@@ -5,36 +5,32 @@ import { useDispatch } from 'react-redux'
 
 import { Product } from '../../types/ui'
 import { addProduct } from '../../redux'
+import styles from './TableRow.module.css'
+
+const ImgStyles = {
+  minWidth: 'auto',
+  height: 400,
+  resizeMode: 'contain',
+}
 
 const TableRow = (product: Product) => {
   const { name, price, img, _id } = product
   const dispatch = useDispatch()
-
-  const CardStyle = { marginTop: '100px' }
-  const ContentStyle = {
-    backgroundColor: 'grey',
-    marginBottom: '0.3px',
-  }
-  const ImgStyles = {
-    minWidth: 'auto',
-    height: 400,
-    resizeMode: 'contain',
-  }
 
   const handleAddProduct = () => {
     dispatch(addProduct(product))
   }
 
   return (
-    <Card raised style={CardStyle}>
+    <Card raised>
       <Image src={img} style={ImgStyles} />
 
-      <Card.Content style={ContentStyle}>
+      <Card.Content className={styles.Content}>
         <Card.Header as={Link} to={`/product/${_id}`}>
           {name}
         </Card.Header>
       </Card.Content>
-      <Card.Content extra style={ContentStyle}>
+      <Card.Content extra>
         <Icon name="dollar" />
         {price}
       </Card.Content>

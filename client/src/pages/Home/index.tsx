@@ -6,7 +6,7 @@ import Header from '../../components/Header'
 import useProduct from '../../Hooks/useProduct'
 
 export const Home = () => {
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState<string>('')
   const [data] = useProduct(query)
 
   const handleChange: React.ReactEventHandler<HTMLInputElement> = (e) => {

@@ -3,10 +3,11 @@ import { Card, Icon } from 'semantic-ui-react'
 
 import TableRow from '../TableRow'
 import { Product } from '../../types/ui'
+import styles from './MainTable.module.css'
 
 const MainTable = ({ products }: any) => {
   return (
-    <div>
+    <div className={styles.Card}>
       {products.loading ? (
         <Icon loading name="spinner" />
       ) : products.error ? (

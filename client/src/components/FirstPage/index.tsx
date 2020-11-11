@@ -2,15 +2,19 @@ import React from 'react'
 import { Icon, Button, Container, Header } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
+/* import styles from "./FirstPage.module.css"
+ */
+
+const styles = {
+  backgroundImage: `url(https://source.unsplash.com/user/erondu/7rDNSLMKiuc)`,
+  backgroundPosition: 'center 40%',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  minWidth: '100vw',
+  minHeight: '100vh',
+}
+
 function FirstPage() {
-  const styles = {
-    backgroundImage: `url(https://source.unsplash.com/user/erondu/7rDNSLMKiuc)`,
-    backgroundPosition: 'center 40%',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    minWidth: '100vw',
-    minHeight: '100vh',
-  }
   return (
     <div style={styles}>
       <Container text>

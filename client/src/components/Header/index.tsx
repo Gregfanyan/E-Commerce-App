@@ -4,16 +4,13 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import Categories from '../Categories'
+import { AppState } from '../../types/ProductType'
+import { HeaderProps } from '../../types/ui'
+import styles from './Header.module.css'
 
-function Header({ handleChange, search }: any) {
-  const counter = useSelector((state: any) => state.products.counter)
+function Header({ handleChange, search }: HeaderProps) {
+  const counter = useSelector((state: AppState) => state.products.counter)
 
-  const CartStyle = {
-    fontSize: '18px',
-    position: 'absolute' as 'absolute',
-    top: 2,
-    right: 38,
-  }
   return (
     <Menu inverted size="massive" fixed="top">
       <Menu.Item as={Link} to="/home" name="home">
@@ -40,7 +37,7 @@ function Header({ handleChange, search }: any) {
         <Menu.Item as={Link} to="cart">
           <Button color="black">
             <Icon name="shopping cart">
-              <div style={CartStyle}>{counter}</div>
+              <div className={styles.Counter}>{counter}</div>
             </Icon>
           </Button>
         </Menu.Item>
