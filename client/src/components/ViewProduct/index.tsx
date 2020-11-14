@@ -67,7 +67,7 @@ function ViewProduct({ product }: ViewProductProps) {
           </Card.Content>
           <Card.Content extra>
             <div className="ui two buttons">
-              <Button color="green" onClick={handleAddProduct}>
+              <Button color="yellow" onClick={handleAddProduct}>
                 Add to Basket
               </Button>
             </div>

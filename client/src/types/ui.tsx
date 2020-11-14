@@ -23,7 +23,7 @@ export type SearchBarProps = {
 }
 
 export type MainTableProps = {
-  products: string
+  products: Product[]
 }
 
 export type handleItemClick = {
@@ -42,5 +42,9 @@ export type ViewProductProps = {
 export type HeaderProps = {
   search: any
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  product: Product[]
+}
+
+export type CatProps = {
   product: Product[]
 }

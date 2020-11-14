@@ -8,7 +8,7 @@ import { AppState } from '../../types/ProductType'
 import { HeaderProps } from '../../types/ui'
 import styles from './Header.module.css'
 
-function Header({ handleChange, search }: HeaderProps) {
+function Header({ handleChange, search, product }: HeaderProps) {
   const counter = useSelector((state: AppState) => state.products.counter)
 
   return (
@@ -16,7 +16,7 @@ function Header({ handleChange, search }: HeaderProps) {
       <Menu.Item as={Link} to="/home" name="home">
         <h3>Home</h3>
       </Menu.Item>
-      <Categories />
+      <Categories product={product} />
       <Menu.Item as={Link} to="/about" name="About">
         <h3>Save</h3>
       </Menu.Item>

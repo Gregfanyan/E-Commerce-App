@@ -36,10 +36,10 @@ const TableRow = (product: Product) => {
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button as={Link} to={`/product/${_id}`} color="violet">
-            More Details
+          <Button as={Link} to={`/product/${_id}`} color="black">
+            View More
           </Button>
-          <Button color="green" onClick={handleAddProduct}>
+          <Button color="yellow" onClick={handleAddProduct}>
             Add to Basket
           </Button>
         </div>
