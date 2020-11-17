@@ -13,10 +13,17 @@ function CartItem({ cart }: CartItemProps) {
   const handleRemoveProd = () => {
     dispatch(removeProduct(cart))
   }
+
+  const ImgStyles = {
+    minWidth: 'auto',
+    height: 300,
+    resizeMode: 'contain',
+  }
+
   return (
     <Card.Group itemsPerRow={4} centered>
       <Card>
-        <Image src={img} alt="product" wrapped ui={false} size="small" />
+        <Image src={img} alt="product" style={ImgStyles} />
         <Card.Content>
           <Card.Header>{name}</Card.Header>
           <Card.Description>{description}</Card.Description>

@@ -8,8 +8,8 @@ import { addProduct } from '../../redux'
 import styles from './TableRow.module.css'
 
 const ImgStyles = {
-  minWidth: 'auto',
-  height: 400,
+  minWidth: '250px',
+  height: 350,
   resizeMode: 'contain',
 }
 
@@ -36,7 +36,12 @@ const TableRow = (product: Product) => {
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button as={Link} to={`/product/${_id}`} color="black">
+          <Button
+            as={Link}
+            to={`/product/${_id}`}
+            color="black"
+            className={styles.viewbtn}
+          >
             View More
           </Button>
           <Button color="yellow" onClick={handleAddProduct}>

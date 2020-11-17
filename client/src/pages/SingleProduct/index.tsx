@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import ViewProduct from '../../components/ViewProduct'
+import styles from './SingleProduct.module.css'
 
 const SingleProduct = () => {
   const { id } = useParams<any>()
@@ -16,7 +17,7 @@ const SingleProduct = () => {
   }
   return (
     <div>
-      <div>
+      <div className={styles.card}>
         <ViewProduct product={products} />
       </div>
     </div>

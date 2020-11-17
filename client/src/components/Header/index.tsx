@@ -18,7 +18,7 @@ function Header({ handleChange, search, product }: HeaderProps) {
       </Menu.Item>
       <Categories product={product} />
       <Menu.Item as={Link} to="/about" name="About">
-        <h3>Save</h3>
+        <h3>About</h3>
       </Menu.Item>
       <Menu.Menu position="right">
         <Menu.Item>

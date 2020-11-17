@@ -1,11 +1,11 @@
 import React from 'react'
 
 import Routes from './Routes'
-import './App.css'
+import styles from './App.module.css'
 
 export default function App() {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Routes />
     </div>
   )

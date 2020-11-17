@@ -5,6 +5,7 @@ import { Icon, Button, Card } from 'semantic-ui-react'
 
 import { AppState } from '../../types/ProductType'
 import CartItem from '../../components/CartItem'
+import styles from './ProductCart.module.css'
 
 function ProductCart() {
   const cartProduct = useSelector((state: AppState) => state.products.inCart)
@@ -19,23 +20,25 @@ function ProductCart() {
   }
 
   return (
-    <div>
-      <Button primary onClick={handleClick}>
-        <Icon name="home"> </Icon>
-        Home
-      </Button>
+    <>
+      <Card.Group itemsPerRow={4} centered>
+        <Button primary onClick={handleClick}>
+          <Icon name="home"> </Icon>
+          Home
+        </Button>
+      </Card.Group>
+
       {cartProduct.length > 0 ? (
-        <>
-          <Card.Content></Card.Content>
+        <div className={styles.card}>
           {cartProduct &&
             cartProduct.map((cart) => {
               return <CartItem key={cart._id} cart={cart} />
             })}
-        </>
+        </div>
       ) : (
-        <div>cart is empty</div>
+        <div className={styles.infoText}>cart is empty</div>
       )}
-    </div>
+    </>
   )
 }
 

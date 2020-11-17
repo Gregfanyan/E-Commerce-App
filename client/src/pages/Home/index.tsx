@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Container } from 'semantic-ui-react'
 
 import MainTable from '../../components/MainTable'
 import Header from '../../components/Header'
@@ -14,9 +15,9 @@ export const Home = () => {
   }
 
   return (
-    <div>
+    <Container>
       <Header handleChange={handleChange} search={query} product={data} />
       <MainTable products={data} />
-    </div>
+    </Container>
   )
 }
