@@ -9,7 +9,7 @@ import styles from './TableRow.module.css'
 
 const ImgStyles = {
   minWidth: '250px',
-  height: 350,
+  height: 340,
   resizeMode: 'contain',
 }
 
@@ -22,17 +22,17 @@ const TableRow = (product: Product) => {
   }
 
   return (
-    <Card raised>
+    <Card raised color="black">
       <Image src={img} style={ImgStyles} />
 
       <Card.Content className={styles.Content}>
         <Card.Header as={Link} to={`/product/${_id}`}>
           {name}
+          <Card.Meta>
+            <Icon name="dollar" />
+            {price}{' '}
+          </Card.Meta>
         </Card.Header>
-      </Card.Content>
-      <Card.Content extra>
-        <Icon name="dollar" />
-        {price}
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
@@ -42,10 +42,10 @@ const TableRow = (product: Product) => {
             color="black"
             className={styles.viewbtn}
           >
-            View More
+                        View More
           </Button>
           <Button color="yellow" onClick={handleAddProduct}>
-            Add to Basket
+                        Add to Basket
           </Button>
         </div>
       </Card.Content>

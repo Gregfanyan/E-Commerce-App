@@ -35,7 +35,7 @@ function CartItem({ cart }: CartItemProps) {
         <Card.Content extra>
           <div className="ui two buttons">
             <Button color="red" onClick={handleRemoveProd}>
-              remove
+                            remove
             </Button>
           </div>
         </Card.Content>

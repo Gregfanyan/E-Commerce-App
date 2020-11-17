@@ -37,7 +37,7 @@ function FirstPage() {
             marginTop: '4em',
           }}
         >
-          Get Started
+                    Get Started
           <Icon name="arrow right"> </Icon>
         </Button>
       </Container>

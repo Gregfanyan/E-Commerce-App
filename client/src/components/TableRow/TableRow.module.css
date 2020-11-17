@@ -7,9 +7,9 @@
 
 .Content{
      background: grey;
-    margin-bottom: 0.3px
+    margin-bottom: 0.3px;
 }
 
 .viewbtn{
-    padding: 0px;
+    text-align: center !important;
 }

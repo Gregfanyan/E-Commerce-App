@@ -8,7 +8,8 @@ import useProduct from '../../Hooks/useProduct'
 
 export const Home = () => {
   const [query, setQuery] = useState<string>('')
-  const [data] = useProduct(query)
+  const [cat] = useState<string>('')
+  const [data] = useProduct(query, cat)
 
   const handleChange: React.ReactEventHandler<HTMLInputElement> = (e) => {
     setQuery(e.currentTarget.value)
@@ -16,7 +17,12 @@ export const Home = () => {
 
   return (
     <Container>
-      <Header handleChange={handleChange} search={query} product={data} />
+      <Header
+        handleChange={handleChange}
+        search={query}
+        category={cat}
+        product={data}
+      />
       <MainTable products={data} />
     </Container>
   )
