@@ -73,5 +73,5 @@ export type UserState = {
 }
 
 export type AppState = {
-	products: UserState
+	user: UserState
 }
