@@ -47,7 +47,7 @@ function ViewProduct({ product }: ViewProductProps) {
           <div className="ui two buttons">
             <Button primary onClick={handleClick}>
               <Icon name="home"> </Icon>
-                            Back
+							Back
             </Button>
             <Menu.Item>
               <Button as={Link} to="cart">
@@ -73,7 +73,7 @@ function ViewProduct({ product }: ViewProductProps) {
         <Card.Content extra>
           <div className="ui two buttons">
             <Button color="yellow" onClick={handleAddProduct}>
-                            Add to Basket
+							Add to Basket
             </Button>
           </div>
         </Card.Content>

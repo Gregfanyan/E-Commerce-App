@@ -13,9 +13,9 @@ const useProduct = (query: string, cat: any) => {
     dispatch(fetchProducts())
   }, [dispatch])
 
-  useEffect(() => {
+  /*  useEffect(() => {
     setData(products)
-  }, [products, cat])
+  }, [products, cat])  */
 
   useEffect(() => {
     const sorted = [...products].filter((product: Product) =>
