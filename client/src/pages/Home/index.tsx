@@ -17,12 +17,7 @@ export const Home = () => {
 
   return (
     <Container>
-      <Header
-        handleChange={handleChange}
-        search={query}
-        category={cat}
-        product={data}
-      />
+      <Header handleChange={handleChange} search={query} product={data} />
       <MainTable products={data} />
     </Container>
   )

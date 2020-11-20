@@ -8,15 +8,15 @@ import { AppState } from '../../types/ProductType'
 import { HeaderProps } from '../../types/ui'
 import styles from './Header.module.css'
 
-function Header({ handleChange, search, category }: HeaderProps) {
+function Header({ handleChange, search, product }: HeaderProps) {
   const counter = useSelector((state: AppState) => state.products.counter)
 
   return (
-    <Menu inverted size="massive" fixed="top">
+    <Menu inverted size="large" fixed="top">
       <Menu.Item as={Link} to="/home" name="home">
         <h3>Home</h3>
       </Menu.Item>
-      <Categories category={category} />
+      <Categories categories={product} />
       <Menu.Item as={Link} to="/about" name="About">
         <h3>About</h3>
       </Menu.Item>
@@ -36,7 +36,7 @@ function Header({ handleChange, search, category }: HeaderProps) {
         </Menu.Item>
         <Menu.Item as={Link} to="cart">
           <Button color="black">
-            <Icon name="shopping cart">
+            <Icon name="shopping cart" size="large">
               <div className={styles.Counter}>{counter}</div>
             </Icon>
           </Button>
