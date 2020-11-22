@@ -6,7 +6,10 @@ export type HomeProps = {
 	query: string
 }
 
-export type searchProps = 'string'
+export type SearchProps = {
+	search: string
+	handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
 
 export type TableRowProps = {
 	flagUrl: string
@@ -39,9 +42,10 @@ export type ViewProductProps = {
 }
 
 export type HeaderProps = {
-	search: any
+	search: string
 	handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-	product: Product[]
+	handleCatChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+	category: string
 }
 
 export type CatProps = {

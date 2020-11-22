@@ -91,6 +91,7 @@ const Login = () => {
                 value={email}
                 iconPosition="left"
                 placeholder="E-mail address"
+                required
               />
               <Form.Input
                 fluid

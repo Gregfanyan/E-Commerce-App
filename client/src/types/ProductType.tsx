@@ -8,7 +8,7 @@ export type Product = {
 	_id: string
 	name: string
 	description: string
-	categories: string[]
+	categories: [string]
 	variants: string[]
 	sizes: number[]
 	img: string
