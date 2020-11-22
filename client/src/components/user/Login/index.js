@@ -119,9 +119,7 @@ const Login = () => {
 
           <Message>
 						New to us?
-            <Button as={Link} color="teal" to="/register">
-							Register
-            </Button>
+            <Link to="/register">Register</Link>.
           </Message>
         </Grid.Column>
       </Grid>

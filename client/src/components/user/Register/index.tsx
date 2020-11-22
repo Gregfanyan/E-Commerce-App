@@ -8,11 +8,10 @@ import {
   Button,
   Card,
   Icon,
-  Image,
   Header,
 } from 'semantic-ui-react'
 
-import { register } from '../../../redux'
+import { register } from '../../../redux/User/UserActions'
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -67,7 +66,6 @@ const Register = () => {
       <Grid centered>
         <Grid.Column style={{ maxWidth: 550, marginTop: 20 }}>
           <Header as="h2" color="teal" textAlign="center">
-            <Image src="https://thumbs.dreamstime.com/z/vector-illustration-isolated-white-background-login-button-icon-126999949.jpg" />{' '}
 						Create an Account
           </Header>
           <Segment>
@@ -121,10 +119,7 @@ const Register = () => {
             </Form>
 
             <Segment>
-							Already have an account?
-              <Button as={Link} color="teal" to="/Login">
-								Login
-              </Button>
+							Already have an account? <Link to="/login">Login</Link>.
             </Segment>
           </Segment>
         </Grid.Column>
