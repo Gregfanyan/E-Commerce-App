@@ -3,7 +3,6 @@ import { Container } from 'semantic-ui-react'
 
 import MainTable from '../../components/MainTable'
 import Header from '../../components/Header'
-
 import useProduct from '../../Hooks/useProduct'
 
 export const Home = () => {

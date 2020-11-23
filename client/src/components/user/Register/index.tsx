@@ -55,6 +55,12 @@ const Register = () => {
     }
   }
 
+  const registerFormValid =
+		!firstName?.length ||
+		!lastName?.length ||
+		!password?.length ||
+		!email?.length
+
   return (
     <>
       <Card.Group itemsPerRow={4} centered style={{ margin: 0 }}>
@@ -77,7 +83,6 @@ const Register = () => {
                   name="firstName"
                   placeholder="First Name"
                   label="First Name"
-                  required
                 />
               </Form.Field>
               <Form.Field>
@@ -87,18 +92,16 @@ const Register = () => {
                   name="lastName"
                   placeholder="Last Name"
                   label="Last Name"
-                  required
                 />
               </Form.Field>
               <Form.Field>
                 <Form.Input
+                  type="email"
                   value={email}
                   onChange={onChange}
                   name="email"
-                  type="email"
                   placeholder="Email"
                   label="Email"
-                  required
                 />
               </Form.Field>
               <Form.Field>
@@ -109,17 +112,23 @@ const Register = () => {
                   name="password"
                   placeholder="Password"
                   label="Password"
-                  required
                 />
               </Form.Field>
 
-              <Button onClick={handleSubmit} fluid color="teal" type="submit">
+              <Button
+                onClick={handleSubmit}
+                fluid
+                color="teal"
+                type="submit"
+                disabled={registerFormValid ? true : false}
+              >
 								Submit
               </Button>
             </Form>
 
             <Segment>
-							Already have an account? <Link to="/login">Login</Link>.
+							Already have an account?
+              <Link to="/login">Login</Link>.
             </Segment>
           </Segment>
         </Grid.Column>
