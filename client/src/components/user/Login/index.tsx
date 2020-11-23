@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { useCookies } from 'react-cookie'
-import axios from 'axios'
 import { Link, useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
+import { login } from '../../../redux/User/UserActions'
 import {
   Button,
   Form,
@@ -16,10 +16,33 @@ import {
 } from 'semantic-ui-react'
 
 const Login = () => {
-  const [/* cookies, */ setCookie, removeCookie] = useCookies(['my-cookies'])
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const history = useHistory()
+  const dispatch = useDispatch()
+
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  })
+
+  const { email, password } = user
+
+  const onChange: React.ReactEventHandler<HTMLInputElement> = (e: any) => {
+    let { name, value } = e.currentTarget
+    setUser({
+      ...user,
+      [name]: value,
+    })
+  }
+
+  const handleFormSubmit = (e: any) => {
+    e.preventDefault()
+
+    const newUser = {
+      email: email,
+      password: password,
+    }
+    dispatch(login(newUser))
+  }
 
   function handleClick() {
     if (!history) {
@@ -29,37 +52,7 @@ const Login = () => {
     }
   }
 
-  const saveLogin = (setCookie) => {
-    axios
-      .post('http://localhost:8000/api/v1/user/logIn', {
-        email: email,
-        password: password,
-      })
-      .then(function (response) {
-        setCookie('auth-token', response.data)
-        window.location.href = '/home'
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-  }
-
-  const handleSubmit = (e, setCookie) => {
-    e.preventDefault()
-    saveLogin(setCookie)
-    setEmail('')
-    setPassword('')
-  }
-  const logout = () => {
-    removeCookie('auth-token')
-  }
-  const handleEmail = (e) => {
-    setEmail(e.target.value)
-  }
-
-  const handlePassword = (e) => {
-    setPassword(e.target.value)
-  }
+  console.log(email)
 
   return (
     <>
@@ -79,19 +72,16 @@ const Login = () => {
             <Image src="https://thumbs.dreamstime.com/z/vector-illustration-isolated-white-background-login-button-icon-126999949.jpg" />{' '}
 						Log-in to your account
           </Header>
-          <Form
-            size="large"
-            onSubmit={(event) => handleSubmit(event, setCookie)}
-          >
+          <Form size="large" onSubmit={handleFormSubmit}>
             <Segment stacked>
               <Form.Input
                 fluid
                 icon="user"
-                onChange={handleEmail}
+                onChange={onChange}
                 value={email}
                 iconPosition="left"
                 placeholder="E-mail address"
-                required
+                name="email"
               />
               <Form.Input
                 fluid
@@ -99,24 +89,15 @@ const Login = () => {
                 iconPosition="left"
                 placeholder="Password"
                 type="password"
-                onChange={handlePassword}
+                onChange={onChange}
                 value={password}
+                name="password"
               />
-
               <Button color="teal" fluid size="large">
 								Login
               </Button>
             </Segment>
           </Form>
-          <Button
-            style={{ display: 'none' }}
-            as={Link}
-            to="/home"
-            onClick={(e) => logout(e, removeCookie)}
-          >
-						logout
-          </Button>
-
           <Message>
 						New to us?
             <Link to="/register">Register</Link>.

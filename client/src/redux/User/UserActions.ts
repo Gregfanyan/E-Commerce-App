@@ -2,17 +2,18 @@ import axios from 'axios'
 import { Dispatch } from 'redux'
 
 import {
-  REGISTER_USER_REQUEST,
+  FETCH_USER_REQUEST,
   REGISTER_USER_SUCCESS,
-  REGISTER_USER_FAILURE,
+  FETCH_USER_FAILURE,
   UserActions,
   REMOVE_USER,
   User,
+  LOGIN_USER_SUCCESS,
 } from '../../types/UserType'
 
 export const fetchUserRequest = () => {
   return {
-    type: REGISTER_USER_REQUEST,
+    type: FETCH_USER_REQUEST,
   }
 }
 
@@ -25,7 +26,7 @@ export const fetchUserSuccess = (users: User[]) => {
 
 export const fetchUserFailure = (error: any) => {
   return {
-    type: REGISTER_USER_FAILURE,
+    type: FETCH_USER_FAILURE,
     payload: error,
   }
 }
@@ -33,6 +34,15 @@ export const fetchUserFailure = (error: any) => {
 export const removeUser = (user: User): UserActions => {
   return {
     type: REMOVE_USER,
+    payload: {
+      user,
+    },
+  }
+}
+
+export function loginSuccess(user: User): UserActions {
+  return {
+    type: LOGIN_USER_SUCCESS,
     payload: {
       user,
     },
@@ -52,6 +62,25 @@ export const register = ({ firstName, lastName, email, password }: any) => {
       .then((response) => {
         const users = response.data
         dispatch(fetchUserSuccess(users))
+        window.location.href = '/login'
+      })
+      .catch((error) => {
+        dispatch(fetchUserFailure(error.message))
+      })
+  }
+}
+
+export const login = ({ email, password }: any) => {
+  return (dispatch: Dispatch) => {
+    dispatch(fetchUserRequest())
+    axios
+      .post('http://localhost:8000/api/v1/user/logIn', {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        const users = response.data
+        dispatch(loginSuccess(users))
         window.location.href = '/Home'
       })
       .catch((error) => {
