@@ -69,7 +69,7 @@ const Login = () => {
       >
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h2" color="teal" textAlign="center">
-            <Image src="https://thumbs.dreamstime.com/z/vector-illustration-isolated-white-background-login-button-icon-126999949.jpg" />{' '}
+            <Image src="https://thumbs.dreamstime.com/z/vector-illustration-isolated-white-background-login-button-icon-126999949.jpg" />
 						Log-in to your account
           </Header>
           <Form size="large" onSubmit={handleFormSubmit}>
@@ -100,7 +100,7 @@ const Login = () => {
           </Form>
           <Message>
 						New to us?
-            <Link to="/register">Register</Link>.
+            <Link to="/register"> Register</Link>
           </Message>
         </Grid.Column>
       </Grid>

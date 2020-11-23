@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
-/* import { useForm } from 'react-hook-form'
- */ import {
+import { useForm } from 'react-hook-form'
+import {
   Form,
   Segment,
   Grid,
@@ -12,18 +12,18 @@ import { useHistory, Link } from 'react-router-dom'
   Header,
 } from 'semantic-ui-react'
 
-import { register } from '../../../redux/User/UserActions'
+import { UserRegister } from '../../../redux/User/UserActions'
 
-/* type Inputs = {
+type Inputs = {
 	firstName: string
 	lastName: string
 	password: string
 	email: string
-} */
+}
 
 const Register = () => {
-  /* 	const { register, handleSubmit } = useForm<Inputs>()
-	 */ const dispatch = useDispatch()
+  const { register, handleSubmit, errors } = useForm<Inputs>()
+  const dispatch = useDispatch()
   const history = useHistory()
 
   const [user, setUser] = useState({
@@ -43,9 +43,7 @@ const Register = () => {
     })
   }
 
-  const handleFormSubmit = (e: any) => {
-    e.preventDefault()
-
+  const handleFormSubmit = (e: any): void => {
     const newUser = {
       firstName: firstName,
       lastName: lastName,
@@ -53,7 +51,7 @@ const Register = () => {
       password: password,
     }
 
-    dispatch(register(newUser))
+    dispatch(UserRegister(newUser))
   }
 
   function handleClick() {
@@ -84,7 +82,7 @@ const Register = () => {
 						Create an Account
           </Header>
           <Segment>
-            <Form>
+            <Form onSubmit={handleSubmit(handleFormSubmit)}>
               <Form.Field>
                 <Form.Input
                   value={firstName}
@@ -92,7 +90,9 @@ const Register = () => {
                   name="firstName"
                   placeholder="First Name"
                   label="First Name"
-                  ref={register}
+                  ref={register({
+                    required: true,
+                  })}
                 />
               </Form.Field>
               <Form.Field>
@@ -102,7 +102,7 @@ const Register = () => {
                   name="lastName"
                   placeholder="Last Name"
                   label="Last Name"
-                  ref={register}
+                  ref={register({ required: true })}
                 />
               </Form.Field>
               <Form.Field>
@@ -113,7 +113,7 @@ const Register = () => {
                   name="email"
                   placeholder="Email"
                   label="Email"
-                  ref={register}
+                  ref={register({ required: true })}
                 />
               </Form.Field>
               <Form.Field>
@@ -124,13 +124,13 @@ const Register = () => {
                   name="password"
                   placeholder="Password"
                   label="Password"
-                  ref={register({ required: true })}
+                  ref={register({
+                    required: 'invalid  pass',
+                  })}
                 />
+                <span> {errors.password && errors.password.message}</span>{' '}
               </Form.Field>
-
               <Button
-                /* onSubmit={handleSubmit(handleFormSubmit)}
-								 */ onClick={handleFormSubmit}
                 fluid
                 color="teal"
                 type="submit"
@@ -142,7 +142,7 @@ const Register = () => {
 
             <Segment>
 							Already have an account?
-              <Link to="/login">Login</Link>.
+              <Link to="/login"> Login</Link>
             </Segment>
           </Segment>
         </Grid.Column>

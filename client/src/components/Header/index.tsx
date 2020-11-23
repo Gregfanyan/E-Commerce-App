@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu, Icon, Button } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import Categories from '../Categories'
@@ -16,7 +16,8 @@ function Header({
   handleCatChange,
 }: HeaderProps) {
   const counter = useSelector((state: AppState) => state.products.counter)
-  console.log('header', category)
+  const { pathname } = useLocation()
+  console.log('lo', pathname)
 
   return (
     <Menu inverted size="large" fixed="top">
@@ -31,11 +32,16 @@ function Header({
         <Menu.Item>
           <Search search={search} handleChange={handleChange} />
         </Menu.Item>
-        <Menu.Item as={Link} to="Login" name="logout">
-          <Button color="black">
+        <Menu.Item>
+          <Button color="black" as={Link} to="Login" name="login">
             <Icon name="sign in"> </Icon>Sign In
           </Button>
+
+          <Button color="black" as={Link} to="register" name="register">
+            <Icon name="signup"> </Icon>Register
+          </Button>
         </Menu.Item>
+
         <Menu.Item as={Link} to="cart">
           <Button color="black">
             <Icon name="shopping cart" size="large">
