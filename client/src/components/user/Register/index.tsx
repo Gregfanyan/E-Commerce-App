@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
-import {
+/* import { useForm } from 'react-hook-form'
+ */ import {
   Form,
   Segment,
   Grid,
@@ -13,8 +14,16 @@ import {
 
 import { register } from '../../../redux/User/UserActions'
 
+/* type Inputs = {
+	firstName: string
+	lastName: string
+	password: string
+	email: string
+} */
+
 const Register = () => {
-  const dispatch = useDispatch()
+  /* 	const { register, handleSubmit } = useForm<Inputs>()
+	 */ const dispatch = useDispatch()
   const history = useHistory()
 
   const [user, setUser] = useState({
@@ -34,7 +43,7 @@ const Register = () => {
     })
   }
 
-  const handleSubmit = (e: any) => {
+  const handleFormSubmit = (e: any) => {
     e.preventDefault()
 
     const newUser = {
@@ -83,6 +92,7 @@ const Register = () => {
                   name="firstName"
                   placeholder="First Name"
                   label="First Name"
+                  ref={register}
                 />
               </Form.Field>
               <Form.Field>
@@ -92,6 +102,7 @@ const Register = () => {
                   name="lastName"
                   placeholder="Last Name"
                   label="Last Name"
+                  ref={register}
                 />
               </Form.Field>
               <Form.Field>
@@ -102,6 +113,7 @@ const Register = () => {
                   name="email"
                   placeholder="Email"
                   label="Email"
+                  ref={register}
                 />
               </Form.Field>
               <Form.Field>
@@ -112,15 +124,17 @@ const Register = () => {
                   name="password"
                   placeholder="Password"
                   label="Password"
+                  ref={register({ required: true })}
                 />
               </Form.Field>
 
               <Button
-                onClick={handleSubmit}
+                /* onSubmit={handleSubmit(handleFormSubmit)}
+								 */ onClick={handleFormSubmit}
                 fluid
                 color="teal"
                 type="submit"
-                disabled={registerFormValid ? true : false}
+                disabled={registerFormValid}
               >
 								Submit
               </Button>

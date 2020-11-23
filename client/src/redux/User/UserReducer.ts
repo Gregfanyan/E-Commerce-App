@@ -1,7 +1,7 @@
 import {
-  FETCH_USER_REQUEST,
-  FETCH_USER_SUCCESS,
-  FETCH_USER_FAILURE,
+  REGISTER_USER_REQUEST,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_FAILURE,
   UserActions,
   UserState,
 } from '../../types/UserType'
@@ -14,19 +14,19 @@ const initialState: UserState = {
 
 const UserReducer = (state = initialState, action: UserActions) => {
   switch (action.type) {
-  case FETCH_USER_REQUEST:
+  case REGISTER_USER_REQUEST:
     return {
       ...state,
       loading: true,
     }
-  case FETCH_USER_SUCCESS:
+  case REGISTER_USER_SUCCESS:
     return {
       ...state,
       loading: false,
       users: action.payload,
       error: '',
     }
-  case FETCH_USER_FAILURE:
+  case REGISTER_USER_FAILURE:
     return {
       ...state,
       loading: false,

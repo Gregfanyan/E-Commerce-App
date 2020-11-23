@@ -1,8 +1,8 @@
 import { Product } from './ProductType'
 
-export const FETCH_USER_REQUEST = 'FETCH_USER_REQUEST'
-export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS'
-export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE'
+export const REGISTER_USER_REQUEST = 'REGISTER_USER_REQUEST'
+export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS'
+export const REGISTER_USER_FAILURE = 'REGISTER_USER_FAILURE'
 export const ADD_USER = 'ADD_PRODUCT'
 export const REMOVE_USER = 'REMOVE_USER'
 
@@ -17,7 +17,7 @@ export type User = {
 }
 
 export type ReceiveUserAction = {
-	type: typeof FETCH_USER_SUCCESS
+	type: typeof REGISTER_USER_SUCCESS
 	payload: {
 		users: User[]
 	}
@@ -39,14 +39,14 @@ export type UserActions =
 	| RemoveUserAction
 
 export type register = {
-	type: typeof FETCH_USER_FAILURE
+	type: typeof REGISTER_USER_FAILURE
 	payload: {
 		user: User
 	}
 }
 
 export type fetchUserRequest = {
-	type: typeof FETCH_USER_REQUEST
+	type: typeof REGISTER_USER_REQUEST
 	loading: boolean
 	payload: {
 		user: User
@@ -54,7 +54,7 @@ export type fetchUserRequest = {
 }
 
 export type fetchUserSuccess = {
-	type: typeof FETCH_USER_SUCCESS
+	type: typeof REGISTER_USER_SUCCESS
 	payload: {
 		product: Product
 	}

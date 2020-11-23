@@ -2,9 +2,9 @@ import axios from 'axios'
 import { Dispatch } from 'redux'
 
 import {
-  FETCH_USER_REQUEST,
-  FETCH_USER_SUCCESS,
-  FETCH_USER_FAILURE,
+  REGISTER_USER_REQUEST,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_FAILURE,
   UserActions,
   REMOVE_USER,
   User,
@@ -12,20 +12,20 @@ import {
 
 export const fetchUserRequest = () => {
   return {
-    type: FETCH_USER_REQUEST,
+    type: REGISTER_USER_REQUEST,
   }
 }
 
 export const fetchUserSuccess = (users: User[]) => {
   return {
-    type: FETCH_USER_SUCCESS,
+    type: REGISTER_USER_SUCCESS,
     payload: users,
   }
 }
 
 export const fetchUserFailure = (error: any) => {
   return {
-    type: FETCH_USER_FAILURE,
+    type: REGISTER_USER_FAILURE,
     payload: error,
   }
 }
