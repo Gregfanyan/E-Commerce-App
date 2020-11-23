@@ -52,7 +52,7 @@ const Login = () => {
     }
   }
 
-  console.log(email)
+  const logiFormValid = !email?.length || !password?.length
 
   return (
     <>
@@ -93,7 +93,7 @@ const Login = () => {
                 value={password}
                 name="password"
               />
-              <Button color="teal" fluid size="large">
+              <Button color="teal" fluid size="large" disabled={logiFormValid}>
 								Login
               </Button>
             </Segment>
