@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { Formik } from 'formik'
+import * as yup from 'yup'
 
 import { login } from '../../../redux/User/UserActions'
 import {
@@ -15,34 +17,9 @@ import {
   Card,
 } from 'semantic-ui-react'
 
-const Login = () => {
+const Login = (props: any) => {
   const history = useHistory()
   const dispatch = useDispatch()
-
-  const [user, setUser] = useState({
-    email: '',
-    password: '',
-  })
-
-  const { email, password } = user
-
-  const onChange: React.ReactEventHandler<HTMLInputElement> = (e: any) => {
-    let { name, value } = e.currentTarget
-    setUser({
-      ...user,
-      [name]: value,
-    })
-  }
-
-  const handleFormSubmit = (e: any) => {
-    e.preventDefault()
-
-    const newUser = {
-      email: email,
-      password: password,
-    }
-    dispatch(login(newUser))
-  }
 
   function handleClick() {
     if (!history) {
@@ -51,8 +28,6 @@ const Login = () => {
       history.push('/home')
     }
   }
-
-  const logiFormValid = !email?.length || !password?.length
 
   return (
     <>
@@ -72,35 +47,64 @@ const Login = () => {
             <Image src="https://thumbs.dreamstime.com/z/vector-illustration-isolated-white-background-login-button-icon-126999949.jpg" />
 						Log-in to your account
           </Header>
-          <Form size="large" onSubmit={handleFormSubmit}>
-            <Segment stacked>
-              <Form.Input
-                fluid
-                icon="user"
-                onChange={onChange}
-                value={email}
-                iconPosition="left"
-                placeholder="E-mail address"
-                name="email"
-              />
-              <Form.Input
-                fluid
-                icon="lock"
-                iconPosition="left"
-                placeholder="Password"
-                type="password"
-                onChange={onChange}
-                value={password}
-                name="password"
-              />
-              <Button color="teal" fluid size="large" disabled={logiFormValid}>
-								Login
-              </Button>
-            </Segment>
-          </Form>
+          <Formik
+            initialValues={{ email: '', password: '' }}
+            validationSchema={yup.object({
+              email: yup
+                .string()
+                .email('invalid email address')
+                .required('required field'),
+              password: yup
+                .string()
+                .max(45, 'must be 25 characters or less')
+                .required('required field'),
+            })}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              JSON.stringify(values, null, 2)
+              dispatch(login(values))
+              resetForm()
+            }}
+          >
+            {(props: any) => (
+              <Form size="large" onSubmit={props.handleSubmit}>
+                <Segment stacked>
+                  <Form.Input
+                    fluid
+                    icon="user"
+                    value={props.values.email}
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    iconPosition="left"
+                    placeholder="E-mail address"
+                    name="email"
+                  />
+                  {props.errors.email && (
+                    <div id="feedback">{props.errors.email}</div>
+                  )}
+                  <Form.Input
+                    fluid
+                    icon="lock"
+                    iconPosition="left"
+                    placeholder="Password"
+                    type="password"
+                    value={props.values.password}
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    name="password"
+                  />
+                  {props.errors.password && (
+                    <div id="feedback">{props.errors.password}</div>
+                  )}
+                  <Button color="teal" fluid size="large">
+										Login
+                  </Button>
+                </Segment>
+              </Form>
+            )}
+          </Formik>
           <Message>
 						New to us?
-            <Link to="/RegisterClone"> Register</Link>
+            <Link to="/register"> Register</Link>
           </Message>
         </Grid.Column>
       </Grid>

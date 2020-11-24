@@ -109,9 +109,7 @@ const Register = (props: any) => {
                       placeholder="Email"
                       label="Email"
                     />
-                    {props.errors.email && (
-                      <div id="feedback">{props.errors.email}</div>
-                    )}
+                    {props.errors.email && <div>{props.errors.email}</div>}
                   </Form.Field>
                   <Form.Field>
                     <Form.Input
@@ -124,7 +122,7 @@ const Register = (props: any) => {
                       label="Password"
                     />
                     {props.errors.password && (
-                      <div id="feedback">{props.errors.password}</div>
+                      <div>{props.errors.password}</div>
                     )}
                   </Form.Field>
                   <Form.Button fluid color="teal" type="submit">
