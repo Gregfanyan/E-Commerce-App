@@ -53,17 +53,17 @@ const Register = (props: any) => {
                 firstName: yup
                   .string()
                   .min(3, 'must be at least 3 character')
-                  .max(25, 'must be 25 characters or less')
+                  .max(20, 'firstname must between 3 and 20 characters')
                   .required('required field'),
                 lastName: yup
                   .string()
                   .min(3, 'must be at least 3 character')
-                  .max(25, 'must be 25 characters or less')
+                  .max(25, 'lastname must between 3 and 20 characters')
                   .required('required field'),
                 password: yup
                   .string()
                   .min(3, 'must be at least 3 character')
-                  .max(25, 'must be 25 characters or less')
+                  .max(25, 'password must between 3 and 20 characters')
                   .required('Password is required'),
               })}
               onSubmit={(values, { resetForm }) => {

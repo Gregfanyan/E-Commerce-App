@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchProducts } from '../redux/Products/ProductActions'
 import { Product, AppState } from '../types/ProductType'
 
-const useProduct = (query: string, cat: string) => {
+const useProduct = (query: string, selectedCategory: string) => {
   const [data, setData] = useState<Product[]>([])
   const dispatch = useDispatch()
   const products = useSelector((state: AppState) => state.products.products)
@@ -19,7 +19,8 @@ const useProduct = (query: string, cat: string) => {
     const category = [...products].map((cat: any) => cat.categories[0])
     console.log('useProduct', category)
     setData(category)
-  }, [cat, products])
+    console.log('category', category)
+  }, [selectedCategory, products])
 
   useEffect(() => {
     const sorted = [...products].filter((product: Product) =>

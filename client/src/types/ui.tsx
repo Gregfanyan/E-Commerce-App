@@ -45,7 +45,8 @@ export type HeaderProps = {
 	search: string
 	handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 	handleCatChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-	category: string
+	data: Product[]
+	selectedCategory: any
 }
 
 export type CatProps = {

@@ -12,8 +12,9 @@ import styles from './Header.module.css'
 function Header({
   handleChange,
   search,
-  category,
+  data,
   handleCatChange,
+  selectedCategory,
 }: HeaderProps) {
   const counter = useSelector((state: AppState) => state.products.counter)
   const { pathname } = useLocation()
@@ -24,7 +25,11 @@ function Header({
       <Menu.Item as={Link} to="/home" name="home">
         <h3>Home</h3>
       </Menu.Item>
-      <Categories category={category} handleCatChange={handleCatChange} />
+      <Categories
+        data={data}
+        handleCatChange={handleCatChange}
+        selectedCategory={selectedCategory}
+      />
       <Menu.Item as={Link} to="/about" name="About">
         <h3>About</h3>
       </Menu.Item>
