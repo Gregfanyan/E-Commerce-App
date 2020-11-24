@@ -100,7 +100,7 @@ const Login = () => {
           </Form>
           <Message>
 						New to us?
-            <Link to="/register"> Register</Link>
+            <Link to="/RegisterClone"> Register</Link>
           </Message>
         </Grid.Column>
       </Grid>

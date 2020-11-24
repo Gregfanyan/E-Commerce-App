@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
+import { Formik } from 'formik'
+import * as yup from 'yup'
 import {
   Form,
   Segment,
@@ -14,45 +15,9 @@ import {
 
 import { UserRegister } from '../../../redux/User/UserActions'
 
-type Inputs = {
-	firstName: string
-	lastName: string
-	password: string
-	email: string
-}
-
-const Register = () => {
-  const { register, handleSubmit, errors } = useForm<Inputs>()
+const Register = (props: any) => {
   const dispatch = useDispatch()
   const history = useHistory()
-
-  const [user, setUser] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-  })
-
-  const { firstName, lastName, email, password } = user
-
-  const onChange: React.ReactEventHandler<HTMLInputElement> = (e: any) => {
-    let { name, value } = e.currentTarget
-    setUser({
-      ...user,
-      [name]: value,
-    })
-  }
-
-  const handleFormSubmit = (e: any): void => {
-    const newUser = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-    }
-
-    dispatch(UserRegister(newUser))
-  }
 
   function handleClick() {
     if (!history) {
@@ -61,12 +26,6 @@ const Register = () => {
       history.push('/home')
     }
   }
-
-  const registerFormValid =
-		!firstName?.length ||
-		!lastName?.length ||
-		!password?.length ||
-		!email?.length
 
   return (
     <>
@@ -82,64 +41,98 @@ const Register = () => {
 						Create an Account
           </Header>
           <Segment>
-            <Form onSubmit={handleSubmit(handleFormSubmit)}>
-              <Form.Field>
-                <Form.Input
-                  value={firstName}
-                  onChange={onChange}
-                  name="firstName"
-                  placeholder="First Name"
-                  label="First Name"
-                  ref={register({
-                    required: true,
-                  })}
-                />
-              </Form.Field>
-              <Form.Field>
-                <Form.Input
-                  value={lastName}
-                  onChange={onChange}
-                  name="lastName"
-                  placeholder="Last Name"
-                  label="Last Name"
-                  ref={register({ required: true })}
-                />
-              </Form.Field>
-              <Form.Field>
-                <Form.Input
-                  type="email"
-                  value={email}
-                  onChange={onChange}
-                  name="email"
-                  placeholder="Email"
-                  label="Email"
-                  ref={register({ required: true })}
-                />
-              </Form.Field>
-              <Form.Field>
-                <Form.Input
-                  value={password}
-                  onChange={onChange}
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  label="Password"
-                  ref={register({
-                    required: 'invalid  pass',
-                  })}
-                />
-                <span> {errors.password && errors.password.message}</span>{' '}
-              </Form.Field>
-              <Button
-                fluid
-                color="teal"
-                type="submit"
-                disabled={registerFormValid}
-              >
-								Submit
-              </Button>
-            </Form>
-
+            <Formik
+              initialValues={{
+                firstName: '',
+                lastName: '',
+                username: '',
+                email: '',
+                password: '',
+              }}
+              validationSchema={yup.object({
+                firstName: yup
+                  .string()
+                  .min(3, 'must be at least 3 character')
+                  .max(25, 'must be 25 characters or less')
+                  .required('required field'),
+                lastName: yup
+                  .string()
+                  .min(3, 'must be at least 3 character')
+                  .max(25, 'must be 25 characters or less')
+                  .required('required field'),
+                password: yup
+                  .string()
+                  .min(3, 'must be at least 3 character')
+                  .max(25, 'must be 25 characters or less')
+                  .required('Password is required'),
+              })}
+              onSubmit={(values, { resetForm }) => {
+                dispatch(UserRegister(values))
+                resetForm()
+              }}
+            >
+              {(props: any) => (
+                <Form onSubmit={props.handleSubmit}>
+                  <Form.Field>
+                    <Form.Input
+                      value={props.values.firstName}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      name="firstName"
+                      placeholder="First Name"
+                      label="First Name"
+                    />
+                    {props.errors.firstName && (
+                      <div id="feedback">{props.errors.firstName}</div>
+                    )}
+                  </Form.Field>
+                  <Form.Field>
+                    <Form.Input
+                      value={props.values.lastName}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      name="lastName"
+                      placeholder="Last Name"
+                      label="Last Name"
+                    />
+                    {props.errors.lastName && (
+                      <div id="feedback">{props.errors.lastName}</div>
+                    )}
+                  </Form.Field>
+                  <Form.Field>
+                    <Form.Input
+                      type="email"
+                      value={props.values.email}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      name="email"
+                      placeholder="Email"
+                      label="Email"
+                    />
+                    {props.errors.email && (
+                      <div id="feedback">{props.errors.email}</div>
+                    )}
+                  </Form.Field>
+                  <Form.Field>
+                    <Form.Input
+                      value={props.values.password}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      label="Password"
+                    />
+                    {props.errors.password && (
+                      <div id="feedback">{props.errors.password}</div>
+                    )}
+                  </Form.Field>
+                  <Form.Button fluid color="teal" type="submit">
+										Submit
+                  </Form.Button>
+                </Form>
+              )}
+            </Formik>
             <Segment>
 							Already have an account?
               <Link to="/login"> Login</Link>
