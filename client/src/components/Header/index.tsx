@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu, Icon, Button } from 'semantic-ui-react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import Categories from '../Categories'
@@ -17,8 +17,6 @@ function Header({
   selectedCategory,
 }: HeaderProps) {
   const counter = useSelector((state: AppState) => state.products.counter)
-  const { pathname } = useLocation()
-  console.log('lo', pathname)
 
   return (
     <Menu inverted size="large" fixed="top">

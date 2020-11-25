@@ -9,18 +9,14 @@ const useProduct = (query: string, selectedCategory: string) => {
   const dispatch = useDispatch()
   const products = useSelector((state: AppState) => state.products.products)
 
-  console.log(query)
-
   useEffect(() => {
     dispatch(fetchProducts())
-  }, [dispatch])
+  }, [selectedCategory, dispatch])
 
-  useEffect(() => {
-    const category = [...products].map((cat: any) => cat.categories[0])
-    console.log('useProduct', category)
+  /* useEffect(() => {
+    const category = [...products].map((cat: any) => cat)
     setData(category)
-    console.log('category', category)
-  }, [selectedCategory, products])
+  }, [selectedCategory, products]) */
 
   useEffect(() => {
     const sorted = [...products].filter((product: Product) =>

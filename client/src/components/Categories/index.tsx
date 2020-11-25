@@ -8,21 +8,21 @@ const Categories = ({ data, handleCatChange, selectedCategory }: any) => {
 
   const cat = data.map((item: any) => item.categories[0]).filter(onlyUnique)
 
-  console.log('cat', cat)
-
+  /*   console.log('cat', cat)
+	 */
   return (
     <form>
       <Menu.Item>
         <Button.Group color="black">
           <Button>
             <select value={selectedCategory} onBlur={handleCatChange}>
-              <option value="">Select</option>
+              <option value="">Category</option>
               {cat &&
 								cat.map((option: string) => {
-								  console.log(option)
+								  console.log('option', option)
 								  return (
 								    <option key={option} value={option}>
-								      {/* option.categories[0] */ option}
+								      {option}
 								    </option>
 								  )
 								})}

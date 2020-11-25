@@ -23,8 +23,6 @@ export const Home = () => {
         handleChange={handleChange}
         handleCatChange={handleCatChange}
         search={query}
-        /*  category={cat} */
-
         data={data}
         selectedCategory={selectedCategory}
       />
