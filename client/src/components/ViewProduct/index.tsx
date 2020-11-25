@@ -5,7 +5,7 @@ import { Card, Icon, Image, Button, Menu } from 'semantic-ui-react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { addProduct } from '../../redux'
-import { AppState } from '../../types/ProductType'
+import { AppState } from '../../types'
 import { ViewProductProps } from '../../types/ui'
 import styles from './ViewProduct.module.css'
 

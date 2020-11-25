@@ -76,7 +76,7 @@ export type ProductState = {
 	counter: number
 }
 
-export type AppState = {
+/* export type AppState = {
 	products: ProductState
 	filter: ''
-}
+} */

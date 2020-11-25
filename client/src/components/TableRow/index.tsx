@@ -42,10 +42,10 @@ const TableRow = (product: Product) => {
             color="black"
             className={styles.viewbtn}
           >
-                        View More
+						View More
           </Button>
           <Button color="yellow" onClick={handleAddProduct}>
-                        Add to Basket
+						Add to Basket
           </Button>
         </div>
       </Card.Content>

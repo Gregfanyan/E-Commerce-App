@@ -6,13 +6,13 @@ import {
   FETCH_LOGIN_FAILURE,
   UserActions,
   UserState,
+  LOGOUT,
 } from '../../types/UserType'
 
 const initialState: UserState = {
   user: {},
   loading: false,
   error: '',
-  isValidated: false,
   isAuthenticated: false,
 }
 
@@ -22,14 +22,14 @@ const UserReducer = (state = initialState, action: UserActions) => {
     return {
       ...state,
       loading: true,
-      isValidated: false,
+      isAuthenticated: false,
     }
   case REGISTER_USER_SUCCESS:
     return {
       ...state,
       loading: false,
       users: action.payload,
-      isValidated: true,
+      isAuthenticated: true,
       error: '',
     }
   case FETCH_USER_FAILURE:
@@ -38,7 +38,7 @@ const UserReducer = (state = initialState, action: UserActions) => {
       loading: false,
       users: [],
       error: action.payload,
-      isValidated: false,
+      isAuthenticated: false,
     }
 
   case FETCH_LOGIN_FAILURE:
@@ -56,6 +56,13 @@ const UserReducer = (state = initialState, action: UserActions) => {
       user: action.payload,
       isAuthenticated: true,
       error: '',
+    }
+  case LOGOUT:
+    return {
+      ...state,
+      isAuthenticated: false,
+      user: null,
+      users: [],
     }
   default:
     return state

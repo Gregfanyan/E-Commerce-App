@@ -10,6 +10,7 @@ import {
   User,
   LOGIN_USER_SUCCESS,
   FETCH_LOGIN_FAILURE,
+  LOGOUT,
 } from '../../types/UserType'
 
 export const fetchUserRequest = () => {
@@ -25,17 +26,23 @@ export const fetchUserSuccess = (users: User[]) => {
   }
 }
 
-export const fetchUserFailure = (error: any) => {
+export const fetchUsersFailure = (error: UserActions) => {
   return {
     type: FETCH_USER_FAILURE,
     payload: error,
   }
 }
 
-export const fetchLoginFailure = (error: any) => {
+export const fetchLoginFailure = (error: UserActions) => {
   return {
     type: FETCH_LOGIN_FAILURE,
     payload: error,
+  }
+}
+
+export function logout(): UserActions {
+  return {
+    type: LOGOUT,
   }
 }
 
@@ -73,7 +80,7 @@ export const UserRegister = ({ firstName, lastName, email, password }: any) => {
         window.location.href = '/login'
       })
       .catch((error) => {
-        dispatch(fetchUserFailure(error.message))
+        dispatch(fetchUsersFailure(error.message))
       })
   }
 }

@@ -7,6 +7,7 @@ export const ADD_USER = 'ADD_PRODUCT'
 export const REMOVE_USER = 'REMOVE_USER'
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS'
 export const FETCH_LOGIN_FAILURE = 'FETCH_LOGIN_FAILURE'
+export const LOGOUT = 'LOGOUT'
 
 export type User = {
 	id: string
@@ -38,6 +39,10 @@ export type LoginUserSuccessAction = {
 	}
 }
 
+export type LogoutAction = {
+	type: typeof LOGOUT
+}
+
 export type UserActions =
 	| ReceiveUserAction
 	| registerFailure
@@ -47,6 +52,7 @@ export type UserActions =
 	| RemoveUserAction
 	| LoginUserSuccessAction
 	| loginFailure
+	| LogoutAction
 
 export type registerFailure = {
 	type: typeof FETCH_USER_FAILURE
@@ -88,9 +94,8 @@ export type UserState = {
 	error: string
 	user: User | any
 	isAuthenticated: boolean
-	isValidated: false
 }
 
-export type AppState = {
+/* export type AppState = {
 	user: UserState
-}
+} */

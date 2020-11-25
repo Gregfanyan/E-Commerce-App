@@ -1,14 +1,7 @@
-import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { AppState } from '../types/UserType'
+import React from 'react'
 
 function useUsers() {
-	const dispatch = useDispatch()
-	const user = useSelector((state: AppState) => state.user.user)
-	const [data, setData] = useState(Array)
-	console.log('users', user)
-
-	return <div></div>
+  return <div></div>
 }
 
 export default useUsers

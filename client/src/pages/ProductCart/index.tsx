@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Icon, Button, Card } from 'semantic-ui-react'
 
-import { AppState } from '../../types/ProductType'
+import { AppState } from '../../types'
 import CartItem from '../../components/CartItem'
 import styles from './ProductCart.module.css'
 
@@ -24,16 +24,16 @@ function ProductCart() {
       <Card.Group itemsPerRow={4} centered style={{ margin: 0 }}>
         <Button primary onClick={handleClick}>
           <Icon name="home"> </Icon>
-                    Home
+					Home
         </Button>
       </Card.Group>
 
       {cartProduct.length > 0 ? (
         <div className={styles.card}>
           {cartProduct &&
-                        cartProduct.map((cart) => {
-                          return <CartItem key={cart._id} cart={cart} />
-                        })}
+						cartProduct.map((cart) => {
+						  return <CartItem key={cart._id} cart={cart} />
+						})}
         </div>
       ) : (
         <div className={styles.infoText}>cart is empty</div>
