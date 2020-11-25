@@ -49,6 +49,11 @@ export type HeaderProps = {
 	cat: string
 }
 
+export type SelectionProps = {
+	handleSelect?: (e: React.ChangeEvent<HTMLSelectElement>) => void
+	cat: string
+}
+
 export type HeaderSelect = {}
 
 export type CatProps = {
