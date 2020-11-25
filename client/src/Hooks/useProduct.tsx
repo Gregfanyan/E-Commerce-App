@@ -14,7 +14,10 @@ const useProduct = (query: string, cat: string) => {
 
 	useEffect(() => {
 		if (cat === 'All') {
-			setData(products)
+			const sorted = [...products].filter((product: Product) =>
+				product.name.toLowerCase().includes(query.toLowerCase())
+			)
+			setData(sorted)
 		} else {
 			const sorted = [...products].filter((product: Product) =>
 				product.name.toLowerCase().includes(query.toLowerCase())

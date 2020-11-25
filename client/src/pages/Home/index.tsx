@@ -10,6 +10,7 @@ export const Home = () => {
 	const [query, setQuery] = useState<string>('')
 	const [cat, setCat] = useState<string>('')
 	const [data] = useProduct(query, cat)
+
 	const handleChange: React.ReactEventHandler<HTMLInputElement> = (e) => {
 		setQuery(e.currentTarget.value)
 	}
