@@ -44,10 +44,12 @@ export type ViewProductProps = {
 export type HeaderProps = {
 	search: string
 	handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-	handleCatChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-	data: Product[]
-	selectedCategory: any
+	handleSelect?: (e: React.ChangeEvent<HTMLInputElement>) => void
+	product: Product[]
+	cat: string
 }
+
+export type HeaderSelect = {}
 
 export type CatProps = {
 	product: Product[]

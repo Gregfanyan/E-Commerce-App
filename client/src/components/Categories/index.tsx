@@ -2,36 +2,39 @@ import React from 'react'
 import { Button, Menu } from 'semantic-ui-react'
 
 const Categories = ({ data, handleCatChange, selectedCategory }: any) => {
-  function onlyUnique(value: any, index: any, self: any) {
-    return self.indexOf(value) === index
-  }
+	function onlyUnique(value: any, index: any, self: any) {
+		return self.indexOf(value) === index
+	}
 
-  const cat = data.map((item: any) => item.categories[0]).filter(onlyUnique)
+	const cat = data.map((item: any) => item.categories[0]).filter(onlyUnique)
 
-  /*   console.log('cat', cat)
+	/*   console.log('cat', cat)
 	 */
-  return (
-    <form>
-      <Menu.Item>
-        <Button.Group color="black">
-          <Button>
-            <select value={selectedCategory} onBlur={handleCatChange}>
-              <option value="">Category</option>
-              {cat &&
+	return (
+		<form>
+			<Menu.Item>
+				<Button.Group color="black">
+					<Button>
+						<select
+							value={selectedCategory}
+							onChange={handleCatChange}
+						>
+							<option value="">Category</option>
+							{cat &&
 								cat.map((option: string) => {
-								  console.log('option', option)
-								  return (
-								    <option key={option} value={option}>
-								      {option}
-								    </option>
-								  )
+									console.log('option', option)
+									return (
+										<option key={option} value={option}>
+											{option}
+										</option>
+									)
 								})}
-            </select>
-          </Button>
-        </Button.Group>
-      </Menu.Item>
-    </form>
-  )
+						</select>
+					</Button>
+				</Button.Group>
+			</Menu.Item>
+		</form>
+	)
 }
 export default Categories
 
