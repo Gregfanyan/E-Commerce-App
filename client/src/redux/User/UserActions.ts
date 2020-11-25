@@ -9,6 +9,7 @@ import {
   REMOVE_USER,
   User,
   LOGIN_USER_SUCCESS,
+  FETCH_LOGIN_FAILURE,
 } from '../../types/UserType'
 
 export const fetchUserRequest = () => {
@@ -27,6 +28,13 @@ export const fetchUserSuccess = (users: User[]) => {
 export const fetchUserFailure = (error: any) => {
   return {
     type: FETCH_USER_FAILURE,
+    payload: error,
+  }
+}
+
+export const fetchLoginFailure = (error: any) => {
+  return {
+    type: FETCH_LOGIN_FAILURE,
     payload: error,
   }
 }
@@ -84,7 +92,7 @@ export const login = ({ email, password }: any) => {
         window.location.href = '/Home'
       })
       .catch((error) => {
-        dispatch(fetchUserFailure(error.message))
+        dispatch(fetchLoginFailure(error.message))
       })
   }
 }
