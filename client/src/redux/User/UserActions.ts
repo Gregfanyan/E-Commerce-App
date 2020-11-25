@@ -62,7 +62,7 @@ export const UserRegister = ({ firstName, lastName, email, password }: any) => {
       .then((response) => {
         const users = response.data
         dispatch(fetchUserSuccess(users))
-        /* window.location.href = '/login' */
+        window.location.href = '/login'
       })
       .catch((error) => {
         dispatch(fetchUserFailure(error.message))

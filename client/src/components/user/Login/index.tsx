@@ -59,7 +59,7 @@ const Login = (props: any) => {
                 .max(45, 'must be 25 characters or less')
                 .required('required field'),
             })}
-            onSubmit={(values, { setSubmitting, resetForm }) => {
+            onSubmit={(values, { resetForm }) => {
               JSON.stringify(values, null, 2)
               dispatch(login(values))
               resetForm()

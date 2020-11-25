@@ -7,7 +7,7 @@ import { AppState } from '../../types/ProductType'
 import { HeaderProps } from '../../types/ui'
 import Search from '../Search'
 import styles from './Header.module.css'
-import FirstDropDown from '../Selection'
+import Category from '../Category'
 
 function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
   const counter = useSelector((state: AppState) => state.products.counter)
@@ -17,7 +17,7 @@ function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
       <Menu.Item as={Link} to="/home" name="home">
         <h3>Home</h3>
       </Menu.Item>
-      <FirstDropDown handleSelect={handleSelect} cat={cat} />
+      <Category handleSelect={handleSelect} cat={cat} />
       <Menu.Item as={Link} to="/about" name="About">
         <h3>About</h3>
       </Menu.Item>
@@ -25,9 +25,13 @@ function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
         <Menu.Item>
           <Search search={search} handleChange={handleChange} />
         </Menu.Item>
-        <Menu.Item as={Link} to="Login" name="logout">
-          <Button color="black">
+        <Menu.Item>
+          <Button color="black" as={Link} to="Login" name="login">
             <Icon name="sign in"> </Icon>Sign In
+          </Button>
+
+          <Button color="black" as={Link} to="register" name="register">
+            <Icon name="signup"> </Icon>Register
           </Button>
         </Menu.Item>
         <Menu.Item as={Link} to="cart">

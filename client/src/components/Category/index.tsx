@@ -2,7 +2,7 @@ import React from 'react'
 
 const dropdownlist = ['men', 'women', 'kids']
 
-const FirstDropDown = ({ handleSelect, cat }: any) => {
+const Category = ({ handleSelect, cat }: any) => {
   return (
     <select
       id="first"
@@ -21,4 +21,4 @@ const FirstDropDown = ({ handleSelect, cat }: any) => {
   )
 }
 
-export default FirstDropDown
+export default Category
