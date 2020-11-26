@@ -32,17 +32,20 @@ function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
         <Menu.Item>
           <Search search={search} handleChange={handleChange} />
         </Menu.Item>
-        <Menu.Item>
-          <Button color="black" as={Link} to="Login" name="login">
-            <Icon name="sign in"> </Icon>Sign In
-          </Button>
-          <Button color="black" as={Link} to="register" name="register">
-            <Icon name="signup"> </Icon>Register
-          </Button>
-        </Menu.Item>
-        <Menu.Item hidden>
-          <Logout />
-        </Menu.Item>
+        {!isAuthenticated ? (
+          <Menu.Item>
+            <Button color="black" as={Link} to="Login" name="login">
+              <Icon name="sign in"> </Icon>Sign In
+            </Button>
+            <Button color="black" as={Link} to="register" name="register">
+              <Icon name="signup"> </Icon>Register
+            </Button>
+          </Menu.Item>
+        ) : (
+          <Menu.Item>
+            <Logout />
+          </Menu.Item>
+        )}
 
         <Menu.Item as={Link} to="cart">
           <Button animated="vertical" color="black">
