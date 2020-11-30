@@ -15,9 +15,6 @@ function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
   const isAuthenticated = useSelector(
     (state: AppState) => state.user.isAuthenticated
   )
-  const user = useSelector((state: AppState) => state.user.user)
-
-  console.log(isAuthenticated, user)
 
   return (
     <Menu inverted size="large" fixed="top">

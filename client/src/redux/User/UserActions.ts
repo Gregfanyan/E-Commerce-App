@@ -88,15 +88,14 @@ export const UserRegister = ({ firstName, lastName, email, password }: any) => {
 export const login = ({ email, password }: any) => {
   return (dispatch: Dispatch) => {
     dispatch(fetchUserRequest())
+    const user = { email, password }
+
     axios
-      .post('http://localhost:8000/api/v1/user/logIn', {
-        email: email,
-        password: password,
-      })
+      .post('http://localhost:8000/api/v1/user/logIn', user)
       .then((response) => {
-        const users = response.data
-        dispatch(loginSuccess(users))
-        window.location.href = '/Home'
+        dispatch(loginSuccess(response.data))
+        localStorage.setItem('jwt', response.data)
+        localStorage.setItem('user', response.config.data)
       })
       .catch((error) => {
         dispatch(fetchLoginFailure(error.message))
