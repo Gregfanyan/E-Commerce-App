@@ -96,6 +96,7 @@ export const login = ({ email, password }: any) => {
         dispatch(loginSuccess(response.data))
         localStorage.setItem('jwt', response.data)
         localStorage.setItem('user', response.config.data)
+        window.location.href = '/Home'
       })
       .catch((error) => {
         dispatch(fetchLoginFailure(error.message))

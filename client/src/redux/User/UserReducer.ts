@@ -50,7 +50,6 @@ const UserReducer = (state = initialState, action: UserActions) => {
       isAuthenticated: false,
     }
   case LOGIN_USER_SUCCESS:
-    console.log('state', state)
     return {
       ...state,
       loading: false,

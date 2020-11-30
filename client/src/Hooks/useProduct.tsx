@@ -14,7 +14,7 @@ const useProduct = (query: string, cat: string) => {
   }, [dispatch])
 
   useEffect(() => {
-    if (cat === 'All') {
+    if (cat === 'Category') {
       const sorted = [...products].filter((product: Product) =>
         product.name.toLowerCase().includes(query.toLowerCase())
       )
