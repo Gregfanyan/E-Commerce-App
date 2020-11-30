@@ -9,8 +9,6 @@ function Logout() {
   const dispatch = useDispatch()
   let userDetails = JSON.parse(localStorage.getItem('user') || '{}')
 
-  console.log('email', userDetails.email)
-
   const logoutOnClick = () => {
     dispatch(logout())
     localStorage.clear()
