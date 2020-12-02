@@ -75,8 +75,3 @@ export type ProductState = {
 	error: string
 	counter: number
 }
-
-/* export type AppState = {
-	products: ProductState
-	filter: ''
-} */
