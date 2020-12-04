@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import JsonWebToken from 'jsonwebtoken'
 import mailgun from 'mailgun-js'
 import _ from 'lodash'
-import { Products, Users } from '../models'
+import { Users } from '../models'
 import UserService from '../services/Users'
 
 import {
@@ -42,7 +42,9 @@ export const createUser = async (
         email,
         cart,
       })
-
+      if (user.email === 'grigor.fanyan@integrify.io') {
+        user.isAdmin = true
+      }
       await UserService.create(user)
 
       res.json(user)
@@ -55,22 +57,41 @@ export const createUser = async (
     }
   }
 }
+
 export const logInUser = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body
     if (email) {
-      const loggedUser = await UserService.findUserByEmail(email).then(
-        async (email) => {
-          if (!email) res.status(404).json({ message: 'email not found' })
-          else {
-            const logInSuccess = await bcrypt.compare(password, email!.password)
-            logInSuccess ? email : res.status(404).json('Incorrect password')
-            return email
-          }
+      await Users.findOne({ email }).then(async (user) => {
+        if (!user) res.status(404).json({ message: 'user not found' })
+        else {
+          const logInSuccess = await bcrypt.compare(password, user.password)
+          logInSuccess ? user : res.status(404).json('Incorrect password')
+          const token = JsonWebToken.sign(
+            { id: user._id },
+            JWT_SECRET,
+            { expiresIn: '30d' },
+            async (err: any, token: any) => {
+              if (err) throw err
+              if (user) {
+                await user.populate('cart').execPopulate()
+                res.json({
+                  token,
+                  user: {
+                    id: user._id,
+                    email: user.email,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    isAdmin: user.isAdmin,
+                    cart: user.cart,
+                    resetLink: user.resetLink,
+                  },
+                })
+              }
+            }
+          )
         }
-      )
-      const token = JsonWebToken.sign({ loggedUser }, JWT_SECRET)
-      res.header('auth_token', token).send(token)
+      })
     }
   } catch (error) {
     return res.status(404).json({ message: 'user not found' })

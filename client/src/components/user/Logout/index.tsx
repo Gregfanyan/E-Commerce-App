@@ -15,7 +15,7 @@ function Logout() {
   }
   return (
     <>
-      {userDetails.email}
+      {userDetails.firstName}
       <Button
         color="black"
         as={Link}

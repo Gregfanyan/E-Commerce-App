@@ -85,17 +85,16 @@ export const UserRegister = ({ firstName, lastName, email, password }: any) => {
   }
 }
 
-export const login = ({ email, password }: any) => {
+export const login = ({ email, password, firstName }: any) => {
   return (dispatch: Dispatch) => {
     dispatch(fetchUserRequest())
-    const user = { email, password }
+    const user = { email, password, firstName }
 
     axios
       .post('http://localhost:8000/api/v1/user/logIn', user)
       .then((response) => {
         dispatch(loginSuccess(response.data))
-        localStorage.setItem('jwt', response.data)
-        localStorage.setItem('user', response.config.data)
+        localStorage.setItem('user', JSON.stringify(response.data.user))
         window.location.href = '/Home'
       })
       .catch((error) => {
