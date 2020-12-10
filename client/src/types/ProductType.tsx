@@ -1,14 +1,17 @@
+import { CreateProduct } from '../redux'
+
 export const FETCH_PRODUCT_REQUEST = 'FETCH_PRODUCT_REQUEST'
 export const FETCH_PRODUCT_SUCCESS = 'FETCH_PRODUCT_SUCCESS'
 export const FETCH_PRODUCT_FAILURE = 'FETCH_PRODUCT_FAILURE'
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
+export const CREATE_PRODUCT = 'CREATE_PRODUCT'
 
 export type Product = {
 	_id: string
 	name: string
 	description: string
-	categories: [string]
+	categories: string[]
 	variants: string[]
 	sizes: number[]
 	img: string
@@ -32,6 +35,13 @@ export type AddProductAction = {
 	}
 }
 
+export type CreateProduct = {
+	type: typeof CREATE_PRODUCT
+	payload: {
+		product: Product
+	}
+}
+
 export type ProductActions =
 	| ReceiveProductsAction
 	| fetchProduct
@@ -39,6 +49,7 @@ export type ProductActions =
 	| fetchProductRequest
 	| AddProductAction
 	| RemoveProductAction
+	| CreateProduct
 
 export type fetchProduct = {
 	type: typeof FETCH_PRODUCT_FAILURE
@@ -74,4 +85,5 @@ export type ProductState = {
 	loading: boolean
 	error: string
 	counter: number
+	isValidated: boolean
 }

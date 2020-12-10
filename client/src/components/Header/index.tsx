@@ -12,9 +12,13 @@ import Logout from '../user/Logout'
 
 function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
   const counter = useSelector((state: AppState) => state.products.counter)
+  const user = useSelector((state: AppState) => state.user.user)
   const isAuthenticated = useSelector(
     (state: AppState) => state.user.isAuthenticated
   )
+  if (!user) {
+    return <h1>no data</h1>
+  }
 
   return (
     <Menu inverted size="large" fixed="top">
@@ -43,17 +47,29 @@ function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
             <Logout />
           </Menu.Item>
         )}
-
-        <Menu.Item as={Link} to="cart">
-          <Button animated="vertical" color="black">
-            <Button.Content hidden>Shop</Button.Content>
-            <Button.Content visible>
-              <Icon name="shopping cart" size="large">
-                <div className={styles.Counter}>{counter}</div>
-              </Icon>
-            </Button.Content>
-          </Button>
-        </Menu.Item>
+        {!user.isAdmin === false && user && isAuthenticated ? (
+          <Menu.Item as={Link} to="cart">
+            <Button animated="vertical" color="black">
+              <Button.Content hidden>Shop</Button.Content>
+              <Button.Content visible>
+                <Icon name="shopping cart" size="large">
+                  <div className={styles.Counter}>{counter}</div>
+                </Icon>
+              </Button.Content>
+            </Button>
+          </Menu.Item>
+        ) : (
+          <Menu.Item>
+            <Button
+              color="black"
+              as={Link}
+              to="AddProduct"
+              name="Create a Product"
+            >
+              <Icon name="add"> </Icon>
+            </Button>
+          </Menu.Item>
+        )}
       </Menu.Menu>
     </Menu>
   )

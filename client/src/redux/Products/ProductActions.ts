@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux'
 
 import {
   FETCH_PRODUCT_REQUEST,
@@ -8,9 +8,9 @@ import {
   ProductActions,
   ADD_PRODUCT,
   REMOVE_PRODUCT,
-    Product
-} from "../../types/ProductType"
-
+  CREATE_PRODUCT,
+  Product,
+} from '../../types/ProductType'
 
 export const fetchProductRequest = () => {
   return {
@@ -25,6 +25,15 @@ export const fetchProductSuccess = (products: Product[]) => {
   }
 }
 
+export const CreateProduct = (product: Product): ProductActions => {
+  return {
+    type: CREATE_PRODUCT,
+    payload: {
+      product,
+    },
+  }
+}
+
 export const fetchProductFailure = (error: any) => {
   return {
     type: FETCH_PRODUCT_FAILURE,
@@ -34,19 +43,19 @@ export const fetchProductFailure = (error: any) => {
 
 export const addProduct = (product: Product): ProductActions => {
   return {
-        type: ADD_PRODUCT,
-        payload: {
-            product,
-        },
-    };
+    type: ADD_PRODUCT,
+    payload: {
+      product,
+    },
+  }
 }
 export const removeProduct = (product: Product): ProductActions => {
   return {
-        type: REMOVE_PRODUCT,
-        payload: {
-            product,
-        },
-    };
+    type: REMOVE_PRODUCT,
+    payload: {
+      product,
+    },
+  }
 }
 
 export const fetchProducts = () => {
@@ -62,4 +71,37 @@ export const fetchProducts = () => {
         dispatch(fetchProductFailure(error.message))
       })
   }
+}
+
+export const CreateNewProduct = (product: Product) => {
+  return (dispatch: Dispatch, getState: any) => {
+    dispatch(fetchProductRequest())
+    axios
+      .post(
+        'http://localhost:8000/api/v1/products',
+        product,
+        tokenConfig(getState)
+      )
+      .then((response) => {
+        const products = response.data
+        dispatch(CreateProduct(products))
+      })
+      .catch((error) => {
+        dispatch(fetchProductFailure(error.message))
+      })
+  }
+}
+
+export const tokenConfig = (getState: any) => {
+  const token = getState().user.user.user.token
+  const config = {
+    headers: {
+      'Content-type': 'application/json',
+      auth_token: '',
+    },
+  }
+  if (token) {
+    config.headers['auth_token'] = token
+  }
+  return config
 }
