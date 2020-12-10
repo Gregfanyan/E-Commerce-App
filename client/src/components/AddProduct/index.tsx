@@ -29,15 +29,14 @@ const AddProduct = (props: any) => {
 
   return (
     <>
-      <Card.Group itemsPerRow={4} centered style={{ margin: 0 }}>
-        <Button color="teal" onClick={handleClick}>
-          <Icon name="home"> </Icon>
-					Home
+      <Card.Group itemsPerRow={4} style={{ margin: 0 }}>
+        <Button color="blue" onClick={handleClick}>
+          <Icon name="arrow left"> </Icon>
         </Button>
       </Card.Group>
       <Grid centered>
-        <Grid.Column style={{ maxWidth: 550, marginTop: 20 }}>
-          <Header as="h2" color="teal" textAlign="center">
+        <Grid.Column style={{ maxWidth: 550 }}>
+          <Header as="h3" color="teal" textAlign="center">
 						Create a Product
           </Header>
           <Segment>
@@ -63,9 +62,9 @@ const AddProduct = (props: any) => {
                   .max(25, 'too long')
                   .required('required field'),
                 img: yup.string().required('required field'),
-                /* 	categories: yup.string().required(),
-								variants: yup.string().required(),
-								sizes: yup.number().required(), */
+                categories: yup.string().required(),
+                variants: yup.string().required(),
+                sizes: yup.number().required().positive().integer(),
                 price: yup.number().required().positive().integer(),
               })}
               onSubmit={(values, { resetForm }) => {
@@ -133,6 +132,26 @@ const AddProduct = (props: any) => {
                       name="categories"
                       placeholder="categories"
                       label="categories"
+                    />
+                  </Form.Field>
+                  <Form.Field>
+                    <Form.Input
+                      value={props.values.variants}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      name="variants"
+                      placeholder="variants"
+                      label="variants"
+                    />
+                  </Form.Field>
+                  <Form.Field>
+                    <Form.Input
+                      value={props.values.sizes}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      name="sizes"
+                      placeholder="sizes"
+                      label="sizes"
                     />
                   </Form.Field>
                   <Form.Button fluid color="teal" type="submit">

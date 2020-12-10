@@ -66,7 +66,7 @@ function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
               to="AddProduct"
               name="Create a Product"
             >
-              <Icon name="add"> </Icon>
+							Admin
             </Button>
           </Menu.Item>
         )}

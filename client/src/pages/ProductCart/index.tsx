@@ -21,13 +21,11 @@ function ProductCart() {
 
   return (
     <>
-      <Card.Group itemsPerRow={4} centered style={{ margin: 0 }}>
+      <Card.Group itemsPerRow={4} style={{ margin: 0 }}>
         <Button primary onClick={handleClick}>
-          <Icon name="home"> </Icon>
-					Home
+          <Icon name="arrow left"> </Icon>
         </Button>
       </Card.Group>
-
       {cartProduct.length > 0 ? (
         <div className={styles.card}>
           {cartProduct &&
