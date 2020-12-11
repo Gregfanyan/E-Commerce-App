@@ -31,9 +31,9 @@ const Login = (props: any) => {
 
   return (
     <>
-      <Card.Group itemsPerRow={4} centered style={{ margin: 0 }}>
+      <Card.Group itemsPerRow={4} style={{ margin: 0 }}>
         <Button color="teal" onClick={handleClick}>
-          <Icon name="home"> </Icon>
+          <Icon name="arrow left"> </Icon>
 					Home
         </Button>
       </Card.Group>

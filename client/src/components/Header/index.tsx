@@ -16,9 +16,6 @@ function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
   const isAuthenticated = useSelector(
     (state: AppState) => state.user.isAuthenticated
   )
-  /*   if (!user) {
-    return <h1>no data</h1>
-  } */
 
   return (
     <Menu inverted size="large" fixed="top">
@@ -26,14 +23,11 @@ function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
         <h3>Home</h3>
       </Menu.Item>
       <Category handleSelect={handleSelect} cat={cat} />
-      <Menu.Item as={Link} to="/about" name="About">
-        <h3>About</h3>
-      </Menu.Item>
       <Menu.Menu position="right">
         <Menu.Item>
           <Search search={search} handleChange={handleChange} />
         </Menu.Item>
-        {!isAuthenticated ? (
+        {!isAuthenticated && !user ? (
           <Menu.Item>
             <Button color="black" as={Link} to="Login" name="login">
               <Icon name="sign in"> </Icon>Sign In
@@ -47,7 +41,7 @@ function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
             <Logout />
           </Menu.Item>
         )}
-        {!user.isAdmin === false && user && isAuthenticated ? (
+        {isAuthenticated && user && !user.user.user.isAdmin ? (
           <Menu.Item as={Link} to="cart">
             <Button animated="vertical" color="black">
               <Button.Content hidden>Shop</Button.Content>
@@ -58,7 +52,8 @@ function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
               </Button.Content>
             </Button>
           </Menu.Item>
-        ) : (
+        ) : null}
+        {isAuthenticated && user && user.user.user.isAdmin ? (
           <Menu.Item>
             <Button
               color="black"
@@ -66,10 +61,10 @@ function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
               to="AddProduct"
               name="Create a Product"
             >
-							Admin
+							Admin Dashboard
             </Button>
           </Menu.Item>
-        )}
+        ) : null}
       </Menu.Menu>
     </Menu>
   )
