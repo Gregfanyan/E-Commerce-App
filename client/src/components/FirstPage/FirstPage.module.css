@@ -1,8 +1,8 @@
- .backGround{
-    background: url(https://source.unsplash.com/user/erondu/7rDNSLMKiuc);
-    background-position: 'center 40%';
-    background-size: 'cover';
-    background-repeat: 'no-repeat';
-    width: '100%';
-    height: '100%';
-}  
+.backGround {
+	background: url(https://source.unsplash.com/user/erondu/7rDNSLMKiuc);
+	background-position: 'center 40%';
+	background-size: 'cover';
+	background-repeat: 'no-repeat';
+	width: '100%';
+	height: '100%';
+}

@@ -1,8 +1,13 @@
+import express from 'express'
 import errorHandler from 'errorhandler'
 
 import app from './app'
 
 app.use(errorHandler())
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'))
+}
 
 const server = app.listen(app.get('port'), () => {
   console.log(
