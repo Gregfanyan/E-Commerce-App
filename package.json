@@ -14,6 +14,8 @@
     "serve": "node dist/server.js",
     "watch-node": "nodemon src/server.ts",
     "watch": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run watch\" \"npm run client\"",
     "test": "jest --forceExit --coverage --verbose false",
     "watch-test": "npm run test -- --watchAll",
     "build-ts": "tsc",

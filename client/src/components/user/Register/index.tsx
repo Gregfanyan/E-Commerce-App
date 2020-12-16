@@ -60,6 +60,10 @@ const Register = (props: any) => {
                   .min(3, 'must be at least 3 character')
                   .max(25, 'lastname must between 3 and 20 characters')
                   .required('required field'),
+                email: yup
+                  .string()
+                  .email('invalid email address')
+                  .required('required field'),
                 password: yup
                   .string()
                   .min(3, 'must be at least 3 character')
