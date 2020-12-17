@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
-import { Formik } from 'formik'
+import { Formik, Field } from 'formik'
 import * as yup from 'yup'
 import {
   Form,
@@ -75,59 +75,49 @@ const Register = (props: any) => {
                 resetForm()
               }}
             >
-              {(props: any) => (
-                <Form onSubmit={props.handleSubmit}>
+              {({ handleSubmit, errors }) => (
+                <Form onSubmit={handleSubmit}>
                   <Form.Field>
-                    <Form.Input
-                      value={props.values.firstName}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
+                    <Field
                       name="firstName"
                       placeholder="First Name"
                       label="First Name"
+                      as={Form.Input}
                     />
-                    {props.errors.firstName && (
-                      <div id="feedback">{props.errors.firstName}</div>
+                    {errors.firstName && (
+                      <div id="feedback">{errors.firstName}</div>
                     )}
                   </Form.Field>
                   <Form.Field>
-                    <Form.Input
-                      value={props.values.lastName}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
+                    <Field
                       name="lastName"
                       placeholder="Last Name"
                       label="Last Name"
+                      as={Form.Input}
                     />
-                    {props.errors.lastName && (
-                      <div id="feedback">{props.errors.lastName}</div>
+                    {errors.lastName && (
+                      <div id="feedback">{errors.lastName}</div>
                     )}
                   </Form.Field>
                   <Form.Field>
-                    <Form.Input
+                    <Field
                       type="email"
-                      value={props.values.email}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
                       name="email"
                       placeholder="Email"
                       label="Email"
+                      as={Form.Input}
                     />
-                    {props.errors.email && <div>{props.errors.email}</div>}
+                    {errors.email && <div>{errors.email}</div>}
                   </Form.Field>
                   <Form.Field>
-                    <Form.Input
-                      value={props.values.password}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
+                    <Field
                       type="password"
                       name="password"
                       placeholder="Password"
                       label="Password"
+                      as={Form.Input}
                     />
-                    {props.errors.password && (
-                      <div>{props.errors.password}</div>
-                    )}
+                    {errors.password && <div>{errors.password}</div>}
                   </Form.Field>
                   <Form.Button fluid color="teal" type="submit">
 										Submit

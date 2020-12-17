@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { Formik } from 'formik'
+import { Formik, Field } from 'formik'
 import * as yup from 'yup'
 
 import { login } from '../../../redux/User/UserActions'
@@ -65,35 +65,29 @@ const Login = (props: any) => {
               resetForm()
             }}
           >
-            {(props: any) => (
-              <Form size="large" onSubmit={props.handleSubmit}>
+            {({ handleSubmit, errors }) => (
+              <Form size="large" onSubmit={handleSubmit}>
                 <Segment stacked>
-                  <Form.Input
+                  <Field
                     fluid
                     icon="user"
-                    value={props.values.email}
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
                     iconPosition="left"
                     placeholder="E-mail address"
                     name="email"
+                    as={Form.Input}
                   />
-                  {props.errors.email && (
-                    <div id="feedback">{props.errors.email}</div>
-                  )}
-                  <Form.Input
+                  {errors.email && <div id="feedback">{errors.email}</div>}
+                  <Field
                     fluid
                     icon="lock"
                     iconPosition="left"
                     placeholder="Password"
                     type="password"
-                    value={props.values.password}
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
                     name="password"
+                    as={Form.Input}
                   />
-                  {props.errors.password && (
-                    <div id="feedback">{props.errors.password}</div>
+                  {errors.password && (
+                    <div id="feedback">{errors.password}</div>
                   )}
                   <Button color="teal" fluid size="large">
 										Login

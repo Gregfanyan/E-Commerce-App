@@ -10,7 +10,6 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run serve",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "build": "npm run build-sass && npm run build-ts && npm run lint && npm run copy-static-assets",
     "serve": "node dist/server.js",
     "watch-node": "nodemon src/server.ts",
