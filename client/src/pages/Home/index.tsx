@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container } from 'semantic-ui-react'
 
 import MainTable from '../../components/MainTable'
-import Header from '../../components/Navbar'
+import Navbar from '../../components/Navbar'
 import useProduct from '../../Hooks/useProduct'
 
 export const Home = () => {
@@ -20,7 +20,7 @@ export const Home = () => {
 
   return (
     <Container>
-      <Header
+      <Navbar
         handleChange={handleChange}
         search={query}
         product={data}

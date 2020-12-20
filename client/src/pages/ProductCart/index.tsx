@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { Icon, Button, Card } from 'semantic-ui-react'
+import { Icon, Button, Card, Header } from 'semantic-ui-react'
 
 import { AppState } from '../../types'
 import CartItem from '../../components/CartItem'
@@ -34,7 +34,9 @@ function ProductCart() {
 						})}
         </div>
       ) : (
-        <div className={styles.infoText}>cart is empty</div>
+        <Header as="h1" inverted color="yellow" className={styles.infoText}>
+					cart is empty
+        </Header>
       )}
     </>
   )

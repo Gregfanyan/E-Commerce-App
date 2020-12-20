@@ -14,7 +14,7 @@ function Logout() {
   return (
     <>
       <Menu.Item>
-        {userDetails.firstName} {userDetails.firstName}
+        {userDetails.firstName} {userDetails.lastName}
         <Icon name="user circle" size="large" style={{ paddingLeft: '10px' }} />
       </Menu.Item>
       <Button color="black" name="logout" onClick={logoutOnClick}>

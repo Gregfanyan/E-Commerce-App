@@ -1,7 +1,8 @@
-.card{
-    margin-top: 60px;
- }
+.card {
+	margin-top: 60px;
+}
 
- .infoText{
-     margin-top: 20px;
- }
+.infoText {
+	margin-top: 20px;
+	text-shadow: 0 0 0.8rem #fff;
+}
