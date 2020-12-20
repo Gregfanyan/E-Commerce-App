@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Formik } from 'formik'
+import { Formik, Field } from 'formik'
 import * as yup from 'yup'
-import { Form, Segment, Grid, Button, Modal } from 'semantic-ui-react'
+import { Form, Segment, Grid, Button, Modal, Icon } from 'semantic-ui-react'
 
 import { CreateNewProduct } from '../../redux/Products/ProductActions'
 import styles from './AddProduct.module.css'
@@ -27,7 +27,8 @@ const AddProduct = () => {
       className={styles.modal}
       trigger={
         <Button color="black" name="Create a Product">
-					Create Product
+          <Icon name="add circle" color="teal"></Icon>
+					Add Product
         </Button>
       }
     >
@@ -42,7 +43,7 @@ const AddProduct = () => {
                 name: '',
                 description: '',
                 categories: [],
-                sizes: [],
+                sizes: [0],
                 variants: [],
                 img: '',
                 price: 0,
@@ -70,86 +71,73 @@ const AddProduct = () => {
                 resetForm()
               }}
             >
-              {(props: any) => (
-                <Form onSubmit={props.handleSubmit}>
+              {({ handleSubmit, errors }) => (
+                <Form onSubmit={handleSubmit}>
                   <Form.Field>
-                    <Form.Input
-                      value={props.values.name}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
+                    <Field
                       name="name"
                       placeholder="Product name"
                       label="Product Name"
+                      as={Form.Input}
                     />
-                    {props.errors.name && (
-                      <div id="feedback">{props.errors.name}</div>
-                    )}
+                    {errors.name && <div id="feedback">{errors.name}</div>}
                   </Form.Field>
                   <Form.Field>
-                    <Form.Input
-                      value={props.values.description}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
+                    <Field
                       name="description"
                       placeholder="Product description"
                       label="Product description"
+                      as={Form.Input}
                     />
-                    {props.errors.description && (
-                      <div id="feedback">{props.errors.description}</div>
+                    {errors.description && (
+                      <div id="feedback">{errors.description}</div>
                     )}
                   </Form.Field>
                   <Form.Field>
-                    <Form.Input
-                      value={props.values.img}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
+                    <Field
                       name="img"
                       placeholder="Image"
                       label="Image"
+                      as={Form.Input}
                     />
-                    {props.errors.img && <div>{props.errors.img}</div>}
+                    {errors.img && <div>{errors.img}</div>}
                   </Form.Field>
                   <Form.Field>
-                    <Form.Input
-                      value={props.values.price}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
+                    <Field
                       type="number"
                       name="price"
                       placeholder="price"
                       label="price"
+                      as={Form.Input}
                     />
-                    {props.errors.price && <div>{props.errors.price}</div>}
+                    {errors.price && <div>{errors.price}</div>}
                   </Form.Field>
                   <Form.Field>
-                    <Form.Input
-                      value={props.values.categories}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
+                    <Field
                       name="categories"
                       placeholder="categories"
                       label="categories"
+                      as={Form.Input}
                     />
+                    {errors.categories && <div>{errors.categories}</div>}
                   </Form.Field>
                   <Form.Field>
-                    <Form.Input
-                      value={props.values.variants}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
+                    <Field
                       name="variants"
                       placeholder="variants"
                       label="variants"
+                      as={Form.Input}
                     />
+                    {errors.variants && <div>{errors.variants}</div>}
                   </Form.Field>
                   <Form.Field>
-                    <Form.Input
-                      value={props.values.sizes}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
+                    <Field
                       name="sizes"
                       placeholder="sizes"
                       label="sizes"
+                      as={Form.Input}
                     />
+                    {errors.sizes && <div>{errors.sizes}</div>}
                   </Form.Field>
                   <Form.Button fluid color="teal" type="submit">
 										Create

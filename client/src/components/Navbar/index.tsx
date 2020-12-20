@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
-import { Menu, Icon, Button } from 'semantic-ui-react'
+import { Menu, Icon, Button, Header } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import { AppState } from '../../types'
 import { HeaderProps } from '../../types/ui'
 import Search from '../Search'
-import styles from './Header.module.css'
+import styles from './Navbar.module.css'
 import Category from '../Category'
 import Logout from '../user/Logout'
 import Login from '../user/Login'
 import Register from '../user/Register'
 import AddProduct from '../AddProduct'
 
-function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
+function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
   const [loginOpen, setLogInOpen] = useState<boolean>(false)
   const [registerOpen, setRegisterOpen] = useState<boolean>(false)
 
@@ -26,13 +26,20 @@ function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
   return (
     <Menu inverted size="large" fixed="top">
       <Menu.Item as={Link} to="/home" name="home">
-        <h3>Home</h3>
+        <Header as="h1" inverted color="yellow" className={styles.header}>
+					Shoes
+        </Header>
       </Menu.Item>
       <Category handleSelect={handleSelect} cat={cat} />
       <Menu.Menu position="right">
         <Menu.Item>
           <Search search={search} handleChange={handleChange} />
         </Menu.Item>
+        {isAuthenticated && user && user.user.user.isAdmin ? (
+          <Menu.Item>
+            <AddProduct />
+          </Menu.Item>
+        ) : null}
         {!isAuthenticated && !user ? (
           <Menu.Item>
             <Login
@@ -63,14 +70,9 @@ function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
             </Button>
           </Menu.Item>
         ) : null}
-        {isAuthenticated && user && user.user.user.isAdmin ? (
-          <Menu.Item>
-            <AddProduct />
-          </Menu.Item>
-        ) : null}
       </Menu.Menu>
     </Menu>
   )
 }
 
-export default Header
+export default Navbar

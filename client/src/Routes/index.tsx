@@ -8,7 +8,6 @@ import Register from '../components/user/Register'
 import FirstPage from '../components/FirstPage'
 import ProductCart from '../pages/ProductCart'
 import AddProduct from '../components/AddProduct'
-import AdminDashBoard from '../components/AdminDashBoard'
 
 const Routes = () => (
   <Switch>
@@ -19,7 +18,6 @@ const Routes = () => (
     <Route path="/register" component={Register} />
     <Route path="/cart" component={ProductCart} />
     <Route path="/AddProduct" component={AddProduct} />
-    <Route path="/admin" component={AdminDashBoard} />
   </Switch>
 )
 

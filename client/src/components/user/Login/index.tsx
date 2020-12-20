@@ -19,7 +19,6 @@ import styles from './Login.module.css'
 
 const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
   const dispatch = useDispatch()
-
   const handleClick = () => {
     setRegisterOpen(true)
     setLogInOpen(false)
@@ -34,7 +33,10 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
       className={styles.modal}
       trigger={
         <Button color="black" name="login">
-          <Icon name="sign in"> </Icon>Sign In
+          <Icon name="sign in" color="teal">
+            {' '}
+          </Icon>
+					Sign In
         </Button>
       }
     >
