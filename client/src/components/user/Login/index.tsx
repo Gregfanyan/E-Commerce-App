@@ -1,10 +1,7 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { Formik, Field } from 'formik'
 import * as yup from 'yup'
-
-import { login } from '../../../redux/User/UserActions'
 import {
   Button,
   Form,
@@ -14,32 +11,35 @@ import {
   Message,
   Segment,
   Icon,
-  Card,
+  Modal,
 } from 'semantic-ui-react'
 
-const Login = (props: any) => {
-  const history = useHistory()
-  const dispatch = useDispatch()
+import { login } from '../../../redux/User/UserActions'
+import styles from './Login.module.css'
 
-  function handleClick() {
-    if (!history) {
-      return <div>No country</div>
-    } else {
-      history.push('/home')
-    }
+const Login = (props: any) => {
+  const dispatch = useDispatch()
+  const handleClick = () => {
+    props.setRegisterOpen(true)
+    props.setLogInOpen(false)
   }
 
   return (
-    <>
-      <Card.Group itemsPerRow={4} style={{ margin: 0 }}>
-        <Button color="teal" onClick={handleClick}>
-          <Icon name="arrow left"> </Icon>
-					Home
+    <Modal
+      size="tiny"
+      onClose={() => props.setLogInOpen(false)}
+      onOpen={() => props.setLogInOpen(true)}
+      open={props.loginOpen}
+      className={styles.modal}
+      trigger={
+        <Button color="black" name="login">
+          <Icon name="sign in"> </Icon>Sign In
         </Button>
-      </Card.Group>
+      }
+    >
       <Grid
         textAlign="center"
-        style={{ height: '100vh' }}
+        style={{ height: '70vh' }}
         verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
@@ -96,13 +96,17 @@ const Login = (props: any) => {
               </Form>
             )}
           </Formik>
-          <Message>
-						New to us?
-            <Link to="/register"> Register</Link>
-          </Message>
+          <Modal.Actions>
+            <Message onClick={handleClick}>
+							New to us?
+              <span style={{ cursor: 'pointer', textDecoration: 'underline ' }}>
+								Register
+              </span>
+            </Message>
+          </Modal.Actions>
         </Grid.Column>
       </Grid>
-    </>
+    </Modal>
   )
 }
 export default Login

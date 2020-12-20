@@ -1,6 +1,5 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory, Link } from 'react-router-dom'
 import { Formik, Field } from 'formik'
 import * as yup from 'yup'
 import {
@@ -8,35 +7,36 @@ import {
   Segment,
   Grid,
   Button,
-  Card,
   Icon,
   Header,
+  Modal,
+  Message,
 } from 'semantic-ui-react'
 
 import { UserRegister } from '../../../redux/User/UserActions'
+import styles from './Register.module.css'
 
 const Register = (props: any) => {
   const dispatch = useDispatch()
-  const history = useHistory()
-
-  function handleClick() {
-    if (!history) {
-      return <div>No country</div>
-    } else {
-      history.push('/home')
-    }
+  const handleClick = () => {
+    props.setLogInOpen(true)
+    props.setRegisterOpen(false)
   }
-
   return (
-    <>
-      <Card.Group itemsPerRow={4} style={{ margin: 0 }}>
-        <Button color="teal" onClick={handleClick}>
-          <Icon name="arrow left"> </Icon>
-					Home
+    <Modal
+      size="tiny"
+      onClose={() => props.setRegisterOpen(false)}
+      onOpen={() => props.setRegisterOpen(true)}
+      open={props.registerOpen}
+      className={styles.modal}
+      trigger={
+        <Button color="black" name="register">
+          <Icon name="signup"> </Icon>Register
         </Button>
-      </Card.Group>
-      <Grid centered>
-        <Grid.Column style={{ maxWidth: 550, marginTop: 20 }}>
+      }
+    >
+      <Grid centered style={{ height: '80vh' }} verticalAlign="middle">
+        <Grid.Column>
           <Header as="h2" color="teal" textAlign="center">
 						Create an Account
           </Header>
@@ -125,14 +125,20 @@ const Register = (props: any) => {
                 </Form>
               )}
             </Formik>
-            <Segment>
-							Already have an account?
-              <Link to="/login"> Login</Link>
-            </Segment>
+            <Modal.Actions>
+              <Message onClick={handleClick}>
+								Already have an account?
+                <span
+                  style={{ cursor: 'pointer', textDecoration: 'underline' }}
+                >
+									Login
+                </span>
+              </Message>
+            </Modal.Actions>
           </Segment>
         </Grid.Column>
       </Grid>
-    </>
+    </Modal>
   )
 }
 
