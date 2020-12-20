@@ -11,6 +11,7 @@ import Category from '../Category'
 import Logout from '../user/Logout'
 import Login from '../user/Login'
 import Register from '../user/Register'
+import AddProduct from '../AddProduct'
 
 function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
   const [loginOpen, setLogInOpen] = useState<boolean>(false)
@@ -64,14 +65,7 @@ function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
         ) : null}
         {isAuthenticated && user && user.user.user.isAdmin ? (
           <Menu.Item>
-            <Button
-              color="black"
-              as={Link}
-              to="AddProduct"
-              name="Create a Product"
-            >
-							Admin Dashboard
-            </Button>
+            <AddProduct />
           </Menu.Item>
         ) : null}
       </Menu.Menu>

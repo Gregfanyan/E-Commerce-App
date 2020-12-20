@@ -1,44 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import {
-  Form,
-  Segment,
-  Grid,
-  Button,
-  Card,
-  Icon,
-  Header,
-} from 'semantic-ui-react'
+import { Form, Segment, Grid, Button, Modal } from 'semantic-ui-react'
 
 import { CreateNewProduct } from '../../redux/Products/ProductActions'
+import styles from './AddProduct.module.css'
 
-const AddProduct = (props: any) => {
+const HeaderStyle = {
+  textAlign: 'center',
+  paddingTop: '10px',
+  color: 'teal',
+  fontSize: '30px',
+}
+
+const AddProduct = () => {
+  const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
-  const history = useHistory()
-
-  function handleClick() {
-    if (!history) {
-      return <div>No country</div>
-    } else {
-      history.push('/home')
-    }
-  }
 
   return (
-    <>
-      <Card.Group itemsPerRow={4} style={{ margin: 0 }}>
-        <Button color="blue" onClick={handleClick}>
-          <Icon name="arrow left"> </Icon>
+    <Modal
+      size="tiny"
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      open={open}
+      className={styles.modal}
+      trigger={
+        <Button color="black" name="Create a Product">
+					Create Product
         </Button>
-      </Card.Group>
+      }
+    >
       <Grid centered>
-        <Grid.Column style={{ maxWidth: 550 }}>
-          <Header as="h3" color="teal" textAlign="center">
+        <Grid.Column>
+          <Modal.Header as="h3" style={HeaderStyle}>
 						Create a Product
-          </Header>
+          </Modal.Header>
           <Segment>
             <Formik
               initialValues={{
@@ -163,7 +160,7 @@ const AddProduct = (props: any) => {
           </Segment>
         </Grid.Column>
       </Grid>
-    </>
+    </Modal>
   )
 }
 

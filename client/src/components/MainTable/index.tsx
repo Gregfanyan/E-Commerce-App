@@ -5,17 +5,23 @@ import { useSelector } from 'react-redux'
 import TableRow from '../TableRow'
 import { Product } from '../../types/ui'
 import { AppState } from '../../types'
+import AdminDashBoard from '../AdminDashBoard'
 import styles from './MainTable.module.css'
 
 const MainTable = ({ products }: any) => {
   const loading = useSelector((state: AppState) => state.products.loading)
-
+  const user = useSelector((state: AppState) => state.user.user)
+  const isAuthenticated = useSelector(
+    (state: AppState) => state.user.isAuthenticated
+  )
   return (
     <div className={styles.Card}>
       {loading ? (
         <Icon loading size="huge" color="teal" name="spinner" />
       ) : products.error ? (
         <h2>{products.error}</h2>
+      ) : isAuthenticated && user && user.user.user.isAdmin ? (
+        <AdminDashBoard />
       ) : (
         <Card.Group itemsPerRow={4}>
           {products &&

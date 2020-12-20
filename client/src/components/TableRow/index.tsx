@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Product } from '../../types/ui'
 import { addProduct } from '../../redux'
-import styles from './TableRow.module.css'
 import { AppState } from '../../types'
+import styles from './TableRow.module.css'
 
 const ImgStyles = {
   minWidth: '250px',
@@ -17,7 +17,6 @@ const ImgStyles = {
 const TableRow = (product: Product) => {
   const { name, price, img, _id } = product
   const dispatch = useDispatch()
-
   const user = useSelector((state: AppState) => state.user.user)
   const isAuthenticated = useSelector(
     (state: AppState) => state.user.isAuthenticated
@@ -36,7 +35,7 @@ const TableRow = (product: Product) => {
           {name}
           <Card.Meta>
             <Icon name="dollar" />
-            {price}{' '}
+            {price}
           </Card.Meta>
         </Card.Header>
       </Card.Content>
