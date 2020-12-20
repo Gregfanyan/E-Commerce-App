@@ -13,8 +13,8 @@ import Login from '../user/Login'
 import Register from '../user/Register'
 
 function Header({ handleChange, handleSelect, search, cat }: HeaderProps) {
-  const [loginOpen, setLogInOpen] = useState(false)
-  const [registerOpen, setRegisterOpen] = useState(false)
+  const [loginOpen, setLogInOpen] = useState<boolean>(false)
+  const [registerOpen, setRegisterOpen] = useState<boolean>(false)
 
   const counter = useSelector((state: AppState) => state.products.counter)
   const user = useSelector((state: AppState) => state.user.user)

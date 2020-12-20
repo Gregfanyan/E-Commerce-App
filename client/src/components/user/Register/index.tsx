@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { useDispatch } from 'react-redux'
 import { Formik, Field } from 'formik'
 import * as yup from 'yup'
@@ -16,18 +17,18 @@ import {
 import { UserRegister } from '../../../redux/User/UserActions'
 import styles from './Register.module.css'
 
-const Register = (props: any) => {
+const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
   const dispatch = useDispatch()
   const handleClick = () => {
-    props.setLogInOpen(true)
-    props.setRegisterOpen(false)
+    setLogInOpen(true)
+    setRegisterOpen(false)
   }
   return (
     <Modal
       size="tiny"
-      onClose={() => props.setRegisterOpen(false)}
-      onOpen={() => props.setRegisterOpen(true)}
-      open={props.registerOpen}
+      onClose={() => setRegisterOpen(false)}
+      onOpen={() => setRegisterOpen(true)}
+      open={registerOpen}
       className={styles.modal}
       trigger={
         <Button color="black" name="register">

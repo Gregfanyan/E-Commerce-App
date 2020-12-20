@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Product } from '../../types/ui'
 import { addProduct } from '../../redux'
 import styles from './TableRow.module.css'
+import { AppState } from '../../types'
 
 const ImgStyles = {
   minWidth: '250px',
@@ -16,6 +17,11 @@ const ImgStyles = {
 const TableRow = (product: Product) => {
   const { name, price, img, _id } = product
   const dispatch = useDispatch()
+
+  const user = useSelector((state: AppState) => state.user.user)
+  const isAuthenticated = useSelector(
+    (state: AppState) => state.user.isAuthenticated
+  )
 
   const handleAddProduct = () => {
     dispatch(addProduct(product))
@@ -44,9 +50,11 @@ const TableRow = (product: Product) => {
           >
 						View More
           </Button>
-          <Button color="yellow" onClick={handleAddProduct}>
-						Add to Cart
-          </Button>
+          {isAuthenticated && user && user.user.user.isAdmin ? null : (
+            <Button color="yellow" onClick={handleAddProduct}>
+							Add to Cart
+            </Button>
+          )}
         </div>
       </Card.Content>
     </Card>

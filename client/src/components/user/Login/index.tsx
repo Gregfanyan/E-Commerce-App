@@ -17,19 +17,20 @@ import {
 import { login } from '../../../redux/User/UserActions'
 import styles from './Login.module.css'
 
-const Login = (props: any) => {
+const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
   const dispatch = useDispatch()
+
   const handleClick = () => {
-    props.setRegisterOpen(true)
-    props.setLogInOpen(false)
+    setRegisterOpen(true)
+    setLogInOpen(false)
   }
 
   return (
     <Modal
       size="tiny"
-      onClose={() => props.setLogInOpen(false)}
-      onOpen={() => props.setLogInOpen(true)}
-      open={props.loginOpen}
+      onClose={() => setLogInOpen(false)}
+      onOpen={() => setLogInOpen(true)}
+      open={loginOpen}
       className={styles.modal}
       trigger={
         <Button color="black" name="login">
