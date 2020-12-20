@@ -1,28 +1,23 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Icon, Button } from 'semantic-ui-react'
+import { Icon, Button, Menu } from 'semantic-ui-react'
 
 import { logout } from '../../../redux/User/UserActions'
 
 function Logout() {
   const dispatch = useDispatch()
   let userDetails = JSON.parse(localStorage.getItem('user') || '{}')
-
   const logoutOnClick = () => {
     dispatch(logout())
     localStorage.clear()
   }
   return (
     <>
-      {userDetails.firstName}
-      <Button
-        color="black"
-        as={Link}
-        to="Login"
-        name="logout"
-        onClick={logoutOnClick}
-      >
+      <Menu.Item>
+        {userDetails.firstName} {userDetails.lastName}
+        <Icon name="user circle" size="large" style={{ paddingLeft: '10px' }} />
+      </Menu.Item>
+      <Button color="black" name="logout" onClick={logoutOnClick}>
         <Icon name="sign out"> </Icon>Logout
       </Button>
     </>

@@ -1,15 +1,19 @@
 import React from 'react'
 import { Card, Icon } from 'semantic-ui-react'
+import { useSelector } from 'react-redux'
 
 import TableRow from '../TableRow'
 import { Product } from '../../types/ui'
+import { AppState } from '../../types'
 import styles from './MainTable.module.css'
 
 const MainTable = ({ products }: any) => {
+  const loading = useSelector((state: AppState) => state.products.loading)
+
   return (
     <div className={styles.Card}>
-      {products.loading ? (
-        <Icon loading name="spinner" />
+      {loading ? (
+        <Icon loading size="huge" color="teal" name="spinner" />
       ) : products.error ? (
         <h2>{products.error}</h2>
       ) : (

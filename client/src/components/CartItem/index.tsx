@@ -5,6 +5,17 @@ import { Card, Icon, Image, Button } from 'semantic-ui-react'
 import { CartItemProps } from '../../types/ui'
 import { removeProduct } from '../../redux'
 
+const CardStyle = {
+  display: 'inline-block',
+  marginLeft: '10px',
+}
+
+const ImgStyles = {
+  minWidth: 'auto',
+  height: 300,
+  resizeMode: 'contain',
+}
+
 function CartItem({ cart }: CartItemProps) {
   const { name, description, img, price } = cart
 
@@ -14,14 +25,8 @@ function CartItem({ cart }: CartItemProps) {
     dispatch(removeProduct(cart))
   }
 
-  const ImgStyles = {
-    minWidth: 'auto',
-    height: 300,
-    resizeMode: 'contain',
-  }
-
   return (
-    <Card.Group itemsPerRow={4} centered>
+    <Card.Group style={CardStyle} centered>
       <Card>
         <Image src={img} alt="product" style={ImgStyles} />
         <Card.Content>
