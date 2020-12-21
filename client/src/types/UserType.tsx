@@ -103,4 +103,5 @@ export type UserState = {
 	error: string
 	user: User | any
 	isAuthenticated: boolean
+	users: User | any
 }

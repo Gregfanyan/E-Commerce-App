@@ -7,9 +7,8 @@ import { Product } from '../../types/ui'
 import { AppState } from '../../types'
 import styles from './MainTable.module.css'
 
-const MainTable = ({ products }: any) => {
+const MainTable = ({ products, users }: any) => {
   const loading = useSelector((state: AppState) => state.products.loading)
-
   return (
     <div className={styles.Card}>
       {loading ? (

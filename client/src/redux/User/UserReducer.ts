@@ -12,6 +12,7 @@ import {
 
 const initialState: UserState = {
   user: {},
+  users: {},
   loading: false,
   error: '',
   isAuthenticated: false,
@@ -51,6 +52,7 @@ const UserReducer = (state = initialState, action: UserActions) => {
       isAuthenticated: false,
     }
   case LOGIN_USER_SUCCESS:
+    console.log('state', state)
     return {
       ...state,
       loading: false,
@@ -69,8 +71,8 @@ const UserReducer = (state = initialState, action: UserActions) => {
     return {
       ...state,
       loading: false,
+      isAuthenticated: false,
       users: action.payload,
-      isAuthenticated: true,
       error: '',
     }
   default:

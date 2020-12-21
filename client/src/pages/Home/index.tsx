@@ -4,11 +4,13 @@ import { Container } from 'semantic-ui-react'
 import MainTable from '../../components/MainTable'
 import Navbar from '../../components/Navbar'
 import useProduct from '../../Hooks/useProduct'
+import useUsers from '../../Hooks/useUsers'
 
 export const Home = () => {
   const [query, setQuery] = useState<string>('')
   const [cat, setCat] = useState<string>('')
   const [data] = useProduct(query, cat)
+  const [userData] = useUsers()
 
   const handleChange: React.ReactEventHandler<HTMLInputElement> = (e) => {
     setQuery(e.currentTarget.value)
@@ -27,7 +29,7 @@ export const Home = () => {
         handleSelect={handleSelect}
         cat={cat}
       />
-      <MainTable products={data} />
+      <MainTable products={data} users={userData} />
     </Container>
   )
 }
