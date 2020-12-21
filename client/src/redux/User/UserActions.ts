@@ -11,6 +11,7 @@ import {
   LOGIN_USER_SUCCESS,
   FETCH_LOGIN_FAILURE,
   LOGOUT,
+  GET_USERS,
 } from '../../types/UserType'
 
 export const fetchUserRequest = () => {
@@ -64,6 +65,15 @@ export function loginSuccess(user: User): UserActions {
   }
 }
 
+export function getUserList(users: User[]): UserActions {
+  return {
+    type: GET_USERS,
+    payload: {
+      users,
+    },
+  }
+}
+
 export const UserRegister = ({ firstName, lastName, email, password }: any) => {
   return (dispatch: Dispatch) => {
     dispatch(fetchUserRequest())
@@ -99,6 +109,21 @@ export const login = ({ email, password, firstName }: any) => {
       })
       .catch((error) => {
         dispatch(fetchLoginFailure(error.message))
+      })
+  }
+}
+
+export const getUsers = () => {
+  return (dispatch: Dispatch) => {
+    dispatch(fetchUserRequest())
+    axios
+      .get('http://localhost:8000/api/v1/user')
+      .then((response) => {
+        const users = response.data
+        dispatch(getUserList(users))
+      })
+      .catch((error) => {
+        dispatch(fetchUsersFailure(error.message))
       })
   }
 }

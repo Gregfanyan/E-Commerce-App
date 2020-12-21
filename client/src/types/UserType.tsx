@@ -8,6 +8,7 @@ export const REMOVE_USER = 'REMOVE_USER'
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS'
 export const FETCH_LOGIN_FAILURE = 'FETCH_LOGIN_FAILURE'
 export const LOGOUT = 'LOGOUT'
+export const GET_USERS = 'GET_USERS'
 
 export type User = {
 	id: string
@@ -53,11 +54,19 @@ export type UserActions =
 	| LoginUserSuccessAction
 	| loginFailure
 	| LogoutAction
+	| getUserList
 
 export type registerFailure = {
 	type: typeof FETCH_USER_FAILURE
 	payload: {
 		user: User
+	}
+}
+
+export type getUserList = {
+	type: typeof GET_USERS
+	payload: {
+		users: User[]
 	}
 }
 
@@ -95,7 +104,3 @@ export type UserState = {
 	user: User | any
 	isAuthenticated: boolean
 }
-
-/* export type AppState = {
-	user: UserState
-} */

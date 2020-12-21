@@ -7,6 +7,7 @@ import {
   UserActions,
   UserState,
   LOGOUT,
+  GET_USERS,
 } from '../../types/UserType'
 
 const initialState: UserState = {
@@ -58,13 +59,19 @@ const UserReducer = (state = initialState, action: UserActions) => {
       error: '',
     }
   case LOGOUT:
-    console.log('stateout', state)
-
     return {
       ...state,
       isAuthenticated: false,
       user: null,
       users: [],
+    }
+  case GET_USERS:
+    return {
+      ...state,
+      loading: false,
+      users: action.payload,
+      isAuthenticated: true,
+      error: '',
     }
   default:
     return state
