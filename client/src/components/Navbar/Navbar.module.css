@@ -4,3 +4,10 @@
     top:-17px;
     right: 9px;
 }
+
+.header {
+	font-family: 'Metal Mania', Arial, sans-serif;
+	font-weight: normal;
+	font-style: normal;
+	text-shadow: 0 0 0.8rem #fff;
+}

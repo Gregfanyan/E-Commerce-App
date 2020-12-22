@@ -22,7 +22,6 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
   const isAuthenticated = useSelector(
     (state: AppState) => state.user.isAuthenticated
   )
-
   return (
     <Menu inverted size="large" fixed="top">
       <Menu.Item as={Link} to="/home" name="home">

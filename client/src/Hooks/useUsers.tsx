@@ -7,14 +7,15 @@ import { AppState } from '../types/'
 
 const useUsers = () => {
   const [userData, setUserData] = useState<User[]>([])
-  const users = useSelector((state: AppState) => state.user.users)
-  console.log(users)
+  const users = useSelector((state: AppState) => state.user.users.users)
   const dispatch = useDispatch()
-
   useEffect(() => {
     dispatch(getUsers())
+  }, [dispatch])
+
+  useEffect(() => {
     setUserData(users)
-  }, [dispatch, users])
+  }, [users])
 
   return [userData]
 }

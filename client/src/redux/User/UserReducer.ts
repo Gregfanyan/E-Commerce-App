@@ -30,7 +30,7 @@ const UserReducer = (state = initialState, action: UserActions) => {
     return {
       ...state,
       loading: false,
-      users: action.payload,
+      user: action.payload,
       isAuthenticated: true,
       error: '',
     }
@@ -38,7 +38,7 @@ const UserReducer = (state = initialState, action: UserActions) => {
     return {
       ...state,
       loading: false,
-      users: [],
+      user: [],
       error: action.payload,
       isAuthenticated: false,
     }
@@ -47,12 +47,11 @@ const UserReducer = (state = initialState, action: UserActions) => {
     return {
       ...state,
       loading: false,
-      users: [],
+      user: [],
       error: action.payload,
       isAuthenticated: false,
     }
   case LOGIN_USER_SUCCESS:
-    console.log('state', state)
     return {
       ...state,
       loading: false,
@@ -71,8 +70,8 @@ const UserReducer = (state = initialState, action: UserActions) => {
     return {
       ...state,
       loading: false,
-      isAuthenticated: false,
       users: action.payload,
+      isAuthenticated: true,
       error: '',
     }
   default:

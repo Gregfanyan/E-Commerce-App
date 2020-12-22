@@ -20,10 +20,10 @@ export const fetchUserRequest = () => {
   }
 }
 
-export const fetchUserSuccess = (users: User[]) => {
+export const fetchUserSuccess = (user: User[]) => {
   return {
     type: REGISTER_USER_SUCCESS,
-    payload: users,
+    payload: user,
   }
 }
 

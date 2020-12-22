@@ -85,5 +85,5 @@ export type ProductState = {
 	loading: boolean
 	error: string
 	counter: number
-	isValidated: boolean
+	isAuthenticated: boolean
 }
