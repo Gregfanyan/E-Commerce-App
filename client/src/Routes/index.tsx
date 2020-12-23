@@ -8,6 +8,8 @@ import Register from '../components/user/Register'
 import FirstPage from '../components/FirstPage'
 import ProductCart from '../pages/ProductCart'
 import AddProduct from '../components/AddProduct'
+import Users from '../components/Users'
+import Profile from '../pages/Profile'
 
 const Routes = () => (
   <Switch>
@@ -18,6 +20,8 @@ const Routes = () => (
     <Route path="/register" component={Register} />
     <Route path="/cart" component={ProductCart} />
     <Route path="/AddProduct" component={AddProduct} />
+    <Route path="/users" component={Users} />
+    <Route path="/profile" component={Profile} />
   </Switch>
 )
 

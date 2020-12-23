@@ -9,6 +9,7 @@ export const useProduct = (query: string, cat: string) => {
   const [data, setData] = useState<Product[]>([])
   const dispatch = useDispatch()
   const products = useSelector((state: AppState) => state.products.products)
+
   useEffect(() => {
     dispatch(fetchProducts())
   }, [dispatch])

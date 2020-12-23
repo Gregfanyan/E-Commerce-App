@@ -65,12 +65,10 @@ export function loginSuccess(user: User): UserActions {
   }
 }
 
-export function getUserList(users: User[]): UserActions {
+export function getUserList(users: User[]) {
   return {
     type: GET_USERS,
-    payload: {
-      users,
-    },
+    payload: users,
   }
 }
 

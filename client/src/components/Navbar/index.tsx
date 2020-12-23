@@ -35,6 +35,11 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
           <Search search={search} handleChange={handleChange} />
         </Menu.Item>
         {isAuthenticated && user && user.user.user.isAdmin ? (
+          <Menu.Item as={Link} to="profile">
+            <Button color="black">Users</Button>
+          </Menu.Item>
+        ) : null}
+        {isAuthenticated && user && user.user.user.isAdmin ? (
           <Menu.Item>
             <AddProduct />
           </Menu.Item>
@@ -57,6 +62,7 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
             <Logout />
           </Menu.Item>
         )}
+
         {isAuthenticated && user && !user.user.user.isAdmin ? (
           <Menu.Item as={Link} to="cart">
             <Button animated="vertical" color="black">

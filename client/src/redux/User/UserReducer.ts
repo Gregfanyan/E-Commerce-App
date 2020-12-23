@@ -12,7 +12,7 @@ import {
 
 const initialState: UserState = {
   user: {},
-  users: {},
+  users: [],
   loading: false,
   error: '',
   isAuthenticated: false,
@@ -74,6 +74,7 @@ const UserReducer = (state = initialState, action: UserActions) => {
       isAuthenticated: true,
       error: '',
     }
+
   default:
     return state
   }

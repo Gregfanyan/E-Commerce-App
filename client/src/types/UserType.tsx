@@ -11,7 +11,7 @@ export const LOGOUT = 'LOGOUT'
 export const GET_USERS = 'GET_USERS'
 
 export type User = {
-	id: string
+	_id: string
 	firstName: string
 	lastName: string
 	email: string
@@ -43,18 +43,6 @@ export type LoginUserSuccessAction = {
 export type LogoutAction = {
 	type: typeof LOGOUT
 }
-
-export type UserActions =
-	| ReceiveUserAction
-	| registerFailure
-	| fetchUserSuccess
-	| fetchUserRequest
-	| AddUserAction
-	| RemoveUserAction
-	| LoginUserSuccessAction
-	| loginFailure
-	| LogoutAction
-	| getUserList
 
 export type registerFailure = {
 	type: typeof FETCH_USER_FAILURE
@@ -88,7 +76,7 @@ export type fetchUserRequest = {
 export type fetchUserSuccess = {
 	type: typeof REGISTER_USER_SUCCESS
 	payload: {
-		product: Product
+		user: User
 	}
 }
 export type RemoveUserAction = {
@@ -103,5 +91,21 @@ export type UserState = {
 	error: string
 	user: User | any
 	isAuthenticated: boolean
-	users: User[] | any
+	users: User[]
 }
+
+export type UserProps = {
+	user: User
+}
+
+export type UserActions =
+	| ReceiveUserAction
+	| registerFailure
+	| fetchUserSuccess
+	| fetchUserRequest
+	| AddUserAction
+	| RemoveUserAction
+	| LoginUserSuccessAction
+	| loginFailure
+	| LogoutAction
+	| getUserList
