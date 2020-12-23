@@ -5,7 +5,7 @@ import { fetchProducts } from '../redux/Products/ProductActions'
 import { Product } from '../types/ProductType'
 import { AppState } from '../types/'
 
-const useProduct = (query: string, cat: string) => {
+export const useProduct = (query: string, cat: string) => {
   const [data, setData] = useState<Product[]>([])
   const dispatch = useDispatch()
   const products = useSelector((state: AppState) => state.products.products)
@@ -33,5 +33,3 @@ const useProduct = (query: string, cat: string) => {
 
   return [data]
 }
-
-export default useProduct

@@ -5,9 +5,9 @@ import { getUsers } from '../redux/User/UserActions'
 import { User } from '../types/UserType'
 import { AppState } from '../types/'
 
-const useUsers = () => {
+export const useUsers = () => {
   const [userData, setUserData] = useState<User[]>([])
-  const users = useSelector((state: AppState) => state.user.users.users)
+  const users = useSelector((state: AppState) => state.user.users)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getUsers())
@@ -19,5 +19,3 @@ const useUsers = () => {
 
   return [userData]
 }
-
-export default useUsers
