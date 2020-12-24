@@ -34,18 +34,20 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
         <Menu.Item>
           <Search search={search} handleChange={handleChange} />
         </Menu.Item>
-        {isAuthenticated && user && user.user.user.isAdmin ? (
-          <Menu.Item as={Link} to="profile">
+{/*         {isAuthenticated && user && user.user.user.isAdmin ? (
+ */}          <Menu.Item as={Link} to="profile">
             <Button color="black">Users</Button>
           </Menu.Item>
-        ) : null}
-        {isAuthenticated && user && user.user.user.isAdmin ? (
-          <Menu.Item>
+{/*         ) : null}
+ */}
+{/*  {isAuthenticated && user && user.user.user.isAdmin ? (
+ */}          <Menu.Item>
             <AddProduct />
           </Menu.Item>
-        ) : null}
-        {!isAuthenticated && !user ? (
-          <Menu.Item>
+{/*         ) : null}
+ */}    
+{/*      {!isAuthenticated && !user ? (
+ */}          <Menu.Item>
             <Login
               setRegisterOpen={setRegisterOpen}
               loginOpen={loginOpen}
@@ -57,14 +59,14 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
               setLogInOpen={setLogInOpen}
             />
           </Menu.Item>
-        ) : (
+       {/*  ) : ( */}
           <Menu.Item>
             <Logout />
           </Menu.Item>
-        )}
+      {/*   )} */}
 
-        {isAuthenticated && user && !user.user.user.isAdmin ? (
-          <Menu.Item as={Link} to="cart">
+{/*         {isAuthenticated && user && !user.user.user.isAdmin ? (
+ */}          <Menu.Item as={Link} to="cart">
             <Button animated="vertical" color="black">
               <Button.Content hidden>Shop</Button.Content>
               <Button.Content visible>
@@ -74,7 +76,7 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
               </Button.Content>
             </Button>
           </Menu.Item>
-        ) : null}
+       {/*  ) : null} */}
       </Menu.Menu>
     </Menu>
   )

@@ -49,11 +49,11 @@ const TableRow = (product: Product) => {
           >
 						View More
           </Button>
-          {isAuthenticated && user && user.user.user.isAdmin ? null : (
-            <Button color="yellow" onClick={handleAddProduct}>
+{/*           {isAuthenticated && user && user.user.user.isAdmin ? null : (
+ */}            <Button color="yellow" onClick={handleAddProduct}>
 							Add to Cart
             </Button>
-          )}
+       {/*    )} */}
         </div>
       </Card.Content>
     </Card>
