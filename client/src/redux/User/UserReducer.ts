@@ -16,6 +16,7 @@ const initialState: UserState = {
   loading: false,
   error: '',
   isAuthenticated: false,
+  isValidated: false,
 }
 
 const UserReducer = (state = initialState, action: UserActions) => {
@@ -31,7 +32,7 @@ const UserReducer = (state = initialState, action: UserActions) => {
       ...state,
       loading: false,
       user: action.payload,
-      isAuthenticated: true,
+      isValidated: true,
       error: '',
     }
   case FETCH_USER_FAILURE:

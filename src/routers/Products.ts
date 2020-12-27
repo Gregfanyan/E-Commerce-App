@@ -17,6 +17,6 @@ router.get('/', findAll)
 router.get('/:productId', findById)
 router.put('/:productId', VerifyToken, updateProduct)
 router.delete('/:productId', VerifyToken, deleteProduct)
-router.post('/', VerifyToken, createProduct)
+router.post('/',/*  VerifyToken,  */createProduct)
 
 export default router

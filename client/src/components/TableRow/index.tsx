@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -21,11 +21,15 @@ const TableRow = (product: Product) => {
   const isAuthenticated = useSelector(
     (state: AppState) => state.user.isAuthenticated
   )
-
   const handleAddProduct = () => {
     dispatch(addProduct(product))
   }
-
+  const history = useHistory()
+  useEffect(() => {
+    if (!isAuthenticated && !user) {
+      history.push('/home')
+    }
+  }, [history, isAuthenticated, user])
   return (
     <Card raised color="black">
       <Image src={img} style={ImgStyles} />
@@ -49,11 +53,11 @@ const TableRow = (product: Product) => {
           >
 						View More
           </Button>
-{/*           {isAuthenticated && user && user.user.user.isAdmin ? null : (
- */}            <Button color="yellow" onClick={handleAddProduct}>
+          {isAuthenticated && !user.user.user.isAdmin ? (
+            <Button color="yellow" onClick={handleAddProduct}>
 							Add to Cart
             </Button>
-       {/*    )} */}
+          ) : null}
         </div>
       </Card.Content>
     </Card>

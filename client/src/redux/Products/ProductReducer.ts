@@ -15,7 +15,7 @@ const initialState: ProductState = {
   inCart: [],
   error: '',
   counter: 0,
-  isAuthenticated: false,
+  isValidated: false,
 }
 
 const ProductReducers = (state = initialState, action: ProductActions) => {
@@ -68,7 +68,7 @@ const ProductReducers = (state = initialState, action: ProductActions) => {
       ...state,
       loading: false,
       product: action.payload,
-      isAuthenticated: true,
+      isValidated: true,
       error: '',
     }
   }

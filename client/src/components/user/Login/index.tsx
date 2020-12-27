@@ -33,9 +33,7 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
       className={styles.modal}
       trigger={
         <Button color="black" name="login">
-          <Icon name="sign in" color="teal">
-            {' '}
-          </Icon>
+          <Icon name="sign in" color="teal"></Icon>
 					Sign In
         </Button>
       }

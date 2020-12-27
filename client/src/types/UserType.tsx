@@ -92,6 +92,7 @@ export type UserState = {
 	user: User | any
 	isAuthenticated: boolean
 	users: User[]
+	isValidated: boolean
 }
 
 export type UserProps = {
