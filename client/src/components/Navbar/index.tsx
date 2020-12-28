@@ -53,7 +53,7 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
           </Menu.Item>
         ) : null}
 
-        {!isAuthenticated && !user ? (
+        {!isAuthenticated ? (
           <Menu.Item>
             <Login
               setRegisterOpen={setRegisterOpen}

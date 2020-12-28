@@ -107,7 +107,7 @@ export const buyProduct = (product: Product) => {
     dispatch(fetchProductRequest())
     axios
       .post(
-        'http://localhost:8000/api/v1/user/:userid/checkout, product, tokenConfig'
+        'http://localhost:8000/api/v1/user/:userId/checkout, product, tokenConfig'
       )
       .then((response) => {
         const product = response.data
