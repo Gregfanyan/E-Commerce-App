@@ -9,6 +9,7 @@ import {
   ADD_PRODUCT,
   REMOVE_PRODUCT,
   CREATE_PRODUCT,
+  BUY_PRODUCT,
   Product,
 } from '../../types/ProductType'
 
@@ -58,6 +59,15 @@ export const removeProduct = (product: Product): ProductActions => {
   }
 }
 
+export const checkoutProduct = (product: Product): ProductActions => {
+  return {
+    type: BUY_PRODUCT,
+    payload: {
+      product,
+    },
+  }
+}
+
 export const fetchProducts = () => {
   return (dispatch: Dispatch) => {
     dispatch(fetchProductRequest())
@@ -85,6 +95,23 @@ export const CreateNewProduct = (product: Product) => {
       .then((response) => {
         const products = response.data
         dispatch(CreateProduct(products))
+      })
+      .catch((error) => {
+        dispatch(fetchProductFailure(error.message))
+      })
+  }
+}
+
+export const buyProduct = (product: Product) => {
+  return (dispatch: Dispatch, getState: any) => {
+    dispatch(fetchProductRequest())
+    axios
+      .post(
+        'http://localhost:8000/api/v1/user/:userid/checkout, product, tokenConfig'
+      )
+      .then((response) => {
+        const product = response.data
+        dispatch(checkoutProduct(product))
       })
       .catch((error) => {
         dispatch(fetchProductFailure(error.message))

@@ -6,6 +6,7 @@ export const FETCH_PRODUCT_FAILURE = 'FETCH_PRODUCT_FAILURE'
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 export const CREATE_PRODUCT = 'CREATE_PRODUCT'
+export const BUY_PRODUCT = 'BUY_PRODUCT'
 
 export type Product = {
 	_id: string
@@ -35,21 +36,19 @@ export type AddProductAction = {
 	}
 }
 
+export type BuyProductAction = {
+	type: typeof BUY_PRODUCT
+	payload: {
+		product: Product
+	}
+}
+
 export type CreateProduct = {
 	type: typeof CREATE_PRODUCT
 	payload: {
 		product: Product
 	}
 }
-
-export type ProductActions =
-	| ReceiveProductsAction
-	| fetchProduct
-	| fetchProductSuccess
-	| fetchProductRequest
-	| AddProductAction
-	| RemoveProductAction
-	| CreateProduct
 
 export type fetchProduct = {
 	type: typeof FETCH_PRODUCT_FAILURE
@@ -87,3 +86,13 @@ export type ProductState = {
 	counter: number
 	isValidated: boolean
 }
+
+export type ProductActions =
+	| ReceiveProductsAction
+	| fetchProduct
+	| fetchProductSuccess
+	| fetchProductRequest
+	| AddProductAction
+	| RemoveProductAction
+	| CreateProduct
+	| BuyProductAction

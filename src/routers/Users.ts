@@ -26,6 +26,6 @@ router.delete('/:userId', VerifyToken, deleteUser)
 router.post('/', createUser)
 router.post('/logIn', logInUser)
 router.get('/:userId/cart', VerifyToken, getCart)
-router.put('/:userId/update', VerifyToken, updateUser)
+router.put('/:userId/checkout', VerifyToken, updateUser)
 
 export default router
