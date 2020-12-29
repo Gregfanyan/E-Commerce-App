@@ -106,7 +106,7 @@ export const login = ({ email, password, firstName }: any) => {
         window.location.href = '/Home'
       })
       .catch((error) => {
-        dispatch(fetchLoginFailure(error.message))
+        dispatch(fetchLoginFailure(error.response.data))
       })
   }
 }

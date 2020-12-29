@@ -66,7 +66,9 @@ export const logInUser = async (req: Request, res: Response) => {
         if (!user) res.status(404).json({ message: 'user not found' })
         else {
           const logInSuccess = await bcrypt.compare(password, user.password)
-          logInSuccess ? user : res.status(404).json('Incorrect password')
+          logInSuccess
+            ? user
+            : res.status(404).json({ message: 'Incorrect password' })
           const token = JsonWebToken.sign(
             { id: user._id },
             JWT_SECRET,

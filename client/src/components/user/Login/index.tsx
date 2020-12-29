@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Formik, Field } from 'formik'
 import * as yup from 'yup'
 import {
@@ -14,16 +14,19 @@ import {
   Modal,
 } from 'semantic-ui-react'
 
+import { AppState } from '../../../types'
 import { login } from '../../../redux/User/UserActions'
 import styles from './Login.module.css'
 
 const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
+  const errorMessage = useSelector(
+    (state: AppState) => state.user.error.message
+  )
   const dispatch = useDispatch()
   const handleClick = () => {
     setRegisterOpen(true)
     setLogInOpen(false)
   }
-
   return (
     <Modal
       size="tiny"
@@ -98,6 +101,8 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
             )}
           </Formik>
           <Modal.Actions>
+            {errorMessage && <Message> {errorMessage}</Message>}
+
             <Message onClick={handleClick}>
 							New to us?
               <span style={{ cursor: 'pointer', textDecoration: 'underline ' }}>

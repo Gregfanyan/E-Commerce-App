@@ -42,6 +42,9 @@ function CartItem({ cart }: CartItemProps) {
             <Button color="red" onClick={handleRemoveProd}>
 							remove
             </Button>
+            <Button color="green" onClick={handleRemoveProd}>
+							Buy
+            </Button>
           </div>
         </Card.Content>
       </Card>

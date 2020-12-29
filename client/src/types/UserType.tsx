@@ -88,7 +88,7 @@ export type RemoveUserAction = {
 
 export type UserState = {
 	loading: boolean
-	error: string
+	error: string | any
 	user: User | any
 	isAuthenticated: boolean
 	users: User[]
