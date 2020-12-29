@@ -88,7 +88,7 @@ export const UserRegister = ({ firstName, lastName, email, password }: any) => {
         window.location.href = '/home'
       })
       .catch((error) => {
-        dispatch(fetchUsersFailure(error.message))
+        dispatch(fetchUsersFailure(error.response.data))
       })
   }
 }

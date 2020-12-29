@@ -21,6 +21,9 @@ import styles from './Register.module.css'
 
 const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
   const isValidated = useSelector((state: AppState) => state.user.isValidated)
+  const errorMessage = useSelector(
+    (state: AppState) => state.user.error.message
+  )
   const dispatch = useDispatch()
   const history = useHistory()
   const handleClick = () => {
@@ -105,7 +108,7 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       as={Form.Input}
                     />
                     {errors.firstName && (
-                      <div id="feedback">{errors.firstName}</div>
+                      <div style={{ color: 'red' }}>{errors.firstName}</div>
                     )}
                   </Form.Field>
                   <Form.Field>
@@ -116,7 +119,7 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       as={Form.Input}
                     />
                     {errors.lastName && (
-                      <div id="feedback">{errors.lastName}</div>
+                      <div style={{ color: 'red' }}>{errors.lastName}</div>
                     )}
                   </Form.Field>
                   <Form.Field>
@@ -127,7 +130,9 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       label="Email"
                       as={Form.Input}
                     />
-                    {errors.email && <div>{errors.email}</div>}
+                    {errors.email && (
+                      <div style={{ color: 'red' }}>{errors.email}</div>
+                    )}
                   </Form.Field>
                   <Form.Field>
                     <Field
@@ -137,7 +142,9 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       label="Password"
                       as={Form.Input}
                     />
-                    {errors.password && <div>{errors.password}</div>}
+                    {errors.password && (
+                      <div style={{ color: 'red' }}>{errors.password}</div>
+                    )}
                   </Form.Field>
                   <Form.Field>
                     <Field
@@ -148,7 +155,9 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       as={Form.Input}
                     />
                     {errors.repeatPassword && (
-                      <div>{errors.repeatPassword}</div>
+                      <div style={{ color: 'red' }}>
+                        {errors.repeatPassword}
+                      </div>
                     )}
                   </Form.Field>
                   <Form.Button fluid color="teal" type="submit">
@@ -158,6 +167,7 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
               )}
             </Formik>
             <Modal.Actions>
+              {errorMessage && <Message color="red"> {errorMessage}</Message>}
               <Message onClick={handleClick}>
 								Already have an account?
                 <span

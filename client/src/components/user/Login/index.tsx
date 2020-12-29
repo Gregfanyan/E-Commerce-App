@@ -80,7 +80,9 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
                     name="email"
                     as={Form.Input}
                   />
-                  {errors.email && <div id="feedback">{errors.email}</div>}
+                  {errors.email && (
+                    <div style={{ color: 'red' }}>{errors.email}</div>
+                  )}
                   <Field
                     fluid
                     icon="lock"
@@ -91,7 +93,7 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
                     as={Form.Input}
                   />
                   {errors.password && (
-                    <div id="feedback">{errors.password}</div>
+                    <div style={{ color: 'red' }}>{errors.password}</div>
                   )}
                   <Button color="teal" fluid size="large">
 										Login
@@ -101,7 +103,7 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
             )}
           </Formik>
           <Modal.Actions>
-            {errorMessage && <Message> {errorMessage}</Message>}
+            {errorMessage && <Message color="red"> {errorMessage}</Message>}
 
             <Message onClick={handleClick}>
 							New to us?
