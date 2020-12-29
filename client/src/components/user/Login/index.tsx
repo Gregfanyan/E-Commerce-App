@@ -18,6 +18,10 @@ import { AppState } from '../../../types'
 import { login } from '../../../redux/User/UserActions'
 import styles from './Login.module.css'
 
+const ErrorText = {
+  color: 'red',
+}
+
 const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
   const errorMessage = useSelector(
     (state: AppState) => state.user.error.message
@@ -80,9 +84,7 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
                     name="email"
                     as={Form.Input}
                   />
-                  {errors.email && (
-                    <div style={{ color: 'red' }}>{errors.email}</div>
-                  )}
+                  {errors.email && <div style={ErrorText}>{errors.email}</div>}
                   <Field
                     fluid
                     icon="lock"
@@ -93,7 +95,7 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
                     as={Form.Input}
                   />
                   {errors.password && (
-                    <div style={{ color: 'red' }}>{errors.password}</div>
+                    <div style={ErrorText}>{errors.password}</div>
                   )}
                   <Button color="teal" fluid size="large">
 										Login

@@ -14,7 +14,7 @@ const styles = {
   minHeight: '100vh',
 }
 
-function FirstPage() {
+function StartPage() {
   return (
     <div style={styles}>
       <Container text>
@@ -45,4 +45,4 @@ function FirstPage() {
   )
 }
 
-export default FirstPage
+export default StartPage

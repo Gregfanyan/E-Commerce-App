@@ -19,6 +19,10 @@ import { AppState } from '../../../types'
 import { UserRegister } from '../../../redux/User/UserActions'
 import styles from './Register.module.css'
 
+const ErrorText = {
+  color: 'red',
+}
+
 const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
   const isValidated = useSelector((state: AppState) => state.user.isValidated)
   const errorMessage = useSelector(
@@ -108,7 +112,7 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       as={Form.Input}
                     />
                     {errors.firstName && (
-                      <div style={{ color: 'red' }}>{errors.firstName}</div>
+                      <div style={ErrorText}>{errors.firstName}</div>
                     )}
                   </Form.Field>
                   <Form.Field>
@@ -119,7 +123,7 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       as={Form.Input}
                     />
                     {errors.lastName && (
-                      <div style={{ color: 'red' }}>{errors.lastName}</div>
+                      <div style={ErrorText}>{errors.lastName}</div>
                     )}
                   </Form.Field>
                   <Form.Field>
@@ -131,7 +135,7 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       as={Form.Input}
                     />
                     {errors.email && (
-                      <div style={{ color: 'red' }}>{errors.email}</div>
+                      <div style={ErrorText}>{errors.email}</div>
                     )}
                   </Form.Field>
                   <Form.Field>
@@ -143,7 +147,7 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       as={Form.Input}
                     />
                     {errors.password && (
-                      <div style={{ color: 'red' }}>{errors.password}</div>
+                      <div style={ErrorText}>{errors.password}</div>
                     )}
                   </Form.Field>
                   <Form.Field>
@@ -155,9 +159,7 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       as={Form.Input}
                     />
                     {errors.repeatPassword && (
-                      <div style={{ color: 'red' }}>
-                        {errors.repeatPassword}
-                      </div>
+                      <div style={ErrorText}>{errors.repeatPassword}</div>
                     )}
                   </Form.Field>
                   <Form.Button fluid color="teal" type="submit">
