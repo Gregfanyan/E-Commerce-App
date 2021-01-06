@@ -8,12 +8,6 @@ import { addProduct } from '../../redux'
 import { AppState } from '../../types'
 import styles from './TableRow.module.css'
 
-const ImgStyles = {
-  minWidth: '250px',
-  height: 340,
-  resizeMode: 'contain',
-}
-
 const TableRow = (product: Product) => {
   const { name, price, img, _id } = product
   const dispatch = useDispatch()
@@ -32,7 +26,7 @@ const TableRow = (product: Product) => {
   }, [history, isAuthenticated, user])
   return (
     <Card raised color="black">
-      <Image src={img} style={ImgStyles} />
+      <Image src={img} height={300} />
 
       <Card.Content className={styles.Content}>
         <Card.Header as={Link} to={`/product/${_id}`}>

@@ -16,7 +16,7 @@ const MainTable = ({ products }: any) => {
       ) : products.error ? (
         <h2>{products.error}</h2>
       ) : (
-        <Card.Group itemsPerRow={4}>
+        <Card.Group itemsPerRow={4} stackable centered>
           {products &&
 						products.map((product: Product) => (
 						  <TableRow

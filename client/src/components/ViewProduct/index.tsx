@@ -25,12 +25,6 @@ function ViewProduct({ product }: ViewProductProps) {
     dispatch(addProduct(product))
   }
 
-  const ImgStyles = {
-    minWidth: 'auto',
-    height: 250,
-    resizeMode: 'contain',
-  }
-
   return (
     <>
       <Card.Group itemsPerRow={4} style={{ margin: 0, top: 0 }}>
@@ -40,7 +34,7 @@ function ViewProduct({ product }: ViewProductProps) {
       </Card.Group>
       <Card.Group itemsPerRow={4} centered className={styles.card}>
         <Card>
-          <Image src={img} alt="product" ui={false} style={ImgStyles} />
+          <Image src={img} alt="product" height={300} />
           <Card.Content>
             <Card.Header>{name}</Card.Header>
             <Card.Meta>

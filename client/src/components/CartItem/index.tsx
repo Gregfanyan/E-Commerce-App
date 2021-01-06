@@ -10,12 +10,6 @@ const CardStyle = {
   marginLeft: '10px',
 }
 
-const ImgStyles = {
-  minWidth: 'auto',
-  height: 300,
-  resizeMode: 'contain',
-}
-
 function CartItem({ cart }: CartItemProps) {
   const { name, description, img, price } = cart
 
@@ -28,7 +22,7 @@ function CartItem({ cart }: CartItemProps) {
   return (
     <Card.Group style={CardStyle} centered>
       <Card>
-        <Image src={img} alt="product" style={ImgStyles} />
+        <Image src={img} alt="product" height={300} />
         <Card.Content>
           <Card.Header>{name}</Card.Header>
           <Card.Description>{description}</Card.Description>
