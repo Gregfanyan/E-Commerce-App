@@ -43,7 +43,6 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "errorhandler": "^1.5.1",
-    "eslint": "^6.6.0",
     "eslint-plugin-import": "^2.22.1",
     "express": "^4.17.1",
     "express-flash": "0.0.2",
