@@ -31,7 +31,7 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
   }, [history, isAuthenticated, user])
 
   return (
-    <Menu inverted size="large" fixed="top">
+    <Menu inverted size="large" fixed="top" stackable>
       <Menu.Item as={Link} to="/home" name="home">
         <Header as="h1" inverted color="yellow" className={styles.header}>
 					Shoes

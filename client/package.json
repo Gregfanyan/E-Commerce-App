@@ -76,5 +76,7 @@
       "npx prettier --write",
       "eslint --fix"
     ]
-  }
+  },
+  "proxy": "http://localhost:8000"
+
 }

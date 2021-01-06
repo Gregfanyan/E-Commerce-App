@@ -76,7 +76,7 @@ export const UserRegister = ({ firstName, lastName, email, password }: any) => {
   return (dispatch: Dispatch) => {
     dispatch(fetchUserRequest())
     axios
-      .post('http://localhost:8000/api/v1/user', {
+      .post('/api/v1/user', {
         firstName: firstName,
         lastName: lastName,
         email: email,
@@ -99,7 +99,7 @@ export const login = ({ email, password, firstName }: any) => {
     const user = { email, password, firstName }
 
     axios
-      .post('http://localhost:8000/api/v1/user/logIn', user)
+      .post('/api/v1/user/logIn', user)
       .then((response) => {
         dispatch(loginSuccess(response.data))
         localStorage.setItem('user', JSON.stringify(response.data.user))
