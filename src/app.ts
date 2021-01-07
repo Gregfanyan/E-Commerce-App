@@ -21,9 +21,9 @@ import apiErrorHandler from './middlewares/apiErrorHandler'
 import apiContentType from './middlewares/apiContentType'
 
 const app = express()
-const mongoUrl = MONGODB_URI
+const mongoUrl = MONGODB_URI;
 
-mongoose.Promise = bluebird
+(<any>mongoose).Promise = bluebird
 mongoose
   .connect(mongoUrl, {
     useNewUrlParser: true,
