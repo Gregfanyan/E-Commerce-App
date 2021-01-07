@@ -26,8 +26,7 @@ const TableRow = (product: Product) => {
   }, [history, isAuthenticated, user])
   return (
     <Card raised color="black">
-      <Image src={img} height={300} />
-
+      <Image src={img} style={{ width: '100%', height: 300 }} />
       <Card.Content className={styles.Content}>
         <Card.Header as={Link} to={`/product/${_id}`}>
           {name}

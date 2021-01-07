@@ -7,7 +7,6 @@ const express_1 = __importDefault(require("express"));
 const compression_1 = __importDefault(require("compression"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const lusca_1 = __importDefault(require("lusca"));
-const path_1 = __importDefault(require("path"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const bluebird_1 = __importDefault(require("bluebird"));
 const cors_1 = __importDefault(require("cors"));
@@ -44,11 +43,5 @@ app.use('/api/v1/movies', movie_1.default);
 app.use('/api/v1/products', Products_1.default);
 app.use('/api/v1/user', Users_1.default);
 app.use(apiErrorHandler_1.default);
-if (process.env.NODE_ENV === 'production') {
-    app.use(express_1.default.static(__dirname + '../dist/e-commerce-app'));
-    app.get('*', (req, res) => {
-        res.sendFile(path_1.default.join(__dirname + '../dist/e-commerce-app/index.html'));
-    });
-}
 exports.default = app;
 //# sourceMappingURL=app.js.map
