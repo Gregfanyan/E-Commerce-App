@@ -45,12 +45,9 @@ app.use('/api/v1/products', Products_1.default);
 app.use('/api/v1/user', Users_1.default);
 app.use(apiErrorHandler_1.default);
 if (process.env.NODE_ENV === 'production') {
-    app.use(express_1.default.static('client/build'));
-    app.get('/*', (req, res) => {
-        let url = path_1.default.join(__dirname + '../client/build', 'index.html');
-        if (!url.startsWith('/app/'))
-            url = url.substring(1);
-        res.sendFile(url);
+    app.use(express_1.default.static(__dirname + '../dist/e-commerce-app'));
+    app.get('*', (req, res) => {
+        res.sendFile(path_1.default.join(__dirname + '../dist/e-commerce-app/index.html'));
     });
 }
 exports.default = app;
