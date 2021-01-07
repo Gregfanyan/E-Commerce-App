@@ -57,9 +57,9 @@ app.use('/api/v1/user', userRouter)
 app.use(apiErrorHandler)
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(__dirname + '/dist/e-commerce-app'))
+  app.use(express.static(__dirname + '../dist/e-commerce-app'))
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/dist/e-commerce-app/index.html'));
+    res.sendFile(path.join(__dirname + '../dist/e-commerce-app/index.html'));
   })
 }
 
