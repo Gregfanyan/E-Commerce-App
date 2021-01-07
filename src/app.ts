@@ -21,9 +21,9 @@ import apiErrorHandler from './middlewares/apiErrorHandler'
 import apiContentType from './middlewares/apiContentType'
 
 const app = express()
-const mongoUrl = MONGODB_URI;
+const mongoUrl = MONGODB_URI
 
-(<any>mongoose).Promise = bluebird
+;(<any>mongoose).Promise = bluebird
 mongoose
   .connect(mongoUrl, {
     useNewUrlParser: true,
@@ -55,13 +55,5 @@ app.use('/api/v1/products', productRouter)
 app.use('/api/v1/user', userRouter)
 
 app.use(apiErrorHandler)
-
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(__dirname + '../dist/e-commerce-app'))
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '../dist/e-commerce-app/index.html'));
-  })
-}
-
 
 export default app
