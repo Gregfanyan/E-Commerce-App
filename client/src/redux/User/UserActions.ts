@@ -113,7 +113,7 @@ export const getUsers = () => {
   return (dispatch: Dispatch) => {
     dispatch(fetchUserRequest())
     axios
-      .get('http://localhost:8000/api/v1/user')
+      .get('/api/v1/user')
       .then((response) => {
         const users = response.data
         dispatch(getUserList(users))
