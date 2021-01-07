@@ -56,11 +56,12 @@ app.use('/api/v1/user', userRouter)
 
 app.use(apiErrorHandler)
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'))
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '../dist/e-commerce-app/index.html'));
-  })
-}
+app.use(express.static('client/build'))
+
+app.get('*', function (req, res) {
+  const fullPath = path.join(__dirname,  '../client', 'build', 'index.html')
+  console.log(' Fetching from..' + fullPath)
+  res.sendFile(fullPath)
+})
 
 export default app
