@@ -85,7 +85,6 @@ export const UserRegister = ({ firstName, lastName, email, password }: any) => {
       .then((response) => {
         const users = response.data
         dispatch(fetchUserSuccess(users))
-        window.location.href = '/home'
       })
       .catch((error) => {
         dispatch(fetchUsersFailure(error.response.data))
@@ -103,7 +102,6 @@ export const login = ({ email, password, firstName }: any) => {
       .then((response) => {
         dispatch(loginSuccess(response.data))
         localStorage.setItem('user', JSON.stringify(response.data.user))
-        window.location.href = '/Home'
       })
       .catch((error) => {
         dispatch(fetchLoginFailure(error.response.data))
