@@ -44,11 +44,11 @@ app.use('/api/v1/movies', movie_1.default);
 app.use('/api/v1/products', Products_1.default);
 app.use('/api/v1/user', Users_1.default);
 app.use(apiErrorHandler_1.default);
-if (process.env.NODE_ENV === 'production') {
-    app.use(express_1.default.static('client/build'));
-    app.get('*', (req, res) => {
-        res.sendFile(path_1.default.join(__dirname + '../dist/e-commerce-app/index.html'));
-    });
-}
+app.use(express_1.default.static('client/build'));
+app.get('*', function (req, res) {
+    const fullPath = path_1.default.join(__dirname, '../client', 'build', 'index.html');
+    console.log(' Fetching from..' + fullPath);
+    res.sendFile(fullPath);
+});
 exports.default = app;
 //# sourceMappingURL=app.js.map
