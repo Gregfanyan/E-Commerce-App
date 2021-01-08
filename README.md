@@ -19,6 +19,7 @@ Shoes E-Commerce Store.
 ## Screenshots
 
 ![Example screenshot](./client/public/img/projectImage.png)
+![Example screenshot](./client/public/img/admin.png)
 ![Example screenshot](./client/public/img/register.png)
 ![Example screenshot](./client/public/img/signin.png)
 ![Example screenshot](./client/public/img/AddProduct.png)
@@ -54,17 +55,18 @@ List of features ready and TODOs for future development
 - Save in Local Storage
 - Admin
 - Create new Product
+- Responsiveness
+- Deployed in Heroku
+
 
 
 To-do list:
 
-- Responsive Design
 - Pagination
 - Update user
 - Update Product
 - Add google login
 - Create Docker Image
-- Deploy in Heroku or Netlify
 
 ## Status
 

@@ -47,7 +47,6 @@ app.use(apiErrorHandler_1.default);
 app.use(express_1.default.static('client/build'));
 app.get('*', function (req, res) {
     const fullPath = path_1.default.join(__dirname, '../client', 'build', 'index.html');
-    console.log(' Fetching from..' + fullPath);
     res.sendFile(fullPath);
 });
 exports.default = app;
