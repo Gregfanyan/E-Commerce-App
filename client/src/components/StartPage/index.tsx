@@ -14,7 +14,7 @@ const styles = {
   backgroundRepeat: 'no-repeat',
   minWidth: '100vw',
   minHeight: '100vh',
-  marginTop: '70px',
+  marginTop: '69px',
 }
 
 function StartPage() {
