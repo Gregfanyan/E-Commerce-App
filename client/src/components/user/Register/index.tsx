@@ -30,6 +30,7 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
   )
   const dispatch = useDispatch()
   const history = useHistory()
+
   const handleClick = () => {
     setLogInOpen(true)
     setRegisterOpen(false)

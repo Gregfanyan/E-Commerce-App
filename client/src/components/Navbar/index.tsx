@@ -34,7 +34,7 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
     <Menu inverted size="large" fixed="top" stackable>
       <Menu.Item as={Link} to="/home" name="home">
         <Header as="h1" inverted color="yellow" className={styles.header}>
-					Shoes
+					Home
         </Header>
       </Menu.Item>
       <Category handleSelect={handleSelect} cat={cat} />
