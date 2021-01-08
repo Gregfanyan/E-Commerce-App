@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Icon, Button, Menu } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 import { logout } from '../../../redux/User/UserActions'
 
@@ -13,7 +14,7 @@ function Logout() {
   }
   return (
     <>
-      <Menu.Item>
+      <Menu.Item as={Link} to="/profile">
         {userDetails.firstName} {userDetails.lastName}
         <Icon name="user circle" size="large" style={{ paddingLeft: '10px' }} />
       </Menu.Item>

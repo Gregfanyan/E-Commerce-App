@@ -1,31 +1,16 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
-import { Card, Icon, Button } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
+import { useSelector } from 'react-redux'
 
-import { useUsers } from '../../Hooks/useUsers'
-import Users from '../../components/Users'
+import { AppState } from '../../types'
 
 function Profile() {
-  const [users] = useUsers()
-  const history = useHistory()
-
-  function handleClick() {
-    if (!history) {
-      return <div>No country</div>
-    } else {
-      history.push('/home')
-    }
-  }
+  const user = useSelector((state: AppState) => state.user.user.user.user)
 
   return (
-    <div>
-      <Card.Group itemsPerRow={4} style={{ margin: 0, top: 0 }}>
-        <Button color="blue" onClick={handleClick}>
-          <Icon name="arrow left"> </Icon>
-        </Button>
-      </Card.Group>
-      {users && users.map((item) => <Users key={item._id} user={item}></Users>)}
-    </div>
+    <Menu.Item to="/profile" style={{ marginTop: '87px' }}>
+      {user.firstName} {user.lastName} {user.email}
+    </Menu.Item>
   )
 }
 

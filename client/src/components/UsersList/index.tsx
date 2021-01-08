@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import { UserProps } from '../../types/UserType'
-function Users({ user }: UserProps) {
+
+function UsersList({ user }: UserProps) {
   const history = useHistory()
   useEffect(() => {
     if (!user) {
@@ -34,4 +35,4 @@ function Users({ user }: UserProps) {
   )
 }
 
-export default Users
+export default UsersList

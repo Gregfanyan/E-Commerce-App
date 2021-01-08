@@ -16,10 +16,8 @@ const SingleProduct = () => {
     return <div>No product</div>
   }
   return (
-    <div>
-      <div className={styles.card}>
-        <ViewProduct product={products} />
-      </div>
+    <div className={styles.singleProd}>
+      <ViewProduct product={products} />
     </div>
   )
 }

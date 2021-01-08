@@ -2,7 +2,7 @@ import { Product } from './ProductType'
 export * from './ProductType'
 
 export type HomeProps = {
-	query: string
+	data: Product[]
 }
 
 export type SearchProps = {

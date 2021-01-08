@@ -43,7 +43,7 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
           <Search search={search} handleChange={handleChange} />
         </Menu.Item>
         {isAuthenticated && user.user.user.isAdmin ? (
-          <Menu.Item as={Link} to="profile">
+          <Menu.Item as={Link} to="users">
             <Button color="black">Users</Button>
           </Menu.Item>
         ) : null}
