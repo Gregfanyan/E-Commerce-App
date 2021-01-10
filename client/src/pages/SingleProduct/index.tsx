@@ -1,9 +1,13 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { Card } from 'semantic-ui-react'
 
 import ViewProduct from '../../components/ViewProduct'
-import styles from './SingleProduct.module.css'
+
+const CardStyle = {
+  marginTop: '100px',
+}
 
 const SingleProduct = () => {
   const { id } = useParams<any>()
@@ -16,9 +20,9 @@ const SingleProduct = () => {
     return <div>No product</div>
   }
   return (
-    <div className={styles.singleProd}>
+    <Card.Group itemsPerRow={4} centered style={CardStyle}>
       <ViewProduct product={products} />
-    </div>
+    </Card.Group>
   )
 }
 export default SingleProduct

@@ -15,29 +15,27 @@ function ViewProduct({ product }: ViewProductProps) {
   }
 
   return (
-    <Card.Group itemsPerRow={4} centered className={styles.card}>
-      <Card>
-        <Image src={img} alt="product" height={300} />
-        <Card.Content>
-          <Card.Header>{name}</Card.Header>
-          <Card.Meta>
-            <span className="date">{categories}</span>
-          </Card.Meta>
-          <Card.Description>{description}</Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          <Icon name="dollar" />
-          {price}
-        </Card.Content>
-        <Card.Content extra>
-          <div className="ui two buttons">
-            <Button color="yellow" onClick={handleAddProduct}>
-							Add to Basket
-            </Button>
-          </div>
-        </Card.Content>
-      </Card>
-    </Card.Group>
+    <Card className={styles.card}>
+      <Image src={img} alt="product" height={300} />
+      <Card.Content>
+        <Card.Header>{name}</Card.Header>
+        <Card.Meta>
+          <span className="date">{categories}</span>
+        </Card.Meta>
+        <Card.Description>{description}</Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <Icon name="dollar" />
+        {price}
+      </Card.Content>
+      <Card.Content extra>
+        <div className="ui two buttons">
+          <Button color="yellow" onClick={handleAddProduct}>
+						Add to Basket
+          </Button>
+        </div>
+      </Card.Content>
+    </Card>
   )
 }
 

@@ -1,16 +1,22 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Header } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 
 import { AppState } from '../../types'
 import CartItem from '../../components/CartItem'
 import styles from './ProductCart.module.css'
 
+const CardStyle = {
+  marginTop: '50px',
+  textShadow: '0 0 0.8rem #fff',
+}
+
 function ProductCart() {
   const cartProduct = useSelector((state: AppState) => state.products.inCart)
 
   return (
-    <div className={styles.productCard}>
+    <Card.Group centered style={CardStyle}>
       {cartProduct.length > 0 ? (
         <div className={styles.card}>
           {cartProduct &&
@@ -19,11 +25,11 @@ function ProductCart() {
 						})}
         </div>
       ) : (
-        <Header as="h1" inverted color="yellow" className={styles.infoText}>
+        <Header as="h1" inverted color="yellow" style={CardStyle}>
 					cart is empty
         </Header>
       )}
-    </div>
+    </Card.Group>
   )
 }
 

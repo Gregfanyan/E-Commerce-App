@@ -20,29 +20,27 @@ function CartItem({ cart }: CartItemProps) {
   }
 
   return (
-    <Card.Group style={CardStyle} centered>
-      <Card>
-        <Image src={img} alt="product" height={300} />
-        <Card.Content>
-          <Card.Header>{name}</Card.Header>
-          <Card.Description>{description}</Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          <Icon name="dollar" />
-          {price}
-        </Card.Content>
-        <Card.Content extra>
-          <div className="ui two buttons">
-            <Button color="red" onClick={handleRemoveProd}>
-							remove
-            </Button>
-            <Button color="green" onClick={handleRemoveProd}>
-							Buy
-            </Button>
-          </div>
-        </Card.Content>
-      </Card>
-    </Card.Group>
+    <Card style={CardStyle}>
+      <Image src={img} style={{ width: '100%', height: 300 }} />
+      <Card.Content>
+        <Card.Header>{name}</Card.Header>
+        <Card.Description>{description}</Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <Icon name="dollar" />
+        {price}
+      </Card.Content>
+      <Card.Content extra>
+        <div className="ui two buttons">
+          <Button color="red" onClick={handleRemoveProd}>
+						remove
+          </Button>
+          <Button color="green" onClick={handleRemoveProd}>
+						Buy
+          </Button>
+        </div>
+      </Card.Content>
+    </Card>
   )
 }
 
