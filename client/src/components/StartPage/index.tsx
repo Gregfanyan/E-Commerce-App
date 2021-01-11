@@ -48,7 +48,7 @@ function StartPage() {
             primary
             size="huge"
             style={{
-              marginTop: '4em',
+              marginTop: '5em',
             }}
           >
 						Get Started
