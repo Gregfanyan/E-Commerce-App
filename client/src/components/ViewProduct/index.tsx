@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux'
 
 import { addProduct } from '../../redux'
 import { ViewProductProps } from '../../types/ui'
-import styles from './ViewProduct.module.css'
 
 function ViewProduct({ product }: ViewProductProps) {
   const { name, description, img, price, categories } = product
@@ -15,7 +14,7 @@ function ViewProduct({ product }: ViewProductProps) {
   }
 
   return (
-    <Card className={styles.card}>
+    <Card>
       <Image src={img} alt="product" height={300} />
       <Card.Content>
         <Card.Header>{name}</Card.Header>

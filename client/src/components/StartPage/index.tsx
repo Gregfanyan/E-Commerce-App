@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import { AppState } from '../../types'
-/* import styles from "./FirstPage.module.css"
- */
 
 const styles = {
   backgroundImage: `url(https://source.unsplash.com/user/erondu/7rDNSLMKiuc)`,
@@ -14,8 +12,11 @@ const styles = {
   backgroundRepeat: 'no-repeat',
   minWidth: '100vw',
   minHeight: '100vh',
-  marginTop: '69px',
-}
+  margin: 0,
+  padding: 0,
+  position: 'absolute',
+  top: 1,
+} as const
 
 function StartPage() {
   const isAuthenticated = useSelector(

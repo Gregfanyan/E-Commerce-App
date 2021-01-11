@@ -5,10 +5,8 @@ import { Card } from 'semantic-ui-react'
 
 import { AppState } from '../../types'
 import CartItem from '../../components/CartItem'
-import styles from './ProductCart.module.css'
 
 const CardStyle = {
-  marginTop: '50px',
   textShadow: '0 0 0.8rem #fff',
 }
 
@@ -16,9 +14,9 @@ function ProductCart() {
   const cartProduct = useSelector((state: AppState) => state.products.inCart)
 
   return (
-    <Card.Group centered style={CardStyle}>
+    <Card.Group centered>
       {cartProduct.length > 0 ? (
-        <div className={styles.card}>
+        <div>
           {cartProduct &&
 						cartProduct.map((cart) => {
 						  return <CartItem key={cart._id} cart={cart} />

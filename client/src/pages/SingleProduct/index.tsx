@@ -5,10 +5,6 @@ import { Card } from 'semantic-ui-react'
 
 import ViewProduct from '../../components/ViewProduct'
 
-const CardStyle = {
-  marginTop: '100px',
-}
-
 const SingleProduct = () => {
   const { id } = useParams<any>()
 
@@ -20,7 +16,7 @@ const SingleProduct = () => {
     return <div>No product</div>
   }
   return (
-    <Card.Group itemsPerRow={4} centered style={CardStyle}>
+    <Card.Group itemsPerRow={4} centered stackable>
       <ViewProduct product={products} />
     </Card.Group>
   )

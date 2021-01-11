@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { logout } from '../../../redux/User/UserActions'
 
-function Logout() {
+function Logout({ isTabletOrMobile }: any) {
   const dispatch = useDispatch()
   let userDetails = JSON.parse(localStorage.getItem('user') || '{}')
   const logoutOnClick = () => {
@@ -18,9 +18,11 @@ function Logout() {
         {userDetails.firstName} {userDetails.lastName}
         <Icon name="user circle" size="large" style={{ paddingLeft: '10px' }} />
       </Menu.Item>
-      <Button color="black" name="logout" onClick={logoutOnClick}>
-        <Icon name="sign out"> </Icon>Logout
-      </Button>
+      {!isTabletOrMobile && (
+        <Button color="black" name="logout" onClick={logoutOnClick}>
+          <Icon name="sign out"> </Icon>Logout
+        </Button>
+      )}
     </>
   )
 }

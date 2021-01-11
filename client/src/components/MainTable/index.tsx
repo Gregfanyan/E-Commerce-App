@@ -5,12 +5,11 @@ import { useSelector } from 'react-redux'
 import TableRow from '../TableRow'
 import { Product } from '../../types/ui'
 import { AppState } from '../../types'
-import styles from './MainTable.module.css'
 
 const MainTable = ({ products }: any) => {
   const loading = useSelector((state: AppState) => state.products.loading)
   return (
-    <div className={styles.Card}>
+    <div>
       {loading ? (
         <Icon loading size="huge" color="teal" name="spinner" />
       ) : products.error ? (
