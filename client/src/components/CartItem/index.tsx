@@ -21,7 +21,10 @@ function CartItem({ cart }: CartItemProps) {
 
   return (
     <Card style={CardStyle}>
-      <Image src={img} style={{ width: '100%', height: 300 }} />
+      <Image
+        src={img}
+        style={{ width: '100%', height: 300, objectFit: 'cover' }}
+      />
       <Card.Content>
         <Card.Header>{name}</Card.Header>
         <Card.Description>{description}</Card.Description>

@@ -15,7 +15,10 @@ function ViewProduct({ product }: ViewProductProps) {
 
   return (
     <Card>
-      <Image src={img} alt="product" height={300} />
+      <Image
+        src={img}
+        style={{ width: '100%', height: 300, objectFit: 'cover' }}
+      />
       <Card.Content>
         <Card.Header>{name}</Card.Header>
         <Card.Meta>
