@@ -40,14 +40,14 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
   }, [history, isAuthenticated, user, isTabletOrMobile])
 
   return (
-    <Menu inverted size="large" stackable style={NavbarStyle}>
+    <Menu inverted size="large" stackable style={NavbarStyle} borderless>
       <Menu.Item as={Link} to="/home" name="home">
         <Header as="h1" inverted className={styles.header} color="yellow">
 					Home
         </Header>
       </Menu.Item>
       {isTabletOrMobile && (
-        <Menu.Item position="right" style={{ left: 'auto', right: 0 }}>
+        <Menu.Item>
           <Dropdown text="Menu" maxwidth={800}>
             <Dropdown.Menu>
               <Dropdown.Item as={Link} to="/home">

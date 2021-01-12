@@ -6,6 +6,8 @@ import TableRow from '../TableRow'
 import { Product } from '../../types/ui'
 import { AppState } from '../../types'
 
+const CardStyles = { marginBottom: '30px' }
+
 const MainTable = ({ products }: any) => {
   const loading = useSelector((state: AppState) => state.products.loading)
   return (
@@ -15,7 +17,7 @@ const MainTable = ({ products }: any) => {
       ) : products.error ? (
         <h2>{products.error}</h2>
       ) : (
-        <Card.Group itemsPerRow={4} stackable centered>
+        <Card.Group itemsPerRow={4} stackable centered style={CardStyles}>
           {products &&
 						products.map((product: Product) => (
 						  <TableRow
