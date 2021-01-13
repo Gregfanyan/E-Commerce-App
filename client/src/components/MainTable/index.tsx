@@ -5,10 +5,17 @@ import { useSelector } from 'react-redux'
 import TableRow from '../TableRow'
 import { Product } from '../../types/ui'
 import { AppState } from '../../types'
+import Pagination from '../Pagination'
 
 const CardStyles = { marginBottom: '30px' }
 
-const MainTable = ({ products }: any) => {
+const MainTable = ({
+  products,
+  currentProduct,
+  currentPage,
+  productPerPage,
+  paginate,
+}: any) => {
   const loading = useSelector((state: AppState) => state.products.loading)
   return (
     <div>
@@ -18,8 +25,8 @@ const MainTable = ({ products }: any) => {
         <h2>{products.error}</h2>
       ) : (
         <Card.Group itemsPerRow={4} stackable centered style={CardStyles}>
-          {products &&
-						products.map((product: Product) => (
+          {currentProduct &&
+						currentProduct.map((product: Product) => (
 						  <TableRow
 						    key={product._id}
 						    _id={product._id}
@@ -34,6 +41,12 @@ const MainTable = ({ products }: any) => {
 						))}
         </Card.Group>
       )}
+      <Pagination
+        productPerPage={productPerPage}
+        totalProducts={products?.length}
+        paginate={paginate}
+        currentPage={currentPage}
+      />
     </div>
   )
 }

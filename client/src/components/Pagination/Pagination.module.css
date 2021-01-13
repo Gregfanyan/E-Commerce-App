@@ -1,0 +1,14 @@
+.pagination {
+	margin-top: 20px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.paginate {
+	width: 80%;
+	text-align: center;
+}

@@ -39,7 +39,7 @@ const Routes = () => {
         <Route
           exact
           path="/home"
-          component={() => <Home data={data} />}
+          component={() => <Home data={data} cat={cat} search={query} />}
         ></Route>
         <Route path="/product/:id" component={SingleProduct} />
         <Route path="/login" component={Login} />

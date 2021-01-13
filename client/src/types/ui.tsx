@@ -3,6 +3,8 @@ export * from './ProductType'
 
 export type HomeProps = {
 	data: Product[]
+	cat: string
+	search: string
 }
 
 export type SearchProps = {
