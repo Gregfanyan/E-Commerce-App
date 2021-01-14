@@ -5,6 +5,11 @@ import { HomeProps } from '../../types/ui'
 import MainTable from '../../components/MainTable'
 import Footer from '../../components/Footer'
 
+const HomeStyle = {
+  position: 'relative',
+  minHeight: '100vh',
+} as React.CSSProperties
+
 export const Home = ({ data, cat, search }: HomeProps) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [productPerPage] = useState(8)
@@ -16,7 +21,7 @@ export const Home = ({ data, cat, search }: HomeProps) => {
   const paginate = (pageNumber: any) => setCurrentPage(pageNumber)
 
   return (
-    <>
+    <div style={HomeStyle}>
       <Container>
         <MainTable
           products={data}
@@ -27,6 +32,6 @@ export const Home = ({ data, cat, search }: HomeProps) => {
         />
       </Container>
       <Footer />
-    </>
+    </div>
   )
 }
