@@ -3,7 +3,7 @@ import { Menu, Icon } from 'semantic-ui-react'
 
 function Footer() {
   return (
-    <Menu inverted borderless>
+    <Menu inverted borderless fixed="bottom">
       <Menu.Item as="a">
         <Icon size="small" color="teal" name="copyright outline" />
 				Developed By Grigor Fanyan
