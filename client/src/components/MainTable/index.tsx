@@ -41,12 +41,14 @@ const MainTable = ({
 						))}
         </Card.Group>
       )}
-      <Pagination
-        productPerPage={productPerPage}
-        totalProducts={products?.length}
-        paginate={paginate}
-        currentPage={currentPage}
-      />
+      {!loading ? (
+        <Pagination
+          productPerPage={productPerPage}
+          totalProducts={products?.length}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
+      ) : null}
     </div>
   )
 }
