@@ -27,7 +27,7 @@ function Users() {
   }
 
   return (
-    <div style={{ marginTop: '78px' }}>
+    <div>
       <Card.Group itemsPerRow={4} style={{ margin: 0, top: 0 }}>
         <Button color="blue" onClick={handleClick}>
           <Icon name="arrow left"> </Icon>

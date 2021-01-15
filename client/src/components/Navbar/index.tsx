@@ -65,16 +65,19 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
         <Menu.Item>
           <Search search={search} handleChange={handleChange} />
         </Menu.Item>
-        {isAuthenticated && user.user.user.isAdmin ? (
+        {isAuthenticated && user.user.user.isAdmin && !isTabletOrMobile ? (
           <Menu.Item as={Link} to="users">
             <Button color="black">Users</Button>
           </Menu.Item>
         ) : null}
-        {isAuthenticated && user && user.user.user.isAdmin ? (
-          <Menu.Item>
-            <AddProduct />
-          </Menu.Item>
-        ) : null}
+        {isAuthenticated &&
+				user &&
+				user.user.user.isAdmin &&
+				!isTabletOrMobile ? (
+            <Menu.Item>
+              <AddProduct />
+            </Menu.Item>
+          ) : null}
 
         {!isAuthenticated ? (
           <Menu.Item>
@@ -95,18 +98,21 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
           </Menu.Item>
         )}
 
-        {isAuthenticated && user && !user.user.user.isAdmin ? (
-          <Menu.Item as={Link} to="/cart">
-            <Button animated="vertical" color="black">
-              <Button.Content hidden>Shop</Button.Content>
-              <Button.Content visible>
-                <Icon name="shopping cart" size="large">
-                  <div className={styles.Counter}>{counter}</div>
-                </Icon>
-              </Button.Content>
-            </Button>
-          </Menu.Item>
-        ) : null}
+        {isAuthenticated &&
+				user &&
+				!user.user.user.isAdmin &&
+				!isTabletOrMobile ? (
+            <Menu.Item as={Link} to="/cart">
+              <Button animated="vertical" color="black">
+                <Button.Content hidden>Shop</Button.Content>
+                <Button.Content visible>
+                  <Icon name="shopping cart" size="large">
+                    <div className={styles.Counter}>{counter}</div>
+                  </Icon>
+                </Button.Content>
+              </Button>
+            </Menu.Item>
+          ) : null}
       </Menu.Menu>
     </Menu>
   )

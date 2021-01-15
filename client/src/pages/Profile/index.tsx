@@ -23,7 +23,7 @@ function Profile() {
   return (
     <>
       {isAuthenticated && user ? (
-        <Menu.Item style={{ marginTop: '87px' }}>
+        <Menu.Item style={{ marginTop: '50px' }}>
           {user.firstName} {user.lastName} {user.email}
         </Menu.Item>
       ) : null}
