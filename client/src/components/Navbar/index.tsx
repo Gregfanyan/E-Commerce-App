@@ -40,7 +40,15 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
   }, [history, isAuthenticated, user, isTabletOrMobile])
 
   return (
-    <Menu inverted size="large" stackable style={NavbarStyle} borderless>
+    <Menu
+      fluid
+      inverted
+      size="large"
+      stackable
+      style={NavbarStyle}
+      borderless
+      vertical={isTabletOrMobile ? true : false}
+    >
       <Menu.Item as={Link} to="/home" name="home">
         <Header as="h1" inverted className={styles.header} color="yellow">
 					Home
