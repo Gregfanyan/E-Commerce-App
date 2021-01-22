@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
+import { Card } from 'semantic-ui-react'
 
 import { UserProps } from '../../types/UserType'
 
@@ -14,24 +15,24 @@ function UsersList({ user }: UserProps) {
   const { firstName, lastName, email, cart } = user
 
   return (
-    <ul>
-      <li>firstName: {firstName}</li>
-      <li>lastName: {lastName}</li>
-      <li>email: {email}</li>
-      <li>
-        {!cart.length ? (
-          <div>cart is empty</div>
-        ) : (
-          cart.map((shoes: any) => (
-            <div>
-							name: {shoes.name}
-              <br />
-							price: {shoes.price}
-            </div>
-          ))
-        )}
-      </li>
-    </ul>
+    <Card inverted centered>
+      <div>firstName: {firstName}</div>
+      <div>lastName: {lastName}</div>
+      <div>email: {email}</div>
+
+      {!cart.length ? (
+        <div>cart is empty</div>
+      ) : (
+        cart.map((shoes: any) => (
+          <div>
+            <h5>purchased product</h5>
+						name: {shoes.name}
+            <br />
+						price: {shoes.price}
+          </div>
+        ))
+      )}
+    </Card>
   )
 }
 

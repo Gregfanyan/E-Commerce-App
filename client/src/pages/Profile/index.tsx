@@ -1,32 +1,52 @@
-import React, { useEffect } from 'react'
-import { Menu } from 'semantic-ui-react'
+import React from 'react'
+import { Header, Card } from 'semantic-ui-react'
 import { useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 
 import { AppState } from '../../types'
 
+const MenuStyle = {
+  marginTop: '87px',
+}
+
 function Profile() {
   const user = useSelector((state: AppState) => state.user.user.user.user)
-  const history = useHistory()
   const isAuthenticated = useSelector(
     (state: AppState) => state.user.isAuthenticated
   )
+  console.log(user)
 
-  useEffect(() => {
-    if (!isAuthenticated && !user) {
-      history.push('/home')
-    }
-  }, [history, isAuthenticated, user])
-  if (!user) {
-    return <div>No user</div>
-  }
   return (
     <>
-      {isAuthenticated && user ? (
-        <Menu.Item style={{ marginTop: '50px' }}>
-          {user.firstName} {user.lastName} {user.email}
-        </Menu.Item>
-      ) : null}
+      <Header as="h1" centered inverted>
+        {isAuthenticated && (
+          <h1>
+						Welcome to your dashboard {user.firstName} {user.lastName}
+          </h1>
+        )}
+      </Header>
+      <Card
+        inverted
+        centered
+        style={MenuStyle}
+        href="#card-example-link-card"
+        header={user.firstName}
+        meta={user.isAdmin ? 'admin' : user ? 'user' : null}
+        description={
+          user.cart.length <= 0 || user.cart[0] === null ? (
+            <div>cart is empty</div>
+          ) : user.isAdmin ? null : (
+            user.cart.map((shoes: any) => (
+              <div>
+                <h5>Your purchase</h5>
+								name: {shoes.name}
+                <br />
+								price: {shoes.price}
+              </div>
+            ))
+          )
+        }
+        extra={user.email}
+      ></Card>
     </>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Card, Icon, Button } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 import { useSelector } from 'react-redux'
 import { useUsers } from '../../Hooks/useUsers'
 import UsersList from '../../components/UsersList'
@@ -18,24 +18,11 @@ function Users() {
     }
   }, [history, user])
 
-  function handleClick() {
-    if (!history) {
-      return <div>No user</div>
-    } else {
-      history.push('/home')
-    }
-  }
-
   return (
-    <div>
-      <Card.Group itemsPerRow={4} style={{ margin: 0, top: 0 }}>
-        <Button color="blue" onClick={handleClick}>
-          <Icon name="arrow left"> </Icon>
-        </Button>
-      </Card.Group>
+    <Card.Group>
       {users &&
 				users.map((item) => <UsersList key={item._id} user={item}></UsersList>)}
-    </div>
+    </Card.Group>
   )
 }
 
