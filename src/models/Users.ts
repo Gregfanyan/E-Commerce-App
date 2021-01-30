@@ -2,13 +2,13 @@ import mongoose, { Document } from 'mongoose'
 import { ProductDocument } from './Products'
 
 export type UserDocument = Document & {
-  firstName: string;
-  lastName: string;
-  password: string;
-  email: string;
-  isAdmin: boolean;
-  cart: ProductDocument[];
-  resetLink: string;
+  firstName: string
+  lastName: string
+  password: string
+  email: string
+  isAdmin: boolean
+  cart: ProductDocument[]
+  resetLink: string
 }
 
 const userSchema = new mongoose.Schema({

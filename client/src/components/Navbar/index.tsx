@@ -106,21 +106,18 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
           </Menu.Item>
         )}
 
-        {isAuthenticated &&
-				user &&
-				!user.user.user.isAdmin &&
-				!isTabletOrMobile ? (
-            <Menu.Item as={Link} to="/cart">
-              <Button animated="vertical" color="black">
-                <Button.Content hidden>Shop</Button.Content>
-                <Button.Content visible>
-                  <Icon name="shopping cart" size="large">
-                    <div className={styles.Counter}>{counter}</div>
-                  </Icon>
-                </Button.Content>
-              </Button>
-            </Menu.Item>
-          ) : null}
+        {!isTabletOrMobile && (
+          <Menu.Item as={Link} to="/cart">
+            <Button animated="vertical" color="black">
+              <Button.Content hidden>Shop</Button.Content>
+              <Button.Content visible>
+                <Icon name="shopping cart" size="large">
+                  <div className={styles.Counter}>{counter}</div>
+                </Icon>
+              </Button.Content>
+            </Button>
+          </Menu.Item>
+        )}
       </Menu.Menu>
     </Menu>
   )
