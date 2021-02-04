@@ -10,6 +10,7 @@ import {
   REMOVE_PRODUCT,
   CREATE_PRODUCT,
   BUY_PRODUCT,
+  EDIT_PRODUCT,
   Product,
 } from '../../types/ProductType'
 
@@ -68,6 +69,15 @@ export const checkoutProduct = (product: Product): ProductActions => {
   }
 }
 
+export const editProduct = (product: Product): ProductActions => {
+  return {
+    type: EDIT_PRODUCT,
+    payload: {
+      product,
+    },
+  }
+}
+
 export const fetchProducts = () => {
   return (dispatch: Dispatch) => {
     dispatch(fetchProductRequest())
@@ -112,6 +122,26 @@ export const buyProduct = (product: Product) => {
       })
   }
 }
+
+export const update = (product: Product, productId: string) => (
+  dispatch: Dispatch,
+  getState: any
+) => (
+  dispatch(fetchProductRequest()),
+  axios
+    .put(
+      `http://localhost:8000/api/v1/products/${productId}`,
+      product,
+      tokenConfig(getState)
+    )
+    .then((response) => {
+      dispatch(editProduct(response.data))
+      window.location.href = '/home'
+    })
+    .catch((error) => {
+      dispatch(fetchProductFailure(error.message))
+    })
+)
 
 export const tokenConfig = (getState: any) => {
   const token = getState().user.user.user.token

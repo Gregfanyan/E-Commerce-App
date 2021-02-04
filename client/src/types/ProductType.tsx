@@ -7,6 +7,7 @@ export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 export const CREATE_PRODUCT = 'CREATE_PRODUCT'
 export const BUY_PRODUCT = 'BUY_PRODUCT'
+export const EDIT_PRODUCT = '  EDIT_PRODUCT'
 
 export type Product = {
 	_id: string
@@ -78,6 +79,13 @@ export type RemoveProductAction = {
 	}
 }
 
+export type UpdateProductAction = {
+	type: typeof EDIT_PRODUCT
+	payload: {
+		product: Product
+	}
+}
+
 export type ProductState = {
 	products: Product[]
 	inCart: Product[]
@@ -96,3 +104,4 @@ export type ProductActions =
 	| RemoveProductAction
 	| CreateProduct
 	| BuyProductAction
+	| UpdateProductAction

@@ -7,6 +7,7 @@ import {
   ProductState,
   REMOVE_PRODUCT,
   CREATE_PRODUCT,
+  EDIT_PRODUCT,
 } from '../../types/ProductType'
 
 const initialState: ProductState = {
@@ -69,6 +70,15 @@ const ProductReducers = (state = initialState, action: ProductActions) => {
       loading: false,
       product: action.payload,
       isValidated: true,
+      error: '',
+    }
+  }
+  case EDIT_PRODUCT: {
+    return {
+      ...state,
+      loading: false,
+      product: action.payload,
+      isAuthenticated: true,
       error: '',
     }
   }
