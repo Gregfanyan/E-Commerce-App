@@ -1,26 +1,39 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Card, Icon, Image, Button } from 'semantic-ui-react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { Card, Icon, Button, Image } from 'semantic-ui-react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Product } from '../../types/ui'
 import { addProduct } from '../../redux'
+import { AppState } from '../../types'
 import styles from './TableRow.module.css'
 
 const TableRow = (product: Product) => {
   const { name, price, img, _id } = product
   const dispatch = useDispatch()
+  const user = useSelector((state: AppState) => state.user.user)
+  const isAuthenticated = useSelector(
+    (state: AppState) => state.user.isAuthenticated
+  )
 
   const handleAddProduct = () => {
     dispatch(addProduct(product))
   }
-
+  const history = useHistory()
+  useEffect(() => {
+    if (!isAuthenticated && !user) {
+      history.push('/home')
+    }
+  }, [history, isAuthenticated, user])
   return (
     <Card raised color="black">
       <Image
+        /* label={{ as: 'a', corner: 'right', icon: 'heart' }}
+				 */
         src={img}
         style={{ width: '100%', height: 300, objectFit: 'cover' }}
       />
+
       <Card.Content className={styles.Content}>
         <Card.Header as={Link} to={`/product/${_id}`}>
           {name}
@@ -32,17 +45,18 @@ const TableRow = (product: Product) => {
       </Card.Content>
       <Card.Content extra>
         <div className="ui buttons">
-          <Button
-            as={Link}
-            to={`/product/${_id}`}
-            color="black"
-            className={styles.viewbtn}
-          >
+          <Button as={Link} to={`/product/${_id}`} color="black">
 						View More
           </Button>
-          <Button color="yellow" onClick={handleAddProduct}>
-						Add to Cart
-          </Button>
+          {isAuthenticated && !user.user.user.isAdmin ? (
+            <Button color="yellow" onClick={handleAddProduct}>
+							Add to Cart
+            </Button>
+          ) : (
+            <Button color="yellow" as={Link} to={`/updateProduct/${_id}`}>
+							Edit Product
+            </Button>
+          )}
         </div>
       </Card.Content>
     </Card>

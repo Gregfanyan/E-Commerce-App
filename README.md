@@ -40,7 +40,9 @@ Shoes E-Commerce Store.
 
 ## Features
 
-List of features ready and TODOs for future development
+List of features READY and TODOs for future development
+
+READY:
 
 - Search filter
 - Select by category
@@ -55,16 +57,16 @@ List of features ready and TODOs for future development
 - Save in Local Storage
 - Admin
 - Create new Product
+- Update Product
 - Responsiveness
+- Pagination
 - Deployed in Heroku
 
 
 
 To-do list:
 
-- Pagination
 - Update user
-- Update Product
 - Add google login
 - Create Docker Image
 

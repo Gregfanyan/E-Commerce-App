@@ -13,6 +13,7 @@ import { useProduct } from '../Hooks/useProduct'
 import Navbar from '../components/Navbar'
 import Profile from '../pages/Profile'
 import Footer from '../components/Footer'
+import UpdateProduct from '../pages/UpdateProduct'
 
 const Routes = () => {
   const [query, setQuery] = useState<string>('')
@@ -49,6 +50,10 @@ const Routes = () => {
         <Route path="/users" component={Users} />
         <Route path="/profile" component={Profile} />
         <Route exact path="/footer" component={Footer} />
+        <Route
+          path="/updateproduct/:id"
+          component={() => <UpdateProduct product={data} />}
+        />
       </Switch>
     </>
   )
