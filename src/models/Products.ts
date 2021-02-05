@@ -7,8 +7,8 @@ export type ProductDocument = Document & {
   variants: string[];
   sizes: number[];
   img: string;
-
   price: number;
+  quantity: number
 }
 
 const productSchema = new mongoose.Schema({
@@ -41,6 +41,9 @@ const productSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true,
+  },
+  quantity: {
+    type: Number,
   },
 })
 

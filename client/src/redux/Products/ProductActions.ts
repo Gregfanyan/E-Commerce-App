@@ -123,25 +123,24 @@ export const buyProduct = (product: Product) => {
   }
 }
 
-export const update = (product: Product, productId: string) => (
-  dispatch: Dispatch,
-  getState: any
-) => (
-  dispatch(fetchProductRequest()),
-  axios
-    .put(
-      `http://localhost:8000/api/v1/products/${productId}`,
-      product,
-      tokenConfig(getState)
-    )
-    .then((response) => {
-      dispatch(editProduct(response.data))
-      window.location.href = '/home'
-    })
-    .catch((error) => {
-      dispatch(fetchProductFailure(error.message))
-    })
-)
+export const update = (product: Product, productId: string) => {
+  return (dispatch: Dispatch, getState: any) => {
+    dispatch(fetchProductRequest())
+    axios
+      .put(
+        `http://localhost:8000/api/v1/products/${productId}`,
+        product,
+        tokenConfig(getState)
+      )
+      .then((response) => {
+        dispatch(editProduct(response.data))
+        window.location.href = '/home'
+      })
+      .catch((error) => {
+        dispatch(fetchProductFailure(error.message))
+      })
+  }
+}
 
 export const tokenConfig = (getState: any) => {
   const token = getState().user.user.user.token

@@ -11,6 +11,7 @@ import {
    */ getCart,
   forgotPassword,
   resetPassword,
+  addProductToCart,
 } from '../controllers/Users'
 
 import { VerifyToken } from '../controllers/VerifyToken'
@@ -19,6 +20,7 @@ const router = express.Router()
 
 // Every path we define here will get /api/v1/products prefix
 router.get('/', findAll)
+router.patch('/inCart/:userId', addProductToCart)
 router.get('/:userId', VerifyToken, findById)
 router.put('/forgotPassword', forgotPassword)
 router.put('/resetPassword', resetPassword)

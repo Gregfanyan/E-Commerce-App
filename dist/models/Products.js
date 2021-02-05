@@ -34,6 +34,9 @@ const productSchema = new mongoose_1.default.Schema({
         type: Number,
         required: true,
     },
+    quantity: {
+        type: Number,
+    },
 });
 exports.default = mongoose_1.default.model('Products', productSchema);
 //# sourceMappingURL=Products.js.map

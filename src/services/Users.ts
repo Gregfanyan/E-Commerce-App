@@ -1,4 +1,5 @@
 import Users, { UserDocument } from '../models/Users'
+import Products, { ProductDocument } from '../models/Products'
 
 function create(user: UserDocument): Promise<UserDocument> {
   return user.save()
@@ -60,6 +61,35 @@ function deleteUser(userId: string): Promise<UserDocument | null> {
   return Users.findByIdAndDelete(userId).exec()
 }
 
+const addProductToCart = async (
+  userId: string,
+  product: any
+): Promise<UserDocument> => {
+  const user = await Users.findById(userId).select('-password').exec()
+  if (!user) {
+    throw new Error(`User ${userId} not found`)
+  }
+  const selectedProduct = await Products.findById(product._id).exec()
+  if (!selectedProduct) {
+    throw new Error(`Product ${selectedProduct} not found`)
+  }
+  const itemAdded = user.cart.find((item: any) =>
+    item.product.equals(product._id)
+  )
+
+  if (itemAdded) {
+    const itemAddedIndex = user.cart.findIndex((item: any) =>
+      item.product.equals(product._id)
+    )
+    itemAdded.quantity += 1
+    user.cart[itemAddedIndex] = itemAdded
+  }
+  if (!itemAdded) {
+    user.cart.push({ product, quantity: 1 })
+  }
+  return user.save()
+}
+
 export default {
   create,
   findById,
@@ -67,4 +97,5 @@ export default {
   update,
   deleteUser,
   findUserByEmail,
+  addProductToCart,
 }

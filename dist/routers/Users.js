@@ -9,6 +9,7 @@ const VerifyToken_1 = require("../controllers/VerifyToken");
 const router = express_1.default.Router();
 // Every path we define here will get /api/v1/products prefix
 router.get('/', Users_1.findAll);
+router.patch('/inCart/:userId', Users_1.addProductToCart);
 router.get('/:userId', VerifyToken_1.VerifyToken, Users_1.findById);
 router.put('/forgotPassword', Users_1.forgotPassword);
 router.put('/resetPassword', Users_1.resetPassword);

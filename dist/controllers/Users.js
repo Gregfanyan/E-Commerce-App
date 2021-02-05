@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resetPassword = exports.forgotPassword = exports.getCart = exports.findAll = exports.findById = exports.deleteUser = exports.updateUser = exports.logInUser = exports.createUser = void 0;
+exports.addProductToCart = exports.resetPassword = exports.forgotPassword = exports.getCart = exports.findAll = exports.findById = exports.deleteUser = exports.updateUser = exports.logInUser = exports.createUser = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const mailgun_js_1 = __importDefault(require("mailgun-js"));
@@ -243,6 +243,18 @@ exports.resetPassword = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
     }
     catch (err) {
         next(new apiError_1.NotFoundError('Not found', err));
+    }
+});
+exports.addProductToCart = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const product = req.body;
+        const userId = req.params.userId;
+        const updatedUser = yield Users_1.default.addProductToCart(userId, product);
+        res.json(updatedUser);
+    }
+    catch (error) {
+        console.log(error);
+        next(new apiError_1.BadRequestError('Not found', error));
     }
 });
 //# sourceMappingURL=Users.js.map

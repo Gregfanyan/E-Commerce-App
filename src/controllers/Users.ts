@@ -180,7 +180,7 @@ export const forgotPassword = async (
   try {
     const { email } = req.body
 
-    Users.findOne({ email }, (err, user) => {
+    Users.findOne({ email }, (err: any, user: any) => {
       if (err || !user) {
         return res.status(404).json({ msg: 'user not found' })
       } else {
@@ -196,7 +196,7 @@ export const forgotPassword = async (
                 <p>${CLIENT_URL}/reset/${token}</p>`,
         }
 
-        return user.updateOne({ resetLink: token }, (err) => {
+        return user.updateOne({ resetLink: token }, (err: any) => {
           if (err) {
             return res.status(404).json({ msg: 'user not found' })
           } else {
@@ -239,7 +239,7 @@ export const resetPassword = async (
             messages: 'Incorrect or expired token',
           })
         }
-        Users.findOne({ resetLink }, (err, user) => {
+        Users.findOne({ resetLink }, (err: any, user: any) => {
           if (err || !user) {
             return res.status(404).json({
               msg: 'User with this token does not exist',
@@ -256,7 +256,7 @@ export const resetPassword = async (
               obj.password = hash
 
               user = _.extend(user, obj)
-              user.save((err) => {
+              user.save((err: any) => {
                 if (err) {
                   return res.status(400).json({
                     msg: 'reset password error',
@@ -276,5 +276,21 @@ export const resetPassword = async (
     }
   } catch (err) {
     next(new NotFoundError('Not found', err))
+  }
+}
+
+export const addProductToCart = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const product = req.body
+    const userId = req.params.userId
+    const updatedUser = await UserService.addProductToCart(userId, product)
+    res.json(updatedUser)
+  } catch (error) {
+    console.log(error)
+    next(new BadRequestError('Not found', error))
   }
 }

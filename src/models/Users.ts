@@ -1,5 +1,9 @@
-import mongoose, { Document } from 'mongoose'
-import { ProductDocument } from './Products'
+import mongoose, { Document, Schema } from 'mongoose'
+
+export type cart = {
+  product: string
+  quantity: number
+}
 
 export type UserDocument = Document & {
   firstName: string
@@ -7,10 +11,9 @@ export type UserDocument = Document & {
   password: string
   email: string
   isAdmin: boolean
-  cart: ProductDocument[]
+  cart: cart[]
   resetLink: string
 }
-
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -39,8 +42,11 @@ const userSchema = new mongoose.Schema({
   },
   cart: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Products',
+      product: {
+        type: Schema.Types.ObjectId,
+        ref: 'Products',
+      },
+      quantity: Number,
     },
   ],
   resetLink: {
