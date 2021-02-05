@@ -8,6 +8,7 @@ import {
   REMOVE_PRODUCT,
   CREATE_PRODUCT,
   EDIT_PRODUCT,
+  BUY_PRODUCT,
 } from '../../types/ProductType'
 
 const initialState: ProductState = {
@@ -78,6 +79,15 @@ const ProductReducers = (state = initialState, action: ProductActions) => {
       ...state,
       loading: false,
       product: action.payload,
+      isAuthenticated: true,
+      error: '',
+    }
+  }
+  case BUY_PRODUCT: {
+    return {
+      ...state,
+      loading: false,
+      ...action.payload,
       isAuthenticated: true,
       error: '',
     }

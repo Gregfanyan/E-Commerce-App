@@ -108,11 +108,11 @@ export const CreateNewProduct = (product: Product) => {
   }
 }
 
-export const buyProduct = (product: Product) => {
+export const buyProduct = (product: Product, userId: any) => {
   return (dispatch: Dispatch, getState: any) => {
     dispatch(fetchProductRequest())
     axios
-      .post('/api/v1/user/:userId/checkout, product, tokenConfig')
+      .post(`/api/v1/user/inCart/${userId}, product, tokenConfig`)
       .then((response) => {
         const product = response.data
         dispatch(checkoutProduct(product))

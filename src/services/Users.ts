@@ -76,7 +76,6 @@ const addProductToCart = async (
   const itemAdded = user.cart.find((item: any) =>
     item.product.equals(product._id)
   )
-
   if (itemAdded) {
     const itemAddedIndex = user.cart.findIndex((item: any) =>
       item.product.equals(product._id)

@@ -13,7 +13,6 @@ function Profile() {
   const isAuthenticated = useSelector(
     (state: AppState) => state.user.isAuthenticated
   )
-  console.log(user)
 
   return (
     <>
@@ -37,10 +36,8 @@ function Profile() {
           ) : user.isAdmin ? null : (
             user.cart.map((shoes: any) => (
               <div>
-                <h5>Your purchase</h5>
-								name: {shoes.name}
-                <br />
-								price: {shoes.price}
+                <h5>Purchased</h5>
+								quantity: {shoes.quantity}
               </div>
             ))
           )

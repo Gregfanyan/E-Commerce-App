@@ -7,7 +7,7 @@ export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 export const CREATE_PRODUCT = 'CREATE_PRODUCT'
 export const BUY_PRODUCT = 'BUY_PRODUCT'
-export const EDIT_PRODUCT = '  EDIT_PRODUCT'
+export const EDIT_PRODUCT = 'EDIT_PRODUCT'
 
 export type Product = {
 	_id: string
