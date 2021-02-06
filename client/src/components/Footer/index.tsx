@@ -10,7 +10,6 @@ const FooterStyle = {
 function Footer() {
   return (
     <Menu inverted borderless style={FooterStyle}>
-      {' '}
       <Menu.Item as="a">
         <Icon size="small" color="teal" name="copyright outline" />
 				Developed By Grigor Fanyan

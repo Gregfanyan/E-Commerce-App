@@ -6,6 +6,27 @@ export type HomeProps = {
 	cat: string
 	search: string
 }
+export type CartItemProps = {
+	product: Product[] | any
+	cart: any
+}
+
+export type CategoryProps = {
+	handleSelect: React.ChangeEvent<HTMLInputElement> | any
+	cat: string
+}
+
+export type CartProps = {
+	product: Product[] | any
+}
+
+export type updateProps = {
+	product: Product[] | any
+}
+
+export type idProps = {
+	id: string
+}
 
 export type SearchProps = {
 	search: string
@@ -26,16 +47,26 @@ export type SearchBarProps = {
 }
 
 export type MainTableProps = {
-	products: Product[]
+	products: Product[] | any
+	currentProduct: Product[] | any
+	currentPage: Product[] | any
+	productPerPage: number
+	paginate: Function
+}
+
+export type PaginationProps = {
+	totalProducts: any
+	productPerPage: number
+	paginate: Function
+}
+
+export type mediaQueryProps = {
+	isTabletOrMobile: boolean
 }
 
 export type handleItemClick = {
 	event: KeyboardEvent
 	name: any
-}
-
-export type CartItemProps = {
-	cart: Product
 }
 
 export type ViewProductProps = {

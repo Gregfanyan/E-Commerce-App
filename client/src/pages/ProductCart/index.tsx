@@ -5,30 +5,31 @@ import { Card } from 'semantic-ui-react'
 
 import { AppState } from '../../types'
 import CartItem from '../../components/CartItem'
+import { CartProps } from '../../types/ui'
 
 const CardStyle = {
-  textShadow: '0 0 0.8rem #fff',
+	textShadow: '0 0 0.8rem #fff',
 }
 
-function ProductCart() {
-  const cartProduct = useSelector((state: AppState) => state.products.inCart)
+function ProductCart({ product }: CartProps) {
+	const cartProduct = useSelector((state: AppState) => state.products.inCart)
 
-  return (
-    <Card.Group centered>
-      {cartProduct.length > 0 ? (
-        <div>
-          {cartProduct &&
+	return (
+		<Card.Group centered>
+			{cartProduct.length > 0 ? (
+				<div>
+					{cartProduct &&
 						cartProduct.map((cart) => {
-						  return <CartItem key={cart._id} cart={cart} />
+							return <CartItem key={cart._id} cart={cart} product={product} />
 						})}
-        </div>
-      ) : (
-        <Header as="h1" inverted color="yellow" style={CardStyle}>
+				</div>
+			) : (
+				<Header as="h1" inverted color="yellow" style={CardStyle}>
 					cart is empty
-        </Header>
-      )}
-    </Card.Group>
-  )
+				</Header>
+			)}
+		</Card.Group>
+	)
 }
 
 export default ProductCart
