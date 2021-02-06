@@ -288,6 +288,7 @@ export const addProductToCart = async (
     const product = req.body
     const userId = req.params.userId
     const updatedUser = await UserService.addProductToCart(userId, product)
+    console.log(updatedUser)
     res.json(updatedUser)
   } catch (error) {
     console.log(error)

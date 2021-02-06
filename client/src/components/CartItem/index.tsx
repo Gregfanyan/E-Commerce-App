@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
 
 import { CartItemProps } from '../../types/ui'
-import { removeProduct } from '../../redux'
+import { removeProduct, buyProduct } from '../../redux'
 import { AppState } from '../../types'
 
 const CardStyle = {
