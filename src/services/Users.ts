@@ -63,31 +63,26 @@ function deleteUser(userId: string): Promise<UserDocument | null> {
 
 const addProductToCart = async (
   userId: string,
-  product: any
+  productId: string
 ): Promise<UserDocument> => {
   const user = await Users.findById(userId).select('-password').exec()
   if (!user) {
     throw new Error(`User ${userId} not found`)
   }
-  const selectedProduct = await Products.findById(product._id).exec()
+  const selectedProduct = await Products.findById(productId).exec()
   if (!selectedProduct) {
     throw new Error(`Product ${selectedProduct} not found`)
   }
+
   const itemAdded = user.cart.find((item: any) =>
-    item.product.equals(product._id)
+    item.product.equals(productId)
   )
-  if (itemAdded) {
-    const itemAddedIndex = user.cart.findIndex((item: any) =>
-      item.product.equals(product._id)
-    )
-    itemAdded.quantity += 1
-    user.cart[itemAddedIndex] = itemAdded
-  }
-  if (!itemAdded) {
-    user.cart.push({ product, quantity: 1 })
-  }
-  return user.save()
+  /* if (!itemAdded) { */
+    user.cart.push(productId)
+/*   } */
+  return await user.save()
 }
+
 
 export default {
   create,

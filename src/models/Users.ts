@@ -1,19 +1,15 @@
 import mongoose, { Document, Schema } from 'mongoose'
 
-export type cart = {
-  product: string
-  quantity: number
-}
-
 export type UserDocument = Document & {
   firstName: string
   lastName: string
   password: string
   email: string
   isAdmin: boolean
-  cart: cart[]
+  cart: string[]
   resetLink: string
 }
+
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -40,13 +36,11 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+
   cart: [
     {
-      product: {
-        type: Schema.Types.ObjectId,
-        ref: 'Products',
-      },
-      quantity: Number,
+      type: Schema.Types.ObjectId,
+      ref: 'Products',
     },
   ],
   resetLink: {

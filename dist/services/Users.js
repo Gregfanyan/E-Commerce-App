@@ -64,25 +64,20 @@ function findUserByEmail(email) {
 function deleteUser(userId) {
     return Users_1.default.findByIdAndDelete(userId).exec();
 }
-const addProductToCart = (userId, product) => __awaiter(void 0, void 0, void 0, function* () {
+const addProductToCart = (userId, productId) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield Users_1.default.findById(userId).select('-password').exec();
     if (!user) {
         throw new Error(`User ${userId} not found`);
     }
-    const selectedProduct = yield Products_1.default.findById(product._id).exec();
+    const selectedProduct = yield Products_1.default.findById(productId).exec();
     if (!selectedProduct) {
         throw new Error(`Product ${selectedProduct} not found`);
     }
-    const itemAdded = user.cart.find((item) => item.product.equals(product._id));
-    if (itemAdded) {
-        const itemAddedIndex = user.cart.findIndex((item) => item.product.equals(product._id));
-        itemAdded.quantity += 1;
-        user.cart[itemAddedIndex] = itemAdded;
-    }
-    if (!itemAdded) {
-        user.cart.push({ product, quantity: 1 });
-    }
-    return user.save();
+    const itemAdded = user.cart.find((item) => item.product.equals(productId));
+    /* if (!itemAdded) { */
+    user.cart.push(productId);
+    /*   } */
+    return yield user.save();
 });
 exports.default = {
     create,

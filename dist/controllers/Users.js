@@ -245,17 +245,18 @@ exports.resetPassword = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         next(new apiError_1.NotFoundError('Not found', err));
     }
 });
+//Patch/incCart/:userid/
 exports.addProductToCart = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const product = req.body;
+        const productId = req.body.id;
         const userId = req.params.userId;
-        const updatedUser = yield Users_1.default.addProductToCart(userId, product);
-        console.log(updatedUser);
+        const updatedUser = yield Users_1.default.addProductToCart(userId, productId);
         res.json(updatedUser);
+        console.log('updatedUser', updatedUser);
     }
     catch (error) {
         console.log(error);
-        next(new apiError_1.BadRequestError('Not found', error));
+        next(new apiError_1.BadRequestError('Something went wrong', error));
     }
 });
 //# sourceMappingURL=Users.js.map

@@ -279,19 +279,20 @@ export const resetPassword = async (
   }
 }
 
+//Patch/incCart/:userid/
 export const addProductToCart = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const product = req.body
+    const productId = req.body.id
     const userId = req.params.userId
-    const updatedUser = await UserService.addProductToCart(userId, product)
-    console.log(updatedUser)
+    const updatedUser = await UserService.addProductToCart(userId, productId)
     res.json(updatedUser)
+    console.log('updatedUser', updatedUser)
   } catch (error) {
     console.log(error)
-    next(new BadRequestError('Not found', error))
+    next(new BadRequestError('Something went wrong', error))
   }
 }

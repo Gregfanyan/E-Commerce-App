@@ -48,11 +48,8 @@ const userSchema = new mongoose_1.default.Schema({
     },
     cart: [
         {
-            product: {
-                type: mongoose_1.Schema.Types.ObjectId,
-                ref: 'Products',
-            },
-            quantity: Number,
+            type: mongoose_1.Schema.Types.ObjectId,
+            ref: 'Products',
         },
     ],
     resetLink: {
