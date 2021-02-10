@@ -75,11 +75,11 @@ const addProductToCart = async (
   }
 
   const itemAdded = user.cart.find((item: any) =>
-    item.product.equals(productId)
+    item.product === productId
   )
-  /* if (!itemAdded) { */
+  if (!itemAdded) { 
     user.cart.push(productId)
-/*   } */
+ } 
   return await user.save()
 }
 

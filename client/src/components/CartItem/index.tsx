@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Card, Icon, Image, Button, Header } from 'semantic-ui-react'
-import { useParams } from 'react-router-dom'
 
-import { CartItemProps, idProps } from '../../types/ui'
+import { CartItemProps } from '../../types/ui'
 import { removeProduct, buyProduct } from '../../redux'
 import { AppState } from '../../types'
 
@@ -12,26 +11,19 @@ const CardStyle = {
   marginLeft: '10px',
 }
 
-function CartItem({ cart, product }: CartItemProps) {
-  const [checkout, setCheckout] = React.useState<CartItemProps[]>([])
+function CartItem({ cart }: CartItemProps) {
   const { name, description, img, price } = cart
   const user = useSelector((state: AppState) => state.user.user)
   const dispatch = useDispatch()
-  const { id } = useParams<idProps>()
   const isAuthenticated = useSelector(
     (state: AppState) => state.user.isAuthenticated
   )
-  useEffect(() => {
-    const selectedProduct = product.find((p: any) => p._id === id)
-    setCheckout(selectedProduct)
-  }, [product, id])
 
   const handleRemoveProd = () => {
     dispatch(removeProduct(cart))
   }
-
   const handleBuyProd = () => {
-    dispatch(buyProduct(checkout as any, id))
+    dispatch(buyProduct(cart._id, user.user.user.id))
   }
 
   return (

@@ -252,7 +252,6 @@ exports.addProductToCart = (req, res, next) => __awaiter(void 0, void 0, void 0,
         const userId = req.params.userId;
         const updatedUser = yield Users_1.default.addProductToCart(userId, productId);
         res.json(updatedUser);
-        console.log('updatedUser', updatedUser);
     }
     catch (error) {
         console.log(error);

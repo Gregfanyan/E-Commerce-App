@@ -73,10 +73,10 @@ const addProductToCart = (userId, productId) => __awaiter(void 0, void 0, void 0
     if (!selectedProduct) {
         throw new Error(`Product ${selectedProduct} not found`);
     }
-    const itemAdded = user.cart.find((item) => item.product.equals(productId));
-    /* if (!itemAdded) { */
-    user.cart.push(productId);
-    /*   } */
+    const itemAdded = user.cart.find((item) => item.product === productId);
+    if (!itemAdded) {
+        user.cart.push(productId);
+    }
     return yield user.save();
 });
 exports.default = {

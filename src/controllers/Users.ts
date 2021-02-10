@@ -290,7 +290,6 @@ export const addProductToCart = async (
     const userId = req.params.userId
     const updatedUser = await UserService.addProductToCart(userId, productId)
     res.json(updatedUser)
-    console.log('updatedUser', updatedUser)
   } catch (error) {
     console.log(error)
     next(new BadRequestError('Something went wrong', error))

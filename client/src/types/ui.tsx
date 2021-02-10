@@ -7,17 +7,12 @@ export type HomeProps = {
 	search: string
 }
 export type CartItemProps = {
-	product: Product[] | any
 	cart: any
 }
 
 export type CategoryProps = {
 	handleSelect: React.ChangeEvent<HTMLInputElement> | any
 	cat: string
-}
-
-export type CartProps = {
-	product: Product[] | any
 }
 
 export type updateProps = {
