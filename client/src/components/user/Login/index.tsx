@@ -23,6 +23,9 @@ const ErrorText = {
 }
 
 const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
+  const isAuthenticated = useSelector(
+    (state: AppState) => state.user.isAuthenticated
+  )
   const errorMessage = useSelector(
     (state: AppState) => state.user.error.message
   )
@@ -106,7 +109,9 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
           </Formik>
           <Modal.Actions>
             {errorMessage && <Message color="red"> {errorMessage}</Message>}
-
+            {isAuthenticated && !errorMessage ? (
+              <Message success header="Your are logged in" />
+            ) : null}
             <Message onClick={handleClick}>
 							New to us?
               <span style={{ cursor: 'pointer', textDecoration: 'underline ' }}>

@@ -18,6 +18,7 @@ const initialState: ProductState = {
   error: '',
   counter: 0,
   isValidated: false,
+  isPurchased: false,
 }
 
 const ProductReducers = (state = initialState, action: ProductActions) => {
@@ -89,6 +90,7 @@ const ProductReducers = (state = initialState, action: ProductActions) => {
       loading: false,
       ...action.payload,
       isAuthenticated: true,
+      isPurchased: true,
       error: '',
     }
   }

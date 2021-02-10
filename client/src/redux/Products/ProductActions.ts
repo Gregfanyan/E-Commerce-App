@@ -108,7 +108,7 @@ export const CreateNewProduct = (product: Product) => {
   }
 }
 
-export const buyProduct = (productId: string, userId: string) => {
+export const checkout = (productId: string, userId: string) => {
   return (dispatch: Dispatch, getState: any) => {
     dispatch(fetchProductRequest())
     axios

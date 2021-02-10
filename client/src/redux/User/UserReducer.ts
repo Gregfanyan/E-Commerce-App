@@ -11,7 +11,8 @@ import {
 } from '../../types/UserType'
 
 const initialState: UserState = {
-  user: {},
+  currentUser: [],
+  user: [],
   users: [],
   loading: false,
   error: '',
@@ -58,6 +59,7 @@ const UserReducer = (state = initialState, action: UserActions) => {
       loading: false,
       user: action.payload,
       isAuthenticated: true,
+      currentUser: action.payload.user.user,
       error: '',
     }
   case LOGOUT:

@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Card, Icon, Image, Button, Header } from 'semantic-ui-react'
+import { Card, Icon, Image, Button, Header, Message } from 'semantic-ui-react'
 
 import { CartItemProps } from '../../types/ui'
-import { removeProduct, buyProduct } from '../../redux'
+import { removeProduct, checkout } from '../../redux'
 import { AppState } from '../../types'
 
 const CardStyle = {
@@ -12,19 +12,32 @@ const CardStyle = {
 }
 
 function CartItem({ cart }: CartItemProps) {
+  const [alert, setAlert] = useState(true)
   const { name, description, img, price } = cart
-  const user = useSelector((state: AppState) => state.user.user)
+  const user = useSelector((state: AppState) => state.user.currentUser)
   const dispatch = useDispatch()
   const isAuthenticated = useSelector(
     (state: AppState) => state.user.isAuthenticated
   )
-
+  const isPurchased = useSelector(
+    (state: AppState) => state.products.isPurchased
+  )
   const handleRemoveProd = () => {
     dispatch(removeProduct(cart))
   }
   const handleBuyProd = () => {
-    dispatch(buyProduct(cart._id, user.user.user.id))
+    dispatch(checkout(cart._id, user.id))
+    setTimeout(() => {
+      dispatch(removeProduct(cart))
+    }, 5000)
   }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAlert(false)
+    }, 2000)
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <>
@@ -48,15 +61,14 @@ function CartItem({ cart }: CartItemProps) {
 							remove
             </Button>
             {isAuthenticated && (
-              <Button
-                color="green"
-                onClick={handleBuyProd}
-                disabled={!user ? true : false}
-              >
-								Buy
+              <Button color="green" onClick={handleBuyProd}>
+								Checkout
               </Button>
             )}
           </div>
+          {isPurchased && alert ? (
+            <Message success header="your purchase was successful" />
+          ) : null}
         </Card.Content>
       </Card>
     </>

@@ -93,6 +93,7 @@ export type ProductState = {
 	error: string
 	counter: number
 	isValidated: boolean
+	isPurchased: boolean
 }
 
 export type ProductActions =

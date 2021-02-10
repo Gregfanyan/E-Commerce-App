@@ -27,7 +27,7 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
   const [registerOpen, setRegisterOpen] = useState<boolean>(false)
   const history = useHistory()
   const counter = useSelector((state: AppState) => state.products.counter)
-  const user = useSelector((state: AppState) => state.user.user)
+  const user = useSelector((state: AppState) => state.user.currentUser)
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
 
   const isAuthenticated = useSelector(
@@ -73,19 +73,16 @@ function Navbar({ handleChange, handleSelect, search, cat }: HeaderProps) {
         <Menu.Item>
           <Search search={search} handleChange={handleChange} />
         </Menu.Item>
-        {isAuthenticated && user.user.user.isAdmin && !isTabletOrMobile ? (
+        {isAuthenticated && user.isAdmin && !isTabletOrMobile ? (
           <Menu.Item as={Link} to="users">
             <Button color="black">Users</Button>
           </Menu.Item>
         ) : null}
-        {isAuthenticated &&
-				user &&
-				user.user.user.isAdmin &&
-				!isTabletOrMobile ? (
-            <Menu.Item>
-              <AddProduct />
-            </Menu.Item>
-          ) : null}
+        {isAuthenticated && user && user.isAdmin && !isTabletOrMobile ? (
+          <Menu.Item>
+            <AddProduct />
+          </Menu.Item>
+        ) : null}
 
         {!isAuthenticated ? (
           <Menu.Item>

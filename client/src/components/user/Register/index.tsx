@@ -171,6 +171,13 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
             </Formik>
             <Modal.Actions>
               {errorMessage && <Message color="red"> {errorMessage}</Message>}
+              {isValidated && !errorMessage ? (
+                <Message
+                  success
+                  header="Your user registration was successful"
+                  content="You may now log-in "
+                />
+              ) : null}
               <Message onClick={handleClick}>
 								Already have an account?
                 <span

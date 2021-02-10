@@ -22,7 +22,7 @@ function StartPage() {
   const isAuthenticated = useSelector(
     (state: AppState) => state.user.isAuthenticated
   )
-  const user = useSelector((state: AppState) => state.user.user)
+  const user = useSelector((state: AppState) => state.user.currentUser)
 
   console.log(isAuthenticated)
   return (

@@ -9,58 +9,58 @@ import { AppState } from '../../types'
 import styles from './TableRow.module.css'
 
 const TableRow = (product: Product) => {
-	const { name, price, img, _id } = product
-	const dispatch = useDispatch()
-	const user = useSelector((state: AppState) => state.user.user)
-	const isAuthenticated = useSelector(
-		(state: AppState) => state.user.isAuthenticated
-	)
+  const { name, price, img, _id } = product
+  const dispatch = useDispatch()
+  const user = useSelector((state: AppState) => state.user.currentUser)
+  const isAuthenticated = useSelector(
+    (state: AppState) => state.user.isAuthenticated
+  )
 
-	const handleAddProduct = () => {
-		dispatch(addProduct(product))
-	}
-	const history = useHistory()
-	useEffect(() => {
-		if (!isAuthenticated && !user) {
-			history.push('/home')
-		}
-	}, [history, isAuthenticated, user]) 
-	return (
-		<Card raised color="black">
-			<Image
-				/* label={{ as: 'a', corner: 'right', icon: 'heart' }}
+  const handleAddProduct = () => {
+    dispatch(addProduct(product))
+  }
+  const history = useHistory()
+  useEffect(() => {
+    if (!isAuthenticated && !user) {
+      history.push('/home')
+    }
+  }, [history, isAuthenticated, user])
+  return (
+    <Card raised color="black">
+      <Image
+        /* label={{ as: 'a', corner: 'right', icon: 'heart' }}
 				 */
-				src={img}
-				style={{ width: '100%', height: 300, objectFit: 'cover' }}
-			/>
+        src={img}
+        style={{ width: '100%', height: 300, objectFit: 'cover' }}
+      />
 
-			<Card.Content className={styles.Content}>
-				<Card.Header as={Link} to={`/product/${_id}`}>
-					{name}
-					<Card.Meta>
-						<Icon name="dollar" />
-						{price}
-					</Card.Meta>
-				</Card.Header>
-			</Card.Content>
-			<Card.Content extra>
-				<div className="ui buttons">
-					<Button as={Link} to={`/product/${_id}`} color="black">
+      <Card.Content className={styles.Content}>
+        <Card.Header as={Link} to={`/product/${_id}`}>
+          {name}
+          <Card.Meta>
+            <Icon name="dollar" />
+            {price}
+          </Card.Meta>
+        </Card.Header>
+      </Card.Content>
+      <Card.Content extra>
+        <div className="ui buttons">
+          <Button as={Link} to={`/product/${_id}`} color="black">
 						View More
-					</Button>
-					{isAuthenticated && user.user.user.isAdmin ? (
-						<Button color="yellow" as={Link} to={`/updateProduct/${_id}`}>
+          </Button>
+          {isAuthenticated && user.isAdmin ? (
+            <Button color="yellow" as={Link} to={`/updateProduct/${_id}`}>
 							Edit Product
-						</Button>
-					) : (
-						<Button color="yellow" onClick={handleAddProduct}>
+            </Button>
+          ) : (
+            <Button color="yellow" onClick={handleAddProduct}>
 							Add to Cart
-						</Button>
-					)}
-				</div>
-			</Card.Content>
-		</Card>
-	)
+            </Button>
+          )}
+        </div>
+      </Card.Content>
+    </Card>
+  )
 }
 
 export default TableRow

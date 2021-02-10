@@ -11,13 +11,20 @@ export const LOGOUT = 'LOGOUT'
 export const GET_USERS = 'GET_USERS'
 
 export type User = {
-	_id: string
-	firstName: string
-	lastName: string
-	email: string
-	cart: Product[]
-	isAdmin: boolean
-	resetLink: string
+	user: {
+		_id: string
+		firstName: string
+		lastName: string
+		email: string
+		cart: Product[]
+		isAdmin: boolean
+		resetLink: string
+	}
+	token: string
+}
+
+export type currentUser = {
+	user: User
 }
 
 export type ReceiveUserAction = {
@@ -91,8 +98,9 @@ export type UserState = {
 	error: string | any
 	user: User | any
 	isAuthenticated: boolean
-	users: User[]
+	users: User[] | any
 	isValidated: boolean
+	currentUser?: any
 }
 
 export type UserProps = {
