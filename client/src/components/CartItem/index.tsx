@@ -29,7 +29,7 @@ function CartItem({ cart }: CartItemProps) {
     dispatch(checkout(cart._id, user.id))
     setTimeout(() => {
       dispatch(removeProduct(cart))
-    }, 5000)
+    }, 3000)
   }
 
   useEffect(() => {

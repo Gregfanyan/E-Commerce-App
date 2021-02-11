@@ -7,7 +7,7 @@ import { AppState } from '../types/'
 
 export const useUsers = () => {
   const [userData, setUserData] = useState<User[]>([])
-  const users = useSelector((state: AppState) => state.user.user)
+  const users = useSelector((state: AppState) => state.user.users)
   const dispatch = useDispatch()
 
   useEffect(() => {

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { Card } from 'semantic-ui-react'
 
 import { Product } from '../../types/ProductType'
+
 function UsersList({ user }: any) {
   const history = useHistory()
   useEffect(() => {
@@ -10,8 +11,9 @@ function UsersList({ user }: any) {
       history.push('/home')
     }
   }, [history, user])
-
+  console.log(user)
   const { firstName, lastName, email, cart } = user
+  console.log('after', user)
 
   return (
     <Card inverted="true" centered>

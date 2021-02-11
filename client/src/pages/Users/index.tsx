@@ -20,7 +20,7 @@ function Users() {
 
   return (
     <Card.Group>
-      {users && users.map((item) => <UsersList user={users}></UsersList>)}
+      {users && users.map((users) => <UsersList user={users}></UsersList>)}
     </Card.Group>
   )
 }
