@@ -13,19 +13,18 @@ import {
   Icon,
   Modal,
 } from 'semantic-ui-react'
+import GoogleLogin from 'react-google-login'
 
 import { AppState } from '../../../types'
 import { login } from '../../../redux/User/UserActions'
 import styles from './Login.module.css'
-
+import { googleLogin } from '../../../redux/User/UserActions'
 const ErrorText = {
   color: 'red',
 }
 
 const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
-  const isAuthenticated = useSelector(
-    (state: AppState) => state.user.isAuthenticated
-  )
+  const clientID = `${process.env.REACT_APP_GOOGLE_CLIENT_ID}`
   const errorMessage = useSelector(
     (state: AppState) => state.user.error.message
   )
@@ -34,6 +33,15 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
     setRegisterOpen(true)
     setLogInOpen(false)
   }
+
+  const user = useSelector((state: AppState) => state.user)
+  console.log('user from login', user)
+  const responseSuccessGoogle = (response: any) => {
+    dispatch(googleLogin(response))
+  }
+
+  const responseErrorGoogle = (res: any) => {}
+
   return (
     <Modal
       size="tiny"
@@ -50,7 +58,7 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
     >
       <Grid
         textAlign="center"
-        style={{ height: '70vh' }}
+        style={{ height: '75vh' }}
         verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
@@ -58,6 +66,26 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
             <Image src="https://thumbs.dreamstime.com/z/vector-illustration-isolated-white-background-login-button-icon-126999949.jpg" />
 						Log-in to your account
           </Header>
+          <Message>
+            <GoogleLogin
+              clientId={clientID}
+              buttonText="Login with Google"
+              onSuccess={responseSuccessGoogle}
+              onFailure={responseErrorGoogle}
+              cookiePolicy={'single_host_origin'}
+              render={(renderProps: any) => (
+                <Button
+                  color="teal"
+                  fluid
+                  size="large"
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  <span>Sign In with Google</span>
+                </Button>
+              )}
+            />
+          </Message>
           <Formik
             initialValues={{ email: '', password: '' }}
             validationSchema={yup.object({
@@ -101,17 +129,14 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
                     <div style={ErrorText}>{errors.password}</div>
                   )}
                   <Button color="teal" fluid size="large">
-										Login
+										Sign in
                   </Button>
                 </Segment>
               </Form>
             )}
           </Formik>
           <Modal.Actions>
-            {errorMessage && <Message color="red"> {errorMessage}</Message>}
-            {isAuthenticated && !errorMessage ? (
-              <Message success header="Your are logged in" />
-            ) : null}
+            {errorMessage && <Message color="red">{errorMessage}</Message>}
             <Message onClick={handleClick}>
 							New to us?
               <span style={{ cursor: 'pointer', textDecoration: 'underline ' }}>

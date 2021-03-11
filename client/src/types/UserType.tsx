@@ -9,6 +9,7 @@ export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS'
 export const FETCH_LOGIN_FAILURE = 'FETCH_LOGIN_FAILURE'
 export const LOGOUT = 'LOGOUT'
 export const GET_USERS = 'GET_USERS'
+export const GOOGLE_LOGIN = 'GOOGLE_LOGIN'
 
 export type User = {
 	user: {
@@ -101,10 +102,15 @@ export type UserState = {
 	users: User[] | any
 	isValidated: boolean
 	currentUser?: any
+	isGoogleUser: boolean
 }
 
 export type UserProps = {
 	user: User
+}
+
+export type googleLogin = {
+	type: typeof GOOGLE_LOGIN
 }
 
 export type UserActions =
@@ -118,3 +124,4 @@ export type UserActions =
 	| loginFailure
 	| LogoutAction
 	| getUserList
+	| googleLogin

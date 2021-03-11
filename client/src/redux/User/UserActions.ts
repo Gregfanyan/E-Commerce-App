@@ -12,6 +12,7 @@ import {
   FETCH_LOGIN_FAILURE,
   LOGOUT,
   GET_USERS,
+  GOOGLE_LOGIN,
 } from '../../types/UserType'
 
 export const fetchUserRequest = () => {
@@ -72,6 +73,12 @@ export function getUserList(users: User[]) {
   }
 }
 
+export function googleLoginSuccess(): UserActions {
+  return {
+    type: GOOGLE_LOGIN,
+  }
+}
+
 export const UserRegister = ({ firstName, lastName, email, password }: any) => {
   return (dispatch: Dispatch) => {
     dispatch(fetchUserRequest())
@@ -122,6 +129,25 @@ export const getUsers = () => {
       })
       .catch((error) => {
         dispatch(fetchUsersFailure(error.message))
+      })
+  }
+}
+
+export const googleLogin = (response: any) => {
+  return (dispatch: Dispatch) => {
+    dispatch(fetchUserRequest())
+    const url = 'http://localhost:8000/api/v1/user/googleLogin'
+    axios({
+      method: 'POST',
+      url,
+      data: { tokenId: response.tokenId },
+    })
+      .then((response) => {
+        dispatch(loginSuccess(response.data))
+        dispatch(googleLoginSuccess())
+      })
+      .catch((error) => {
+        console.log(error)
       })
   }
 }

@@ -49,6 +49,7 @@
     "express-session": "^1.17.0",
     "express-validator": "^6.4.0",
     "fbgraph": "^1.4.4",
+    "google-auth-library": "^7.0.2",
     "husky": "^4.2.3",
     "jsonwebtoken": "^8.5.1",
     "lint-staged": "^10.0.8",

@@ -8,6 +8,7 @@ import {
   UserState,
   LOGOUT,
   GET_USERS,
+  GOOGLE_LOGIN,
 } from '../../types/UserType'
 
 const initialState: UserState = {
@@ -18,6 +19,7 @@ const initialState: UserState = {
   error: '',
   isAuthenticated: false,
   isValidated: false,
+  isGoogleUser: false,
 }
 
 const UserReducer = (state = initialState, action: UserActions) => {
@@ -75,6 +77,14 @@ const UserReducer = (state = initialState, action: UserActions) => {
       loading: false,
       users: action.payload,
       isAuthenticated: true,
+      error: '',
+    }
+  case GOOGLE_LOGIN:
+    return {
+      ...state,
+      loading: false,
+      isAuthenticated: true,
+      isGoogleUser: true,
       error: '',
     }
 
