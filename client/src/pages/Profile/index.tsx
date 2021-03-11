@@ -46,7 +46,7 @@ function Profile() {
         header={user.firstName}
         meta={user.cart ? 'Your purchase' : null}
         description={
-          user.cart.length <= 0 || user.cart[0] === null ? (
+          !user.cart || user.cart[0] === null ? (
             <div>cart is empty</div>
           ) : user.isAdmin ? null : (
             user.cart &&
