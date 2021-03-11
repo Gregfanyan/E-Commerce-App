@@ -12,6 +12,7 @@ import {
   forgotPassword,
   resetPassword,
   addProductToCart,
+  googleLogin,
 } from '../controllers/Users'
 
 import { VerifyToken } from '../controllers/VerifyToken'
@@ -29,5 +30,6 @@ router.post('/', createUser)
 router.post('/logIn', logInUser)
 router.get('/:userId/cart', VerifyToken, getCart)
 router.put('/:userId/checkout', VerifyToken, updateUser)
+router.post('/googleLogin', googleLogin)
 
 export default router

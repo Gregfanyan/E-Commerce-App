@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MONGODB_URI = exports.RESET_PASSWORD_KEY = exports.MAILGUN_API_KEY = exports.CLIENT_URL = exports.JWT_SECRET = exports.SESSION_SECRET = exports.ENVIRONMENT = void 0;
+exports.MONGODB_URI = exports.DOMAIN_ID = exports.CLIENT_ID = exports.RESET_PASSWORD_KEY = exports.MAILGUN_API_KEY = exports.CLIENT_URL = exports.JWT_SECRET = exports.SESSION_SECRET = exports.ENVIRONMENT = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 const fs_1 = __importDefault(require("fs"));
 const logger_1 = __importDefault(require("./logger"));
@@ -22,6 +22,8 @@ exports.JWT_SECRET = process.env['SESSION_SECRET'];
 exports.CLIENT_URL = process.env['CLIENT_URL'];
 exports.MAILGUN_API_KEY = process.env['MAILGUN_API_KEY'];
 exports.RESET_PASSWORD_KEY = process.env['RESET_PASSWORD_KEY'];
+exports.CLIENT_ID = process.env['CLIENT_ID'];
+exports.DOMAIN_ID = process.env['DOMAIN_ID'];
 exports.MONGODB_URI = (prod
     ? process.env['MONGODB_URI']
     : process.env['MONGODB_URI_LOCAL']);

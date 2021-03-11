@@ -3,17 +3,24 @@ import bcrypt from 'bcrypt'
 import JsonWebToken from 'jsonwebtoken'
 import mailgun from 'mailgun-js'
 import _ from 'lodash'
+import { OAuth2Client } from 'google-auth-library'
+
 import { Users } from '../models'
 import UserService from '../services/Users'
+import { UserDocument } from '../models/Users'
 
 import {
   JWT_SECRET,
   RESET_PASSWORD_KEY,
   CLIENT_URL,
   MAILGUN_API_KEY,
+  DOMAIN_ID,
+  CLIENT_ID,
 } from '../util/secrets'
-const DOMAIN = 'sandbox9026ac1bb7774ff18f78cd4cd58c8300.mailgun.org'
+const DOMAIN = DOMAIN_ID
 const mg = mailgun({ apiKey: MAILGUN_API_KEY, domain: DOMAIN })
+const clientId = CLIENT_ID
+const client = new OAuth2Client(CLIENT_ID)
 
 import {
   NotFoundError,
@@ -293,5 +300,112 @@ export const addProductToCart = async (
   } catch (error) {
     console.log(error)
     next(new BadRequestError('Something went wrong', error))
+  }
+}
+
+//POST/googleLogin/
+export const googleLogin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { tokenId } = req.body
+    client
+      .verifyIdToken({
+        idToken: tokenId,
+        audience: clientId,
+      })
+      .then((response) => {
+        const payload = response.getPayload()
+
+        const userPropertiesLoginTicket = {
+          firstName: payload?.given_name,
+          lastName: payload?.family_name,
+          email: payload?.email,
+          emailVerified: payload?.email_verified,
+        }
+        const {
+          firstName,
+          lastName,
+          email,
+          emailVerified,
+        } = userPropertiesLoginTicket
+        if (emailVerified) {
+          Users.findOne({ email }).exec((err, user) => {
+            if (err) {
+              return res.status(400).json({
+                msg: 'Something went wrong',
+              })
+            } else {
+              if (user) {
+                JsonWebToken.sign(
+                  { id: user._id },
+                  JWT_SECRET,
+                  //we set an expiration for the token
+                  { expiresIn: '30d' },
+                  async (err, token) => {
+                    if (err) throw err
+                    res.json({
+                      token,
+                      user: {
+                        id: user._id,
+                        email: user.email,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                      },
+                    })
+                  }
+                )
+              } else {
+                const password = email + JWT_SECRET
+
+                const newUser = new Users({
+                  firstName,
+                  lastName,
+                  email,
+                  password,
+                })
+
+                newUser.save((err: any, user: UserDocument) => {
+                  if (err) {
+                    return res.status(400).json({ msg: 'Something went wrong' })
+                  }
+                  JsonWebToken.sign(
+                    { id: user._id },
+                    JWT_SECRET,
+                    { expiresIn: '30d' },
+                    async (err, token) => {
+                      if (err) throw err
+                      const { _id, firstName, lastName, email } = newUser
+                      res.json({
+                        token,
+                        user: {
+                          _id,
+                          email,
+                          firstName,
+                          lastName,
+                        },
+                      })
+                    }
+                  )
+                })
+              }
+            }
+          })
+        }
+      })
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      next(res.status(400).json({ msg: 'Validation error' }))
+    } else {
+      next(
+        next(
+          res
+            .status(500)
+            .json({ msg: 'Something went wrong. Please refresh the page' })
+        )
+      )
+    }
   }
 }

@@ -18,5 +18,6 @@ router.post('/', Users_1.createUser);
 router.post('/logIn', Users_1.logInUser);
 router.get('/:userId/cart', VerifyToken_1.VerifyToken, Users_1.getCart);
 router.put('/:userId/checkout', VerifyToken_1.VerifyToken, Users_1.updateUser);
+router.post('/googleLogin', Users_1.googleLogin);
 exports.default = router;
 //# sourceMappingURL=Users.js.map

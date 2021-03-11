@@ -12,16 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addProductToCart = exports.resetPassword = exports.forgotPassword = exports.getCart = exports.findAll = exports.findById = exports.deleteUser = exports.updateUser = exports.logInUser = exports.createUser = void 0;
+exports.googleLogin = exports.addProductToCart = exports.resetPassword = exports.forgotPassword = exports.getCart = exports.findAll = exports.findById = exports.deleteUser = exports.updateUser = exports.logInUser = exports.createUser = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const mailgun_js_1 = __importDefault(require("mailgun-js"));
 const lodash_1 = __importDefault(require("lodash"));
+const google_auth_library_1 = require("google-auth-library");
 const models_1 = require("../models");
 const Users_1 = __importDefault(require("../services/Users"));
 const secrets_1 = require("../util/secrets");
-const DOMAIN = 'sandbox9026ac1bb7774ff18f78cd4cd58c8300.mailgun.org';
+const DOMAIN = secrets_1.DOMAIN_ID;
 const mg = mailgun_js_1.default({ apiKey: secrets_1.MAILGUN_API_KEY, domain: DOMAIN });
+const clientId = secrets_1.CLIENT_ID;
+const client = new google_auth_library_1.OAuth2Client(secrets_1.CLIENT_ID);
 const apiError_1 = require("../helpers/apiError");
 // POST /users
 exports.createUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -256,6 +259,93 @@ exports.addProductToCart = (req, res, next) => __awaiter(void 0, void 0, void 0,
     catch (error) {
         console.log(error);
         next(new apiError_1.BadRequestError('Something went wrong', error));
+    }
+});
+//POST/googleLogin/
+exports.googleLogin = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { tokenId } = req.body;
+        client
+            .verifyIdToken({
+            idToken: tokenId,
+            audience: clientId,
+        })
+            .then((response) => {
+            const payload = response.getPayload();
+            const userPropertiesLoginTicket = {
+                firstName: payload === null || payload === void 0 ? void 0 : payload.given_name,
+                lastName: payload === null || payload === void 0 ? void 0 : payload.family_name,
+                email: payload === null || payload === void 0 ? void 0 : payload.email,
+                emailVerified: payload === null || payload === void 0 ? void 0 : payload.email_verified,
+            };
+            const { firstName, lastName, email, emailVerified, } = userPropertiesLoginTicket;
+            if (emailVerified) {
+                models_1.Users.findOne({ email }).exec((err, user) => {
+                    if (err) {
+                        return res.status(400).json({
+                            msg: 'Something went wrong',
+                        });
+                    }
+                    else {
+                        if (user) {
+                            jsonwebtoken_1.default.sign({ id: user._id }, secrets_1.JWT_SECRET, 
+                            //we set an expiration for the token
+                            { expiresIn: '30d' }, (err, token) => __awaiter(void 0, void 0, void 0, function* () {
+                                if (err)
+                                    throw err;
+                                res.json({
+                                    token,
+                                    user: {
+                                        id: user._id,
+                                        email: user.email,
+                                        firstName: user.firstName,
+                                        lastName: user.lastName,
+                                    },
+                                });
+                            }));
+                        }
+                        else {
+                            const password = email + secrets_1.JWT_SECRET;
+                            const newUser = new models_1.Users({
+                                firstName,
+                                lastName,
+                                email,
+                                password,
+                            });
+                            newUser.save((err, user) => {
+                                if (err) {
+                                    return res.status(400).json({ msg: 'Something went wrong' });
+                                }
+                                jsonwebtoken_1.default.sign({ id: user._id }, secrets_1.JWT_SECRET, { expiresIn: '30d' }, (err, token) => __awaiter(void 0, void 0, void 0, function* () {
+                                    if (err)
+                                        throw err;
+                                    const { _id, firstName, lastName, email } = newUser;
+                                    res.json({
+                                        token,
+                                        user: {
+                                            _id,
+                                            email,
+                                            firstName,
+                                            lastName,
+                                        },
+                                    });
+                                }));
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    }
+    catch (err) {
+        if (err.name === 'ValidationError') {
+            next(res.status(400).json({ msg: 'Validation error' }));
+        }
+        else {
+            next(next(res
+                .status(500)
+                .json({ msg: 'Something went wrong. Please refresh the page' })));
+        }
     }
 });
 //# sourceMappingURL=Users.js.map
