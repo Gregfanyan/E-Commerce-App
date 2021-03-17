@@ -136,7 +136,7 @@ export const getUsers = () => {
 export const googleLogin = (response: any) => {
   return (dispatch: Dispatch) => {
     dispatch(fetchUserRequest())
-    const url = 'http://localhost:8000/api/v1/user/googleLogin'
+    const url = '/api/v1/user/googleLogin'
     axios({
       method: 'POST',
       url,

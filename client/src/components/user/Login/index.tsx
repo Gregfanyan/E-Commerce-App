@@ -34,8 +34,6 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
     setLogInOpen(false)
   }
 
-  const user = useSelector((state: AppState) => state.user)
-  console.log('user from login', user)
   const responseSuccessGoogle = (response: any) => {
     dispatch(googleLogin(response))
   }
