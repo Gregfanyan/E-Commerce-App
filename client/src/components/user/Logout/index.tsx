@@ -14,7 +14,7 @@ function Logout({ isTabletOrMobile }: mediaQueryProps) {
   const user = useSelector((state: AppState) => state.user.currentUser)
   const logoutOnClick = () => {
     dispatch(logout())
-    localStorage.clear()
+    //localStorage.clear()
     history.push('/home')
   }
   return (

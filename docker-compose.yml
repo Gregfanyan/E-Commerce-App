@@ -1,15 +1,32 @@
 version: '3'
 services:
-  app: 
-    container_name: docker-commerce
-    restart: always
+  api-server: 
+    image: api-server
     build: .
     ports: 
     - '8000:8000'
     links: 
     - mongo 
+    networks:
+     - e-commerce
+    depends_on: 
+     - mongo
   mongo: 
-    container_name: mongo
-    image: mongo
+    image: mongo:4.4-bionic
     ports: 
-      - '27017:27017'     
+     - '27018:27017'
+    networks: 
+     - e-commerce
+  react-app:
+   image: react-app
+   build: ./client/
+   stdin_open: true
+   networks:
+    - e-commerce
+   ports:
+     - '3000:3000'
+networks:
+ e-commerce:
+  driver: bridge
+  
+      
