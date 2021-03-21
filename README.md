@@ -4,7 +4,7 @@
 
 ## Table of contents
 
-- [General info](#general-info)
+- [Title](#Title)
 - [Screenshots](#screenshots)
 - [Technologies](#technologies)
 - [Features](#features)
@@ -12,7 +12,7 @@
 - [Inspiration](#inspiration)
 - [Contact](#contact)
 
-## General info
+## Title
 
 Shoes E-Commerce Store.
 
@@ -37,6 +37,8 @@ Shoes E-Commerce Store.
 - Express.js
 - JWT
 - MongoDB
+- Mongoose
+- Docker
 
 ## Features
 
@@ -47,13 +49,12 @@ READY:
 - Search filter
 - Select by category
 - View single Product
-- Added Redux
 - Add Product to Cart
 - Remove Product
 - Login with validation
 - Register with validation
+- Google Login
 - Logout
-- save and show current user
 - Save in Local Storage
 - Admin
 - Create new Product
@@ -62,13 +63,9 @@ READY:
 - Pagination
 - Deployed in Heroku
 
-
-
 To-do list:
 
 - Update user
-- Add google login
-- Create Docker Image
 
 ## Status
 
