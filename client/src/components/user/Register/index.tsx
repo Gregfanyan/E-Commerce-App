@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Formik, Field } from 'formik'
 import * as yup from 'yup'
 import { useHistory } from 'react-router-dom'
-
 import {
   Form,
   Segment,
@@ -18,9 +17,22 @@ import {
 import { AppState } from '../../../types'
 import { UserRegister } from '../../../redux/User/UserActions'
 import styles from './Register.module.css'
+import GoogleLogIn from '../../GoogleLogIn'
 
-const ErrorText = {
-  color: 'red',
+const styled = {
+  errorText: {
+    color: 'red',
+  },
+  loginLink: {
+    cursor: 'pointer',
+    textDecoration: 'underline',
+  },
+  form: {
+    height: '98vh',
+  },
+  header: {
+    paddingTop: '20px',
+  },
 }
 
 const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
@@ -55,11 +67,14 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
         </Button>
       }
     >
-      <Grid centered style={{ height: '90vh' }} verticalAlign="middle">
+      <Grid centered style={styled.form} verticalAlign="middle">
         <Grid.Column>
-          <Header as="h2" color="teal" textAlign="center">
+          <Header as="h2" color="teal" textAlign="center" style={styled.header}>
 						Create an Account
           </Header>
+          <Message>
+            <GoogleLogIn registerOpen={registerOpen} />
+          </Message>
           <Segment>
             <Formik
               initialValues={{
@@ -113,7 +128,7 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       as={Form.Input}
                     />
                     {errors.firstName && (
-                      <div style={ErrorText}>{errors.firstName}</div>
+                      <div style={styled.errorText}>{errors.firstName}</div>
                     )}
                   </Form.Field>
                   <Form.Field>
@@ -124,7 +139,7 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       as={Form.Input}
                     />
                     {errors.lastName && (
-                      <div style={ErrorText}>{errors.lastName}</div>
+                      <div style={styled.errorText}>{errors.lastName}</div>
                     )}
                   </Form.Field>
                   <Form.Field>
@@ -136,7 +151,7 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       as={Form.Input}
                     />
                     {errors.email && (
-                      <div style={ErrorText}>{errors.email}</div>
+                      <div style={styled.errorText}>{errors.email}</div>
                     )}
                   </Form.Field>
                   <Form.Field>
@@ -148,7 +163,7 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       as={Form.Input}
                     />
                     {errors.password && (
-                      <div style={ErrorText}>{errors.password}</div>
+                      <div style={styled.errorText}>{errors.password}</div>
                     )}
                   </Form.Field>
                   <Form.Field>
@@ -160,7 +175,9 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
                       as={Form.Input}
                     />
                     {errors.repeatPassword && (
-                      <div style={ErrorText}>{errors.repeatPassword}</div>
+                      <div style={styled.errorText}>
+                        {errors.repeatPassword}
+                      </div>
                     )}
                   </Form.Field>
                   <Form.Button fluid color="teal" type="submit">
@@ -180,11 +197,7 @@ const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
               ) : null}
               <Message onClick={handleClick}>
 								Already have an account?
-                <span
-                  style={{ cursor: 'pointer', textDecoration: 'underline' }}
-                >
-									Login
-                </span>
+                <span style={styled.loginLink}>Login</span>
               </Message>
             </Modal.Actions>
           </Segment>

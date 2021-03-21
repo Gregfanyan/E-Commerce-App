@@ -13,18 +13,17 @@ import {
   Icon,
   Modal,
 } from 'semantic-ui-react'
-import GoogleLogin from 'react-google-login'
 
 import { AppState } from '../../../types'
 import { login } from '../../../redux/User/UserActions'
 import styles from './Login.module.css'
-import { googleLogin } from '../../../redux/User/UserActions'
+import GoogleLogIn from '../../GoogleLogIn'
+
 const ErrorText = {
   color: 'red',
 }
 
 const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
-  const clientID = `${process.env.REACT_APP_GOOGLE_CLIENT_ID}`
   const errorMessage = useSelector(
     (state: AppState) => state.user.error.message
   )
@@ -33,12 +32,6 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
     setRegisterOpen(true)
     setLogInOpen(false)
   }
-
-  const responseSuccessGoogle = (response: any) => {
-    dispatch(googleLogin(response))
-  }
-
-  const responseErrorGoogle = (res: any) => {}
 
   return (
     <Modal
@@ -65,24 +58,7 @@ const Login = ({ setLogInOpen, setRegisterOpen, loginOpen }: any) => {
 						Log-in to your account
           </Header>
           <Message>
-            <GoogleLogin
-              clientId={clientID}
-              buttonText="Login with Google"
-              onSuccess={responseSuccessGoogle}
-              onFailure={responseErrorGoogle}
-              cookiePolicy={'single_host_origin'}
-              render={(renderProps: any) => (
-                <Button
-                  color="teal"
-                  fluid
-                  size="large"
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  <span>Sign In with Google</span>
-                </Button>
-              )}
-            />
+            <GoogleLogIn />
           </Message>
           <Formik
             initialValues={{ email: '', password: '' }}
