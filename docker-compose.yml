@@ -25,6 +25,9 @@ services:
     - e-commerce
    ports:
      - '3000:3000'
+   volumes: 
+    - /app/node-modules
+    - ./client/:/app  
 networks:
  e-commerce:
   driver: bridge

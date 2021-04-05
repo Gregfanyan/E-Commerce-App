@@ -74,6 +74,7 @@ export type HeaderProps = {
 	handleSelect?: (e: React.ChangeEvent<HTMLInputElement>) => void
 	product: Product[]
 	cat: string
+	children: any
 }
 
 export type SelectionProps = {

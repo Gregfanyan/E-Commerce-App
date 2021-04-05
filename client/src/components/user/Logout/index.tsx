@@ -23,11 +23,11 @@ function Logout({ isTabletOrMobile }: mediaQueryProps) {
         {user.firstName} {user.lastName}
         <Icon name="user circle" size="large" style={{ paddingLeft: '10px' }} />
       </Menu.Item>
-      {!isTabletOrMobile && (
+      {/* {!isTabletOrMobile && ( */}
         <Button color="black" name="logout" onClick={logoutOnClick}>
           <Icon name="sign out"> </Icon>Logout
         </Button>
-      )}
+     {/*  )} */}
     </>
   )
 }
