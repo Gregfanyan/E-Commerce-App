@@ -13,7 +13,7 @@ import {
 	Sidebar,
 } from 'semantic-ui-react'
 import Logout from '../user/Logout'
-import styles from './MobileContainer.module.css'
+import styles from './MobileNavbar.module.css'
 import { AppState } from '../../types'
 
 const { Media } = createMedia({
@@ -24,7 +24,7 @@ const { Media } = createMedia({
 	},
 }) as any
 
-export default function MobileContainer({ ...props }: any) {
+export default function MobileNavbar({ ...props }: any) {
 	const user = useSelector((state: AppState) => state.user.currentUser)
 	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
 

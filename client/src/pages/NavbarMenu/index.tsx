@@ -1,5 +1,5 @@
 import React from 'react'
-import MobileContainer from '../../components/MobileContainer'
+import MobileNavbar from '../../components/MobileNavbar'
 import { createMedia } from '@artsy/fresnel'
 
 import Navbar from '../../components/Navbar'
@@ -33,7 +33,7 @@ const NavbarMenu = ({
 			</Navbar>
 		</Media>
 		<Media lessThan="computer">
-			<MobileContainer>{children}</MobileContainer>
+			<MobileNavbar>{children}</MobileNavbar>
 		</Media>
 	</MediaContextProvider>
 )
