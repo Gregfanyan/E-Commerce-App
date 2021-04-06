@@ -15,6 +15,8 @@ import {
 import Logout from '../user/Logout'
 import styles from './MobileNavbar.module.css'
 import { AppState } from '../../types'
+import { HeaderProps } from '../../types/ui'
+import Search from '../Search'
 
 const { Media } = createMedia({
 	breakpoints: {
@@ -24,7 +26,13 @@ const { Media } = createMedia({
 	},
 }) as any
 
-export default function MobileNavbar({ ...props }: any) {
+export default function MobileNavbar({
+	handleChange,
+	handleSelect,
+	search,
+	cat,
+	children,
+}: HeaderProps) {
 	const user = useSelector((state: AppState) => state.user.currentUser)
 	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
 
@@ -42,8 +50,6 @@ export default function MobileNavbar({ ...props }: any) {
 		setSidebarOpened(true)
 	}
 
-	const { children }: any = props
-
 	return (
 		<Media as={Sidebar.Pushable} at="mobile">
 			<Sidebar.Pushable>
@@ -55,47 +61,34 @@ export default function MobileNavbar({ ...props }: any) {
 					vertical
 					visible={sidebarOpened}
 				>
-					<Menu.Item as="a" active>
+					<Menu.Item as={Link} to="/home" active>
 						Home
 					</Menu.Item>
-					<Menu.Item as="a">Company</Menu.Item>
-					<Menu.Item as="a">Home</Menu.Item>
+					{!isAuthenticated ? (
+						<Menu.Item>
+							<Menu.Item as="a">Log in</Menu.Item>
+							<Menu.Item as="a">Sign Up</Menu.Item>
+						</Menu.Item>
+					) : (
+						<Menu.Item as="a">Log Out</Menu.Item>
+					)}
 				</Sidebar>
 
 				<Sidebar.Pusher dimmed={sidebarOpened}>
 					<Segment
-						/* inverted */
+						inverted
 						textAlign="center"
-						style={{ minHeight: 150, padding: '1em 0em' }}
+						style={{ minHeight: 80, padding: '1em 0em', marginBottom: 50 }}
 						vertical
 					>
 						<Container>
-							<Menu
-								inverted
-								pointing
-								secondary
-								size="large"
-								as={Link}
-								to="/cart"
-							>
+							<Menu inverted pointing secondary size="large">
 								<Menu.Item onClick={handleToggle}>
 									<Icon name="sidebar" />
 								</Menu.Item>
-								{!isAuthenticated ? (
-									<Menu.Item position="right">
-										<Button as="a" inverted>
-											Log in
-										</Button>
-										<Button as="a" inverted style={{ marginLeft: '0.5em' }}>
-											Sign Up
-										</Button>
-									</Menu.Item>
-								) : (
-									<Menu.Item position="right">
-										<Button as="a" inverted>
-											Log Out
-										</Button>
-										<Button as="a" inverted>
+								{isAuthenticated && (
+									<Menu.Item position="right" inverted>
+										<Button inverted as={Link} to="/cart">
 											<Icon name="shopping cart" size="small">
 												<div className={styles.Counter}>{counter}</div>
 											</Icon>
@@ -103,6 +96,9 @@ export default function MobileNavbar({ ...props }: any) {
 									</Menu.Item>
 								)}
 							</Menu>
+							<Menu.Item>
+								<Search search={search} handleChange={handleChange} />
+							</Menu.Item>
 						</Container>
 					</Segment>
 
