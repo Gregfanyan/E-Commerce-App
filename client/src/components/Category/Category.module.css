@@ -4,4 +4,6 @@
 	border: none;
 	font-size: 20px;
 	font-weight: 530;
+	cursor: pointer;
+	outline: none;
 }

@@ -26,7 +26,6 @@ export type idProps = {
 export type SearchProps = {
 	search: string
 	handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-	isTabletOrMobile: any
 }
 
 export type TableRowProps = {

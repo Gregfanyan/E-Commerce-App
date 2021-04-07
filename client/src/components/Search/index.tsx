@@ -2,17 +2,17 @@ import React from 'react'
 import { Input } from 'semantic-ui-react'
 
 import { SearchProps } from '../../types/ui'
-
-function Search({ handleChange, search, isTabletOrMobile }: any) {
+const inputStyle = {
+	minWidth: '200px',
+}
+function Search({ handleChange, search }: SearchProps) {
 	return (
 		<Input
-			/* fluid={isTabletOrMobile ? true : false} */
+			style={inputStyle}
 			icon="search"
 			placeholder="Search..."
 			value={search}
 			onChange={handleChange}
-			/* 			size={`${isTabletOrMobile} ? mini : large}` as any}
-			 */
 			fluid
 		/>
 	)
