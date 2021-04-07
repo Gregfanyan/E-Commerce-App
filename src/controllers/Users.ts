@@ -318,7 +318,6 @@ export const googleLogin = async (
       })
       .then((response) => {
         const payload = response.getPayload()
-
         const userPropertiesLoginTicket = {
           firstName: payload?.given_name,
           lastName: payload?.family_name,
@@ -346,6 +345,7 @@ export const googleLogin = async (
                   { expiresIn: '30d' },
                   async (err, token) => {
                     if (err) throw err
+                    await user.populate('cart').execPopulate()
                     res.json({
                       token,
                       user: {
@@ -353,6 +353,8 @@ export const googleLogin = async (
                         email: user.email,
                         firstName: user.firstName,
                         lastName: user.lastName,
+                        cart: user.cart,
+                        isAdmin: user.isAdmin,
                       },
                     })
                   }
@@ -366,7 +368,9 @@ export const googleLogin = async (
                   email,
                   password,
                 })
-
+                if (newUser.email === 'grigor.fanyan@integrify.io') {
+                  newUser.isAdmin = true
+                }
                 newUser.save((err: any, user: UserDocument) => {
                   if (err) {
                     return res.status(400).json({ msg: 'Something went wrong' })
@@ -378,6 +382,7 @@ export const googleLogin = async (
                     async (err, token) => {
                       if (err) throw err
                       const { _id, firstName, lastName, email } = newUser
+                      await user.populate('cart').execPopulate()
                       res.json({
                         token,
                         user: {
@@ -385,6 +390,8 @@ export const googleLogin = async (
                           email,
                           firstName,
                           lastName,
+                          cart: user.cart,
+                          isAdmin: user.isAdmin,
                         },
                       })
                     }

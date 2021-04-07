@@ -9,7 +9,7 @@ import { idProps } from '../../types/ui'
 import { AppState } from '../../types'
 
 const CartStyle = {
-	MObileBackIcon: {
+	MobileBackIcon: {
 		position: 'absolute',
 		left: 0,
 		top: '18%',
@@ -44,7 +44,7 @@ const SingleProduct = () => {
 	return (
 		<div>
 			<Card.Group
-				style={isTabletOrMobile ? CartStyle.MObileBackIcon : CartStyle.backIcon}
+				style={isTabletOrMobile ? CartStyle.MobileBackIcon : CartStyle.backIcon}
 				stackable
 			>
 				<Button primary onClick={handleClick}>

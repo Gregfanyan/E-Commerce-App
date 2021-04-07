@@ -145,6 +145,7 @@ export const googleLogin = (response: any) => {
 			.then((response) => {
 				dispatch(loginSuccess(response.data))
 				dispatch(googleLoginSuccess())
+				localStorage.setItem('user', JSON.stringify(response.data.user))
 				window.location.href = '/home'
 			})
 			.catch((error) => {

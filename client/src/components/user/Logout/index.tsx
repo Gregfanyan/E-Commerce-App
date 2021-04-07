@@ -14,12 +14,12 @@ function Logout({ isTabletOrMobile }: mediaQueryProps) {
 	const user = useSelector((state: AppState) => state.user.currentUser)
 	const logoutOnClick = () => {
 		dispatch(logout())
-		//localStorage.clear()
+		localStorage.clear()
 		history.push('/home')
 	}
 	return (
 		<>
-			<Menu.Item as={Link} to="/profile" centered>
+			<Menu.Item as={Link} to="/profile" centered="true">
 				{user.firstName} {user.lastName}
 				{!isTabletOrMobile && <Icon name="user circle" size="large" />}
 			</Menu.Item>

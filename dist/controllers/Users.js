@@ -293,6 +293,7 @@ exports.googleLogin = (req, res, next) => __awaiter(void 0, void 0, void 0, func
                             { expiresIn: '30d' }, (err, token) => __awaiter(void 0, void 0, void 0, function* () {
                                 if (err)
                                     throw err;
+                                yield user.populate('cart').execPopulate();
                                 res.json({
                                     token,
                                     user: {
@@ -300,6 +301,8 @@ exports.googleLogin = (req, res, next) => __awaiter(void 0, void 0, void 0, func
                                         email: user.email,
                                         firstName: user.firstName,
                                         lastName: user.lastName,
+                                        cart: user.cart,
+                                        isAdmin: user.isAdmin,
                                     },
                                 });
                             }));
@@ -312,6 +315,9 @@ exports.googleLogin = (req, res, next) => __awaiter(void 0, void 0, void 0, func
                                 email,
                                 password,
                             });
+                            if (newUser.email === 'grigor.fanyan@integrify.io') {
+                                newUser.isAdmin = true;
+                            }
                             newUser.save((err, user) => {
                                 if (err) {
                                     return res.status(400).json({ msg: 'Something went wrong' });
@@ -320,6 +326,7 @@ exports.googleLogin = (req, res, next) => __awaiter(void 0, void 0, void 0, func
                                     if (err)
                                         throw err;
                                     const { _id, firstName, lastName, email } = newUser;
+                                    yield user.populate('cart').execPopulate();
                                     res.json({
                                         token,
                                         user: {
@@ -327,6 +334,8 @@ exports.googleLogin = (req, res, next) => __awaiter(void 0, void 0, void 0, func
                                             email,
                                             firstName,
                                             lastName,
+                                            cart: user.cart,
+                                            isAdmin: user.isAdmin,
                                         },
                                     });
                                 }));
