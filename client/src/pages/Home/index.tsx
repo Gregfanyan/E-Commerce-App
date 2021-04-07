@@ -12,7 +12,7 @@ const HomeStyle = {
 
 export const Home = ({ data, cat, search }: HomeProps) => {
 	const [currentPage, setCurrentPage] = useState(1)
-	const [productPerPage] = useState(8)
+	const [productPerPage] = useState(12)
 
 	const indexOfLastProduct = currentPage * productPerPage
 	const indexOfFirstProduct = indexOfLastProduct - productPerPage

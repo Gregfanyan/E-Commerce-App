@@ -13,6 +13,14 @@ const { MediaContextProvider, Media } = createMedia({
 	},
 })
 
+const NavbarStyle = {
+	position: 'sticky',
+	top: 0,
+	left: 0,
+	zIndex: 1,
+	marginBottom: '30px',
+} as React.CSSProperties
+
 const NavbarMenu = ({
 	children,
 	handleChange,
@@ -24,33 +32,32 @@ const NavbarMenu = ({
 	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
 
 	return (
-		<MediaContextProvider>
-			{!isTabletOrMobile ? (
-				<Media greaterThan="mobile">
-					<Navbar
-						handleChange={handleChange}
-						search={search}
-						product={product}
-						handleSelect={handleSelect}
-						cat={cat}
-					>
-						{children}
-					</Navbar>
-				</Media>
-			) : (
-				<Media lessThan="computer">
+		<div style={NavbarStyle}>
+			<MediaContextProvider>
+				{!isTabletOrMobile ? (
+					<Media greaterThan="mobile">
+						<Navbar
+							handleChange={handleChange}
+							search={search}
+							product={product}
+							handleSelect={handleSelect}
+							cat={cat}
+						>
+							{children}
+						</Navbar>
+					</Media>
+				) : (
 					<MobileNavbar
 						handleChange={handleChange}
-						search={search}
-						product={product}
 						handleSelect={handleSelect}
+						search={search}
 						cat={cat}
-					>
-						{children}
-					</MobileNavbar>
-				</Media>
-			)}
-		</MediaContextProvider>
+						children={children}
+						product={product}
+					/>
+				)}
+			</MediaContextProvider>
+		</div>
 	)
 }
 

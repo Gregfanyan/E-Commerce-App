@@ -17,6 +17,8 @@ import styles from './MobileNavbar.module.css'
 import { AppState } from '../../types'
 import { HeaderProps } from '../../types/ui'
 import Search from '../Search'
+import Login from '../user/Login'
+import Register from '../user/Register'
 
 const { Media } = createMedia({
 	breakpoints: {
@@ -25,6 +27,12 @@ const { Media } = createMedia({
 		computer: 1024,
 	},
 }) as any
+
+const sideBarStyle = {
+	padding: '1em 0em',
+	marginBottom: 50,
+	zIndex: 9,
+}
 
 export default function MobileNavbar({
 	handleChange,
@@ -35,7 +43,8 @@ export default function MobileNavbar({
 }: HeaderProps) {
 	const user = useSelector((state: AppState) => state.user.currentUser)
 	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
-
+	const [loginOpen, setLogInOpen] = useState<boolean>(false)
+	const [registerOpen, setRegisterOpen] = useState<boolean>(false)
 	const isAuthenticated = useSelector(
 		(state: AppState) => state.user.isAuthenticated
 	)
@@ -43,58 +52,64 @@ export default function MobileNavbar({
 	const [sidebarOpened, setSidebarOpened] = useState<any>(false)
 
 	const handleSidebarHide = () => {
-		setSidebarOpened(false)
-	}
-
-	const handleToggle = () => {
-		setSidebarOpened(true)
+		setSidebarOpened(!sidebarOpened)
 	}
 
 	return (
 		<Media as={Sidebar.Pushable} at="mobile">
-			<Sidebar.Pushable>
+			<Sidebar.Pushable style={sideBarStyle}>
 				<Sidebar
 					as={Menu}
 					animation="overlay"
 					inverted
-					onHide={handleSidebarHide}
+					onHide={() => setSidebarOpened(false)}
 					vertical
 					visible={sidebarOpened}
+					
 				>
 					<Menu.Item as={Link} to="/home" active>
 						Home
 					</Menu.Item>
 					{!isAuthenticated ? (
 						<Menu.Item>
-							<Menu.Item as="a">Log in</Menu.Item>
-							<Menu.Item as="a">Sign Up</Menu.Item>
+							<Menu.Item as="a">
+								<Login
+									setRegisterOpen={setRegisterOpen}
+									loginOpen={loginOpen}
+									setLogInOpen={setLogInOpen}
+									setSidebarOpened={setSidebarOpened}
+								/>
+							</Menu.Item>
+							<Menu.Item as="a">
+								<Register
+									registerOpen={registerOpen}
+									setRegisterOpen={setRegisterOpen}
+									setLogInOpen={setLogInOpen}
+								/>
+							</Menu.Item>
 						</Menu.Item>
 					) : (
-						<Menu.Item as="a">Log Out</Menu.Item>
+						<Menu.Item as="a">
+							<Logout isTabletOrMobile={isTabletOrMobile} />
+						</Menu.Item>
 					)}
 				</Sidebar>
 
 				<Sidebar.Pusher dimmed={sidebarOpened}>
-					<Segment
-						inverted
-						textAlign="center"
-						style={{ minHeight: 80, padding: '1em 0em', marginBottom: 50 }}
-						vertical
-					>
+					<Segment inverted textAlign="center" vertical>
 						<Container>
 							<Menu inverted pointing secondary size="large">
-								<Menu.Item onClick={handleToggle}>
+								<Menu.Item onClick={handleSidebarHide}>
 									<Icon name="sidebar" />
 								</Menu.Item>
-								{isAuthenticated && (
-									<Menu.Item position="right" inverted>
-										<Button inverted as={Link} to="/cart">
-											<Icon name="shopping cart" size="small">
-												<div className={styles.Counter}>{counter}</div>
-											</Icon>
-										</Button>
-									</Menu.Item>
-								)}
+
+								<Menu.Item position="right" inverted>
+									<Button inverted as={Link} to="/cart">
+										<Icon name="shopping cart" size="small">
+											<div className={styles.Counter}>{counter}</div>
+										</Icon>
+									</Button>
+								</Menu.Item>
 							</Menu>
 							<Menu.Item>
 								<Search search={search} handleChange={handleChange} />
