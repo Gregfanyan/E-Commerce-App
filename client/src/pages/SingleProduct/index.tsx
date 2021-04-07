@@ -1,25 +1,61 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { Card } from 'semantic-ui-react'
+import { Button, Icon, Card } from 'semantic-ui-react'
+import { useMediaQuery } from 'react-responsive'
 
 import ViewProduct from '../../components/ViewProduct'
 import { idProps } from '../../types/ui'
 import { AppState } from '../../types'
+
+const CartStyle = {
+	MObileBackIcon: {
+		position: 'absolute',
+		left: 0,
+		top: '18%',
+	},
+	backIcon: {
+		position: 'absolute',
+		left: 0,
+		top: '15%',
+	},
+}
+
 const SingleProduct = () => {
+	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
 	const { id } = useParams<idProps>()
+	const history = useHistory()
 
 	const products = useSelector((state: AppState) =>
 		state.products.products.find((product) => product._id === id)
 	)
 
+	function handleClick() {
+		if (!history) {
+			return <div>No country</div>
+		} else {
+			history.push('/')
+		}
+	}
+
 	if (!products) {
 		return <div>No product</div>
 	}
 	return (
-		<Card.Group itemsPerRow={4} centered stackable>
-			<ViewProduct product={products} />
-		</Card.Group>
+		<div>
+			<Card.Group
+				style={isTabletOrMobile ? CartStyle.MObileBackIcon : CartStyle.backIcon}
+				stackable
+			>
+				<Button primary onClick={handleClick}>
+					<Icon name="arrow left"> </Icon>
+				</Button>
+			</Card.Group>
+
+			<Card.Group itemsPerRow={4} centered stackable>
+				<ViewProduct product={products} />
+			</Card.Group>
+		</div>
 	)
 }
 export default SingleProduct

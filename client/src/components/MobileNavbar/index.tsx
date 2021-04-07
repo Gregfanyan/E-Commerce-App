@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { createMedia } from '@artsy/fresnel'
 import { useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 
 import {
@@ -41,7 +41,6 @@ export default function MobileNavbar({
 	cat,
 	children,
 }: HeaderProps) {
-	const user = useSelector((state: AppState) => state.user.currentUser)
 	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
 	const [loginOpen, setLogInOpen] = useState<boolean>(false)
 	const [registerOpen, setRegisterOpen] = useState<boolean>(false)
@@ -65,7 +64,6 @@ export default function MobileNavbar({
 					onHide={() => setSidebarOpened(false)}
 					vertical
 					visible={sidebarOpened}
-					
 				>
 					<Menu.Item as={Link} to="/home" active>
 						Home

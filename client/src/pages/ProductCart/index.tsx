@@ -1,7 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Header, Button, Icon } from 'semantic-ui-react'
-import { Card } from 'semantic-ui-react'
+import { Header, Button, Icon, Card } from 'semantic-ui-react'
 import { useHistory } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 
