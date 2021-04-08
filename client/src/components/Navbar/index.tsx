@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Menu, Icon, Button, Header } from 'semantic-ui-react'
 import { Link, useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { useMediaQuery } from 'react-responsive'
 
 import { AppState } from '../../types'
 import { HeaderProps } from '../../types/ui'
@@ -28,13 +27,13 @@ function Navbar({
 	search,
 	cat,
 	children,
+	isTabletOrMobile,
 }: HeaderProps) {
 	const [loginOpen, setLogInOpen] = useState<boolean>(false)
 	const [registerOpen, setRegisterOpen] = useState<boolean>(false)
 	const history = useHistory()
 	const counter = useSelector((state: AppState) => state.products.counter)
 	const user = useSelector((state: AppState) => state.user.currentUser)
-	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
 
 	const isAuthenticated = useSelector(
 		(state: AppState) => state.user.isAuthenticated

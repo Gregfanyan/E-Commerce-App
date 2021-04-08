@@ -2,10 +2,10 @@ import React from 'react'
 import { Header, Card, Button, Icon } from 'semantic-ui-react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { useMediaQuery } from 'react-responsive'
 
 import { AppState } from '../../types'
 import { Product } from '../../types/ProductType'
+import { isTabletOrMobileProps } from '../../types/ui'
 
 const styles = {
 	MenuStyle: {
@@ -27,13 +27,12 @@ const styles = {
 	},
 }
 
-function Profile() {
+function Profile({ isTabletOrMobile }: isTabletOrMobileProps) {
 	const user = useSelector((state: AppState) => state.user.currentUser)
 	const isAuthenticated = useSelector(
 		(state: AppState) => state.user.isAuthenticated
 	)
 	const history = useHistory()
-	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
 
 	React.useEffect(() => {
 		if (!isAuthenticated && !user) {

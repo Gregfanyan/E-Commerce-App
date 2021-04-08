@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { useMediaQuery } from 'react-responsive'
 
 import { Home } from '../pages/Home'
 import SingleProduct from '../pages/SingleProduct'
@@ -16,6 +17,7 @@ import UpdateProduct from '../pages/UpdateProduct'
 import NavbarMenu from '../pages/NavbarMenu'
 
 const Routes = () => {
+	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
 	const [query, setQuery] = useState<string>('')
 	const [cat, setCat] = useState<string>('')
 	const [data] = useProduct(query, cat)
@@ -34,6 +36,7 @@ const Routes = () => {
 				product={data}
 				handleSelect={handleSelect}
 				cat={cat}
+				isTabletOrMobile={isTabletOrMobile}
 			/>
 			<Switch>
 				<Route exact path="/" component={StartPage} />
@@ -42,13 +45,19 @@ const Routes = () => {
 					path="/home"
 					component={() => <Home data={data} cat={cat} search={query} />}
 				></Route>
-				<Route path="/product/:id" component={SingleProduct} />
+				<Route path="/product/:id" component={()=> <SingleProduct isTabletOrMobile={isTabletOrMobile}  />} />
 				<Route path="/login" component={Login} />
 				<Route path="/register" component={Register} />
-				<Route path="/cart" component={ProductCart} />
+				<Route
+					path="/cart"
+					component={() => <ProductCart isTabletOrMobile={isTabletOrMobile} />}
+				/>
 				<Route path="/AddProduct" component={AddProduct} />
 				<Route path="/users" component={Users} />
-				<Route path="/profile" component={Profile} />
+				<Route
+					path="/profile"
+					component={() => <Profile isTabletOrMobile={isTabletOrMobile} />}
+				/>
 				<Route exact path="/footer" component={Footer} />
 				<Route
 					path="/updateproduct/:id"

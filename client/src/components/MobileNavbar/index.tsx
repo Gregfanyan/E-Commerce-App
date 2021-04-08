@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { createMedia } from '@artsy/fresnel'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { useMediaQuery } from 'react-responsive'
 
 import {
 	Button,
@@ -40,8 +39,8 @@ export default function MobileNavbar({
 	search,
 	cat,
 	children,
+	isTabletOrMobile,
 }: HeaderProps) {
-	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
 	const [loginOpen, setLogInOpen] = useState<boolean>(false)
 	const [registerOpen, setRegisterOpen] = useState<boolean>(false)
 	const isAuthenticated = useSelector(

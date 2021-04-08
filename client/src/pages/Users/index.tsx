@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Card } from 'semantic-ui-react'
 import { useSelector } from 'react-redux'
+
 import { useUsers } from '../../Hooks/useUsers'
 import UsersList from '../../components/UsersList'
 import { AppState } from '../../types'

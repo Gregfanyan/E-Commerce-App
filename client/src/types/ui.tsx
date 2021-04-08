@@ -75,6 +75,7 @@ export type HeaderProps = {
 	product: Product[]
 	cat: string
 	children: any
+	isTabletOrMobile: any
 }
 
 export type SelectionProps = {
@@ -86,4 +87,8 @@ export type HeaderSelect = {}
 
 export type CatProps = {
 	product: Product[]
+}
+
+export type isTabletOrMobileProps = {
+	isTabletOrMobile: boolean
 }

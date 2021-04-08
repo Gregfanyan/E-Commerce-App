@@ -2,10 +2,10 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Header, Button, Icon, Card } from 'semantic-ui-react'
 import { useHistory } from 'react-router-dom'
-import { useMediaQuery } from 'react-responsive'
 
 import { AppState } from '../../types'
 import CartItem from '../../components/CartItem'
+import { isTabletOrMobileProps } from '../../types/ui'
 
 const CartStyle = {
 	Cart: {
@@ -23,11 +23,9 @@ const CartStyle = {
 	},
 }
 
-function ProductCart() {
-	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
+function ProductCart({ isTabletOrMobile }: isTabletOrMobileProps) {
 	const cartProduct = useSelector((state: AppState) => state.products.inCart)
 	const history = useHistory()
-
 	function handleClick() {
 		if (!history) {
 			return <div>No country</div>

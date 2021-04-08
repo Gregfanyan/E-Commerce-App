@@ -2,10 +2,9 @@ import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Button, Icon, Card } from 'semantic-ui-react'
-import { useMediaQuery } from 'react-responsive'
 
 import ViewProduct from '../../components/ViewProduct'
-import { idProps } from '../../types/ui'
+import { idProps, isTabletOrMobileProps } from '../../types/ui'
 import { AppState } from '../../types'
 
 const CartStyle = {
@@ -21,8 +20,7 @@ const CartStyle = {
 	},
 }
 
-const SingleProduct = () => {
-	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
+const SingleProduct = ({ isTabletOrMobile }: isTabletOrMobileProps) => {
 	const { id } = useParams<idProps>()
 	const history = useHistory()
 

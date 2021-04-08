@@ -1,7 +1,6 @@
 import React from 'react'
 import MobileNavbar from '../../components/MobileNavbar'
 import { createMedia } from '@artsy/fresnel'
-import { useMediaQuery } from 'react-responsive'
 
 import Navbar from '../../components/Navbar'
 
@@ -25,12 +24,11 @@ const NavbarMenu = ({
 	children,
 	handleChange,
 	handleSelect,
+	isTabletOrMobile,
 	search,
 	product,
 	cat,
 }: any) => {
-	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
-
 	return (
 		<div style={NavbarStyle}>
 			<MediaContextProvider>
@@ -42,6 +40,7 @@ const NavbarMenu = ({
 							product={product}
 							handleSelect={handleSelect}
 							cat={cat}
+							isTabletOrMobile={isTabletOrMobile}
 						>
 							{children}
 						</Navbar>
@@ -54,6 +53,7 @@ const NavbarMenu = ({
 						cat={cat}
 						children={children}
 						product={product}
+						isTabletOrMobile={isTabletOrMobile}
 					/>
 				)}
 			</MediaContextProvider>
