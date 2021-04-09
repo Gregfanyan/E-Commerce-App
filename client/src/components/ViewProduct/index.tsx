@@ -14,7 +14,7 @@ function ViewProduct({ product }: ViewProductProps) {
 	}
 
 	return (
-		<Card stackable>
+		<Card>
 			<Image
 				src={img}
 				style={{ width: '100%', height: 200, objectFit: 'cover' }}

@@ -1,6 +1,7 @@
 import React from 'react'
-import Search from '../Search'
+import { Header } from 'semantic-ui-react'
 
+import Search from '../Search'
 import { HeaderPageProps } from '../../types/ui'
 import styles from './Header.module.css'
 
@@ -19,8 +20,12 @@ function HeaderPage({ handleChange, search }: HeaderPageProps) {
 		>
 			{search === '' ? (
 				<div className={styles.title}>
-					<h1>Online Shoes Shop</h1>
-					<h3>Discover the Best Shoes Around</h3>
+					<Header size="huge" inverted>
+						Online Shoes Shop
+					</Header>
+					<Header size="large" inverted>
+						Discover the Best Shoes Around
+					</Header>
 				</div>
 			) : null}
 			<div style={inputStyle}>

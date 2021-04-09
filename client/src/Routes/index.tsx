@@ -15,17 +15,11 @@ import Profile from '../pages/Profile'
 import Footer from '../components/Footer'
 import UpdateProduct from '../pages/UpdateProduct'
 import NavbarMenu from '../pages/NavbarMenu'
-import HeaderPage from '../components/HeaderPage'
 
 const Routes = () => {
 	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
-	const [query, setQuery] = useState<string>('')
 	const [cat, setCat] = useState<string>('')
-	const [data] = useProduct(query, cat)
-
-	const handleChange: React.ReactEventHandler<HTMLInputElement> = (e) => {
-		setQuery(e.currentTarget.value)
-	}
+	const [data] = useProduct('', cat)
 
 	const handleSelect: React.ReactEventHandler<HTMLInputElement> = (e) => {
 		setCat(e.currentTarget.value)
@@ -41,11 +35,7 @@ const Routes = () => {
 			/>
 			<Switch>
 				<Route exact path="/" component={StartPage} />
-				<Route
-					exact
-					path="/home"
-					component={() => <Home data={data} cat={cat} search={query} handleChange={handleChange} />}
-				></Route>
+				<Route exact path="/home" component={Home}></Route>
 				<Route
 					path="/product/:id"
 					component={() => (

@@ -6,17 +6,17 @@ const inputStyle = {
 	minWidth: '200px',
 }
 function Search({ handleChange, search }: SearchProps) {
-	console.log('search from search', search)
-
 	return (
 		<Input
+			type="text"
 			style={inputStyle}
-			icon="search"
-			placeholder="Search...."
+			placeholder="Search..."
 			value={search}
 			onChange={handleChange}
 			fluid
-		/>
+		>
+			<input style={{ borderRadius: '100px' }} />
+		</Input>
 	)
 }
 
