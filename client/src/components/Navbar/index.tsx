@@ -18,17 +18,18 @@ const NavbarStyle = {
 	top: 0,
 	left: 0,
 	zIndex: 1,
-/* 	paddingBottom: '5px',
- */}
+	/* 	paddingBottom: '5px',
+	 */
+}
 
 function Navbar({
-	handleChange,
+/* 	handleChange, */
 	handleSelect,
-	search,
+/* 	search, */
 	cat,
 	children,
 	isTabletOrMobile,
-}: HeaderProps) {
+}: any) {
 	const [loginOpen, setLogInOpen] = useState<boolean>(false)
 	const [registerOpen, setRegisterOpen] = useState<boolean>(false)
 	const history = useHistory()

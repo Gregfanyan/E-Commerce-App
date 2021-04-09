@@ -35,8 +35,8 @@ const NavbarMenu = ({
         {!isTabletOrMobile ? (
           <Media greaterThan="mobile">
             <Navbar
-              handleChange={handleChange}
-              search={search}
+            /*   handleChange={handleChange}
+              search={search} */
               product={product}
               handleSelect={handleSelect}
               cat={cat}
@@ -47,9 +47,9 @@ const NavbarMenu = ({
           </Media>
         ) : (
           <MobileNavbar
-            handleChange={handleChange}
-            handleSelect={handleSelect}
-            search={search}
+/*             handleChange={handleChange}
+ */            handleSelect={handleSelect}
+            /* search={search} */
             cat={cat}
             children={children}
             product={product}

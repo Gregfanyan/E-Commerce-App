@@ -15,16 +15,16 @@ import Profile from '../pages/Profile'
 import Footer from '../components/Footer'
 import UpdateProduct from '../pages/UpdateProduct'
 import NavbarMenu from '../pages/NavbarMenu'
-import Header from '../components/Header'
+import HeaderPage from '../components/HeaderPage'
 
 const Routes = () => {
 	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
 	const [query, setQuery] = useState<string>('')
 	const [cat, setCat] = useState<string>('')
 	const [data] = useProduct(query, cat)
+
 	const handleChange: React.ReactEventHandler<HTMLInputElement> = (e) => {
 		setQuery(e.currentTarget.value)
-		console.log('helol')
 	}
 
 	const handleSelect: React.ReactEventHandler<HTMLInputElement> = (e) => {
@@ -36,32 +36,22 @@ const Routes = () => {
 	return (
 		<>
 			<NavbarMenu
-				handleChange={handleChange}
-				search={query}
+				/* handleChange={handleChange}
+				search={query} */
 				product={data}
 				handleSelect={handleSelect}
 				cat={cat}
 				isTabletOrMobile={isTabletOrMobile}
 			/>
+
+			<HeaderPage handleChange={handleChange} search={query} />
+
 			<Switch>
 				<Route exact path="/" component={StartPage} />
 				<Route
 					exact
 					path="/home"
-					component={() => (
-						<Home
-							data={data}
-							cat={cat}
-							search={query}
-							handleChange={handleChange}
-						/>
-					)}
-				></Route>
-				<Route
-					path="/header"
-					component={() => (
-						<Header handleChange={handleChange} search={query} />
-					)}
+					component={() => <Home data={data} cat={cat} search={query} />}
 				></Route>
 				<Route
 					path="/product/:id"

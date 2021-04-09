@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import { Container } from 'semantic-ui-react'
 
-import { HomeProps } from '../../types/ui'
+import { HeaderProps, HomeProps } from '../../types/ui'
 import MainTable from '../../components/MainTable'
 import Footer from '../../components/Footer'
-import Header from '../../components/Header'
+import HeaderPage from '../../components/HeaderPage'
 
 const HomeStyle = {
 	position: 'relative',
 	minHeight: '100vh',
 } as React.CSSProperties
 
-export const Home = ({ data, cat, search, handleChange }: any) => {
+export const Home = ({ data, cat, search }: HomeProps) => {
 	const [currentPage, setCurrentPage] = useState(1)
 	const [productPerPage] = useState(12)
 
@@ -20,11 +20,9 @@ export const Home = ({ data, cat, search, handleChange }: any) => {
 	const currentProduct = data?.slice(indexOfFirstProduct, indexOfLastProduct)
 
 	const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
-	console.log('search from home', search)
 
 	return (
 		<div style={HomeStyle}>
-			<Header handleChange={handleChange} search={search} />
 			<Container>
 				<MainTable
 					products={data}
