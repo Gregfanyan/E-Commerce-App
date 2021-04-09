@@ -6,6 +6,8 @@ const inputStyle = {
 	minWidth: '200px',
 }
 function Search({ handleChange, search }: SearchProps) {
+	console.log('search from search', search)
+
 	return (
 		<Input
 			style={inputStyle}

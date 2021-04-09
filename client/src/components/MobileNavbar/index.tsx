@@ -108,9 +108,9 @@ export default function MobileNavbar({
                   </Button>
                 </Menu.Item>
               </Menu>
-              <Menu.Item>
+             {/*  <Menu.Item>
                 <Search search={search} handleChange={handleChange} />
-              </Menu.Item>
+              </Menu.Item> */}
             </Container>
           </Segment>
 

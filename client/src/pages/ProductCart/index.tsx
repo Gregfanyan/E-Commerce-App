@@ -30,7 +30,7 @@ function ProductCart({ isTabletOrMobile }: isTabletOrMobileProps) {
 		if (!history) {
 			return <div>No country</div>
 		} else {
-			history.push('/')
+			history.push('/home')
 		}
 	}
 

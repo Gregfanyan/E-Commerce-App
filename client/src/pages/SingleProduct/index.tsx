@@ -9,14 +9,16 @@ import { AppState } from '../../types'
 
 const CartStyle = {
 	MobileBackIcon: {
-		position: 'absolute',
 		left: 0,
-		top: '18%',
+		top: '11%',
+		margin: 0,
 	},
 	backIcon: {
-		position: 'absolute',
 		left: 0,
-		top: '15%',
+		margin: 0,
+	},
+	cartItem: {
+		boxShadow: '1rem rgba(140, 153, 153, 0.5)',
 	},
 }
 
@@ -32,7 +34,7 @@ const SingleProduct = ({ isTabletOrMobile }: isTabletOrMobileProps) => {
 		if (!history) {
 			return <div>No country</div>
 		} else {
-			history.push('/')
+			history.push('/home')
 		}
 	}
 
@@ -40,17 +42,26 @@ const SingleProduct = ({ isTabletOrMobile }: isTabletOrMobileProps) => {
 		return <div>No product</div>
 	}
 	return (
-		<div>
+		<div
+			style={{
+				...(!isTabletOrMobile
+					? {
+							backgroundImage:
+								'linear-gradient(to top, #09203f 0%, #537895 100%)',
+							minHeight: '39.2rem',
+					  }
+					: {}),
+			}}
+		>
 			<Card.Group
 				style={isTabletOrMobile ? CartStyle.MobileBackIcon : CartStyle.backIcon}
-				stackable
 			>
 				<Button primary onClick={handleClick}>
 					<Icon name="arrow left"> </Icon>
 				</Button>
 			</Card.Group>
 
-			<Card.Group itemsPerRow={4} centered stackable>
+			<Card.Group itemsPerRow={4} centered stackable style={CartStyle.cartItem}>
 				<ViewProduct product={products} />
 			</Card.Group>
 		</div>
