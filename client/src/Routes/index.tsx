@@ -17,50 +17,51 @@ import UpdateProduct from '../pages/UpdateProduct'
 import NavbarMenu from '../pages/NavbarMenu'
 
 const Routes = () => {
-	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
-	const [cat, setCat] = useState<string>('')
-	const [data] = useProduct('', cat)
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
+  const [query] = useState<string>('')
+  const [cat, setCat] = useState<string>('')
+  const [data] = useProduct(query, cat)
 
-	const handleSelect: React.ReactEventHandler<HTMLInputElement> = (e) => {
-		setCat(e.currentTarget.value)
-	}
+  const handleSelect: React.ReactEventHandler<HTMLInputElement> = (e) => {
+    setCat(e.currentTarget.value)
+  }
 
-	return (
-		<>
-			<NavbarMenu
-				handleSelect={handleSelect}
-				cat={cat}
-				isTabletOrMobile={isTabletOrMobile}
-				children={Children}
-			/>
-			<Switch>
-				<Route exact path="/" component={StartPage} />
-				<Route exact path="/home" component={Home}></Route>
-				<Route
-					path="/product/:id"
-					component={() => (
-						<SingleProduct isTabletOrMobile={isTabletOrMobile} />
-					)}
-				/>
-				<Route path="/login" component={Login} />
-				<Route path="/register" component={Register} />
-				<Route
-					path="/cart"
-					component={() => <ProductCart isTabletOrMobile={isTabletOrMobile} />}
-				/>
-				<Route path="/AddProduct" component={AddProduct} />
-				<Route path="/users" component={Users} />
-				<Route
-					path="/profile"
-					component={() => <Profile isTabletOrMobile={isTabletOrMobile} />}
-				/>
-				<Route exact path="/footer" component={Footer} />
-				<Route
-					path="/updateproduct/:id"
-					component={() => <UpdateProduct product={data} />}
-				/>
-			</Switch>
-		</>
-	)
+  return (
+    <>
+      <NavbarMenu
+        handleSelect={handleSelect}
+        cat={cat}
+        isTabletOrMobile={isTabletOrMobile}
+        children={Children}
+      />
+      <Switch>
+        <Route exact path="/" component={StartPage} />
+        <Route exact path="/home" component={Home}></Route>
+        <Route
+          path="/product/:id"
+          component={() => (
+            <SingleProduct isTabletOrMobile={isTabletOrMobile} />
+          )}
+        />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route
+          path="/cart"
+          component={() => <ProductCart isTabletOrMobile={isTabletOrMobile} />}
+        />
+        <Route path="/AddProduct" component={AddProduct} />
+        <Route path="/users" component={Users} />
+        <Route
+          path="/profile"
+          component={() => <Profile isTabletOrMobile={isTabletOrMobile} />}
+        />
+        <Route exact path="/footer" component={Footer} />
+        <Route
+          path="/updateproduct/:id"
+          component={() => <UpdateProduct product={data} />}
+        />
+      </Switch>
+    </>
+  )
 }
 export default Routes
