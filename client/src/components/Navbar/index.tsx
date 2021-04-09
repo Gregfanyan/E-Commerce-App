@@ -14,92 +14,92 @@ import Register from '../user/Register'
 import AddProduct from '../AddProduct'
 
 const NavbarStyle = {
-	position: 'sticky',
-	top: 0,
-	left: 0,
-	zIndex: 1,
-	marginBottom: '30px',
+  position: 'sticky',
+  top: 0,
+  left: 0,
+  zIndex: 1,
+  /* marginBottom: '30px', */
 }
 
 function Navbar({
-	handleChange,
-	handleSelect,
-	search,
-	cat,
-	children,
-	isTabletOrMobile,
+  handleChange,
+  handleSelect,
+  search,
+  cat,
+  children,
+  isTabletOrMobile,
 }: HeaderProps) {
-	const [loginOpen, setLogInOpen] = useState<boolean>(false)
-	const [registerOpen, setRegisterOpen] = useState<boolean>(false)
-	const history = useHistory()
-	const counter = useSelector((state: AppState) => state.products.counter)
-	const user = useSelector((state: AppState) => state.user.currentUser)
+  const [loginOpen, setLogInOpen] = useState<boolean>(false)
+  const [registerOpen, setRegisterOpen] = useState<boolean>(false)
+  const history = useHistory()
+  const counter = useSelector((state: AppState) => state.products.counter)
+  const user = useSelector((state: AppState) => state.user.currentUser)
 
-	const isAuthenticated = useSelector(
-		(state: AppState) => state.user.isAuthenticated
-	)
-	useEffect(() => {
-		if (!isAuthenticated && !user && !isTabletOrMobile) {
-			history.push('/home')
-		}
-	}, [history, isAuthenticated, user, isTabletOrMobile])
+  const isAuthenticated = useSelector(
+    (state: AppState) => state.user.isAuthenticated
+  )
+  useEffect(() => {
+    if (!isAuthenticated && !user && !isTabletOrMobile) {
+      history.push('/home')
+    }
+  }, [history, isAuthenticated, user, isTabletOrMobile])
 
-	return (
-		<Menu fluid inverted size="large" stackable style={NavbarStyle} borderless>
-			<Menu.Item as={Link} to="/home" name="home">
-				<Header as="h1" inverted className={styles.header} color="yellow">
+  return (
+    <Menu fluid inverted size="large" stackable style={NavbarStyle} borderless>
+      <Menu.Item as={Link} to="/home" name="home">
+        <Header as="h1" inverted className={styles.header} color="yellow">
 					Home
-				</Header>
-			</Menu.Item>
+        </Header>
+      </Menu.Item>
 
-			<Category handleSelect={handleSelect} cat={cat} />
-			<Menu.Menu position="right">
-				<Menu.Item>
-					<Search search={search} handleChange={handleChange} />
-				</Menu.Item>
-				{isAuthenticated && user.isAdmin ? (
-					<Menu.Item as={Link} to="users">
-						<Button color="black">Users</Button>
-					</Menu.Item>
-				) : null}
-				{isAuthenticated && user && user.isAdmin ? (
-					<Menu.Item>
-						<AddProduct />
-					</Menu.Item>
-				) : null}
+      <Category handleSelect={handleSelect} cat={cat} />
+      <Menu.Menu position="right">
+        <Menu.Item>
+          <Search search={search} handleChange={handleChange} />
+        </Menu.Item>
+        {isAuthenticated && user?.isAdmin ? (
+          <Menu.Item as={Link} to="users">
+            <Button color="black">Users</Button>
+          </Menu.Item>
+        ) : null}
+        {isAuthenticated && user && user.isAdmin ? (
+          <Menu.Item>
+            <AddProduct />
+          </Menu.Item>
+        ) : null}
 
-				{!isAuthenticated ? (
-					<Menu.Item>
-						<Login
-							setRegisterOpen={setRegisterOpen}
-							loginOpen={loginOpen}
-							setLogInOpen={setLogInOpen}
-						/>
-						<Register
-							registerOpen={registerOpen}
-							setRegisterOpen={setRegisterOpen}
-							setLogInOpen={setLogInOpen}
-						/>
-					</Menu.Item>
-				) : (
-					<Menu.Item>
-						<Logout isTabletOrMobile={isTabletOrMobile} />
-					</Menu.Item>
-				)}
+        {!isAuthenticated ? (
+          <Menu.Item>
+            <Login
+              setRegisterOpen={setRegisterOpen}
+              loginOpen={loginOpen}
+              setLogInOpen={setLogInOpen}
+            />
+            <Register
+              registerOpen={registerOpen}
+              setRegisterOpen={setRegisterOpen}
+              setLogInOpen={setLogInOpen}
+            />
+          </Menu.Item>
+        ) : (
+          <Menu.Item>
+            <Logout isTabletOrMobile={isTabletOrMobile} />
+          </Menu.Item>
+        )}
 
-				<Menu.Item as={Link} to="/cart">
-					<Button animated="vertical" color="black">
-						<Button.Content hidden>Shop</Button.Content>
-						<Button.Content visible>
-							<Icon name="shopping cart" size="large">
-								<div className={styles.Counter}>{counter}</div>
-							</Icon>
-						</Button.Content>
-					</Button>
-				</Menu.Item>
-			</Menu.Menu>
-		</Menu>
-	)
+        <Menu.Item as={Link} to="/cart">
+          <Button animated="vertical" color="black">
+            <Button.Content hidden>Shop</Button.Content>
+            <Button.Content visible>
+              <Icon name="shopping cart" size="large">
+                <div className={styles.Counter}>{counter}</div>
+              </Icon>
+            </Button.Content>
+          </Button>
+        </Menu.Item>
+      </Menu.Menu>
+    </Menu>
+  )
 }
 
 export default Navbar

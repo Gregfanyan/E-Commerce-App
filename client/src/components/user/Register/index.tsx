@@ -38,7 +38,7 @@ const styled = {
 const Register = ({ setLogInOpen, setRegisterOpen, registerOpen }: any) => {
   const isValidated = useSelector((state: AppState) => state.user.isValidated)
   const errorMessage = useSelector(
-    (state: AppState) => state.user.error.message
+    (state: AppState) => state?.user.error.message
   )
   const dispatch = useDispatch()
   const history = useHistory()

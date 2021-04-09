@@ -88,7 +88,7 @@ const ProductReducers = (state = initialState, action: ProductActions) => {
     return {
       ...state,
       loading: false,
-      ...action.payload,
+      product: action.payload,
       isAuthenticated: true,
       isPurchased: true,
       error: '',

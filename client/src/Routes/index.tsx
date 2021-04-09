@@ -15,56 +15,68 @@ import Profile from '../pages/Profile'
 import Footer from '../components/Footer'
 import UpdateProduct from '../pages/UpdateProduct'
 import NavbarMenu from '../pages/NavbarMenu'
+import Header from '../components/Header'
 
 const Routes = () => {
-	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
-	const [query, setQuery] = useState<string>('')
-	const [cat, setCat] = useState<string>('')
-	const [data] = useProduct(query, cat)
-	const handleChange: React.ReactEventHandler<HTMLInputElement> = (e) => {
-		setQuery(e.currentTarget.value)
-	}
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
+  const [query, setQuery] = useState<string>('')
+  const [cat, setCat] = useState<string>('')
+  const [data] = useProduct(query, cat)
+  const handleChange: React.ReactEventHandler<HTMLInputElement> = (e) => {
+    setQuery(e.currentTarget.value)
+  }
 
-	const handleSelect: React.ReactEventHandler<HTMLInputElement> = (e) => {
-		setCat(e.currentTarget.value)
-	}
-	return (
-		<>
-			<NavbarMenu
-				handleChange={handleChange}
-				search={query}
-				product={data}
-				handleSelect={handleSelect}
-				cat={cat}
-				isTabletOrMobile={isTabletOrMobile}
-			/>
-			<Switch>
-				<Route exact path="/" component={StartPage} />
-				<Route
-					exact
-					path="/home"
-					component={() => <Home data={data} cat={cat} search={query} />}
-				></Route>
-				<Route path="/product/:id" component={()=> <SingleProduct isTabletOrMobile={isTabletOrMobile}  />} />
-				<Route path="/login" component={Login} />
-				<Route path="/register" component={Register} />
-				<Route
-					path="/cart"
-					component={() => <ProductCart isTabletOrMobile={isTabletOrMobile} />}
-				/>
-				<Route path="/AddProduct" component={AddProduct} />
-				<Route path="/users" component={Users} />
-				<Route
-					path="/profile"
-					component={() => <Profile isTabletOrMobile={isTabletOrMobile} />}
-				/>
-				<Route exact path="/footer" component={Footer} />
-				<Route
-					path="/updateproduct/:id"
-					component={() => <UpdateProduct product={data} />}
-				/>
-			</Switch>
-		</>
-	)
+  const handleSelect: React.ReactEventHandler<HTMLInputElement> = (e) => {
+    setCat(e.currentTarget.value)
+  }
+  return (
+    <>
+      <NavbarMenu
+        handleChange={handleChange}
+        search={query}
+        product={data}
+        handleSelect={handleSelect}
+        cat={cat}
+        isTabletOrMobile={isTabletOrMobile}
+      />
+      <Switch>
+        <Route exact path="/" component={StartPage} />
+        <Route
+          exact
+          path="/home"
+          component={() => <Home data={data} cat={cat} search={query} />}
+        ></Route>
+        <Route
+          path="header"
+          component={() => (
+            <Header handleChange={handleChange} search={query} />
+          )}
+        ></Route>
+        <Route
+          path="/product/:id"
+          component={() => (
+            <SingleProduct isTabletOrMobile={isTabletOrMobile} />
+          )}
+        />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route
+          path="/cart"
+          component={() => <ProductCart isTabletOrMobile={isTabletOrMobile} />}
+        />
+        <Route path="/AddProduct" component={AddProduct} />
+        <Route path="/users" component={Users} />
+        <Route
+          path="/profile"
+          component={() => <Profile isTabletOrMobile={isTabletOrMobile} />}
+        />
+        <Route exact path="/footer" component={Footer} />
+        <Route
+          path="/updateproduct/:id"
+          component={() => <UpdateProduct product={data} />}
+        />
+      </Switch>
+    </>
+  )
 }
 export default Routes

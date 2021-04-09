@@ -8,6 +8,10 @@ import { addProduct } from '../../redux'
 import { AppState } from '../../types'
 import styles from './TableRow.module.css'
 
+const cart = {
+  boxShadow: '1rem 1rem 1rem rgba(140, 153, 153, 0.5)',
+}
+
 const TableRow = (product: Product) => {
   const { name, price, img, _id } = product
   const dispatch = useDispatch()
@@ -26,7 +30,7 @@ const TableRow = (product: Product) => {
     }
   }, [history, isAuthenticated, user])
   return (
-    <Card raised color="black">
+    <Card className={styles.cart} raised color="black" style={cart}>
       <Image
         /* label={{ as: 'a', corner: 'right', icon: 'heart' }}
 				 */
@@ -48,7 +52,7 @@ const TableRow = (product: Product) => {
           <Button as={Link} to={`/product/${_id}`} color="black">
 						View More
           </Button>
-          {isAuthenticated && user.isAdmin ? (
+          {isAuthenticated && user?.isAdmin ? (
             <Button color="yellow" as={Link} to={`/updateProduct/${_id}`}>
 							Edit Product
             </Button>
