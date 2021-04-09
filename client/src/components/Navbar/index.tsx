@@ -4,8 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import { AppState } from '../../types'
-import { HeaderProps } from '../../types/ui'
-import Search from '../Search'
+import { NavbarProps } from '../../types/ui'
 import styles from './Navbar.module.css'
 import Category from '../Category'
 import Logout from '../user/Logout'
@@ -23,13 +22,11 @@ const NavbarStyle = {
 }
 
 function Navbar({
-/* 	handleChange, */
 	handleSelect,
-/* 	search, */
 	cat,
-	children,
 	isTabletOrMobile,
-}: any) {
+	children,
+}: NavbarProps) {
 	const [loginOpen, setLogInOpen] = useState<boolean>(false)
 	const [registerOpen, setRegisterOpen] = useState<boolean>(false)
 	const history = useHistory()

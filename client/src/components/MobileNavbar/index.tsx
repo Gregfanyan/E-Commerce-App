@@ -14,8 +14,7 @@ import {
 import Logout from '../user/Logout'
 import styles from './MobileNavbar.module.css'
 import { AppState } from '../../types'
-import { HeaderProps } from '../../types/ui'
-import Search from '../Search'
+import { MobileNavbarProps } from '../../types/ui'
 import Login from '../user/Login'
 import Register from '../user/Register'
 
@@ -34,13 +33,9 @@ const sideBarStyle = {
 }
 
 export default function MobileNavbar({
-	/* 	handleChange,
-	 */ handleSelect,
-	/* search, */
-	cat,
 	children,
 	isTabletOrMobile,
-}: any) {
+}: MobileNavbarProps) {
 	const [loginOpen, setLogInOpen] = useState<boolean>(false)
 	const [registerOpen, setRegisterOpen] = useState<boolean>(false)
 	const isAuthenticated = useSelector(
@@ -108,9 +103,6 @@ export default function MobileNavbar({
 									</Button>
 								</Menu.Item>
 							</Menu>
-							{/*  <Menu.Item>
-                <Search search={search} handleChange={handleChange} />
-              </Menu.Item> */}
 						</Container>
 					</Segment>
 

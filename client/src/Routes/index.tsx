@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Children, useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 
@@ -31,27 +31,20 @@ const Routes = () => {
 		setCat(e.currentTarget.value)
 	}
 
-	console.log('search from routes', query)
-
 	return (
 		<>
 			<NavbarMenu
-				/* handleChange={handleChange}
-				search={query} */
-				product={data}
 				handleSelect={handleSelect}
 				cat={cat}
 				isTabletOrMobile={isTabletOrMobile}
+				children={Children}
 			/>
-
-			<HeaderPage handleChange={handleChange} search={query} />
-
 			<Switch>
 				<Route exact path="/" component={StartPage} />
 				<Route
 					exact
 					path="/home"
-					component={() => <Home data={data} cat={cat} search={query} />}
+					component={() => <Home data={data} cat={cat} search={query} handleChange={handleChange} />}
 				></Route>
 				<Route
 					path="/product/:id"

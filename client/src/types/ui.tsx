@@ -68,14 +68,11 @@ export type ViewProductProps = {
 	product: Product
 }
 
-export type HeaderProps = {
-	search: string
-	handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+export type NavbarProps = {
 	handleSelect?: (e: React.ChangeEvent<HTMLInputElement>) => void
-	product: Product[]
 	cat: string
-	children: any
-	isTabletOrMobile: any
+	isTabletOrMobile: boolean
+	children:any
 }
 
 export type SelectionProps = {
@@ -91,4 +88,14 @@ export type CatProps = {
 
 export type isTabletOrMobileProps = {
 	isTabletOrMobile: boolean
+}
+
+export type MobileNavbarProps = {
+	isTabletOrMobile: boolean
+	children: any
+}
+
+export type HeaderPageProps = {
+	search: string
+	handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
