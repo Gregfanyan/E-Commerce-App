@@ -81,7 +81,7 @@ Project is: _in progress_
 
 ## Inspiration
 
-Project is created for educational purposes
+[Project](https://e-commerce-shoes-app.herokuapp.com/) is created for educational purposes
 
 ## Contact
 
