@@ -50,9 +50,6 @@ function Navbar({
 
       <Category handleSelect={handleSelect} cat={cat} />
       <Menu.Menu position="right">
-        {/* 		<Menu.Item>
-					<Search search={search} handleChange={handleChange} />
-				</Menu.Item> */}
         {isAuthenticated && user?.isAdmin ? (
           <Menu.Item as={Link} to="users">
             <Button color="black">Users</Button>

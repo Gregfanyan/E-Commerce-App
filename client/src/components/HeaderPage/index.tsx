@@ -10,7 +10,7 @@ function HeaderPage({ handleChange, search }: HeaderPageProps) {
     <div
       className={styles.header}
       style={{
-        height: `${search === '' ? '65vh' : '27vh'}`,
+        height: `${search === '' ? '55vh' : '15vh'}`,
         padding: `${search === '' ? '9rem 2rem' : '3rem 2rem'}`,
       }}
     >

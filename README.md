@@ -5,6 +5,7 @@
 ## Table of contents
 
 - [Title](#Title)
+- [General info](#general-info)
 - [Screenshots](#screenshots)
 - [Technologies](#technologies)
 - [Features](#features)
@@ -15,6 +16,13 @@
 ## Title
 
 Shoes E-Commerce Store.
+
+
+## General info
+
+A full-stack application that has a wide range of functionalities and features that would be
+essential to modern e-commerce platforms, such as CRUD functions, registering and logging
+in with validation, responsiveness, and accessibility.
 
 ## Screenshots
 
