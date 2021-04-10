@@ -18,12 +18,15 @@ import NavbarMenu from '../pages/NavbarMenu'
 
 const Routes = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 800px)' })
-  const [query] = useState<string>('')
+  const [query, setQuery] = useState<string>('')
   const [cat, setCat] = useState<string>('')
   const [data] = useProduct(query, cat)
 
   const handleSelect: React.ReactEventHandler<HTMLInputElement> = (e) => {
     setCat(e.currentTarget.value)
+  }
+  const handleChange: React.ReactEventHandler<HTMLInputElement> = (e) => {
+    setQuery(e.currentTarget.value)
   }
 
   return (
@@ -36,7 +39,19 @@ const Routes = () => {
       />
       <Switch>
         <Route exact path="/" component={StartPage} />
-        <Route exact path="/home" component={Home}></Route>
+        <Route
+          exact
+          path="/home"
+          render={(props: any) => (
+            <Home
+              {...props}
+              handleChange={handleChange}
+              cat={cat}
+              data={data}
+              search={query}
+            />
+          )}
+        />
         <Route
           path="/product/:id"
           component={() => (
