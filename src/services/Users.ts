@@ -74,15 +74,38 @@ const addProductToCart = async (
     throw new Error(`Product ${selectedProduct} not found`)
   }
 
-  const itemAdded = user.cart.find((item: any) =>
-    item.product === productId
-  )
-  if (!itemAdded) { 
+  const itemAdded = user.cart.find((item: any) => item.product === productId)
+  if (!itemAdded) {
     user.cart.push(productId)
- } 
+  }
   return await user.save()
 }
 
+/* const addProductToCart = async (
+  userId: string,
+  productId: any
+): Promise<UserDocument> => {
+  const user = await Users.findById(userId).select('-password').exec()
+  if (!user) {
+    throw new Error(`User ${userId} not found`)
+  }
+  const selectedProduct = await Products.findById(productId).exec()
+  if (!selectedProduct) {
+    throw new Error(`Product ${selectedProduct} not found`)
+  }
+  console.log('selectedProduct', selectedProduct)
+
+  const itemAdded = user.cart.find(
+    (item: any) => item.product === selectedProduct.id
+  )
+  console.log('itemAdded', itemAdded)
+
+  if (!itemAdded) {
+    user.cart.push(selectedProduct)
+  }
+  return await user.save()
+}
+ */
 
 export default {
   create,

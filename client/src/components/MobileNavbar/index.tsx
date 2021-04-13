@@ -95,7 +95,7 @@ export default function MobileNavbar({
                   <Icon name="sidebar" />
                 </Menu.Item>
 
-                <Menu.Item position="right" inverted>
+                <Menu.Item position="right" inverted='true'>
                   <Button inverted as={Link} to="/cart">
                     <Icon name="shopping cart" size="small">
                       <div className={styles.Counter}>{counter}</div>

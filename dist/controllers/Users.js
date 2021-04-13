@@ -248,12 +248,14 @@ exports.resetPassword = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         next(new apiError_1.NotFoundError('Not found', err));
     }
 });
-//Patch/incCart/:userid/
+//Patch/addToCart/:userid/
 exports.addProductToCart = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const productId = req.body.id;
         const userId = req.params.userId;
         const updatedUser = yield Users_1.default.addProductToCart(userId, productId);
+        console.log('req.params', req.params);
+        console.log('updatedUser', updatedUser);
         res.json(updatedUser);
     }
     catch (error) {

@@ -20,7 +20,7 @@ function HeaderPage({ handleChange, search }: HeaderPageProps) {
 						Online Shoes Shop
           </Header>
           <Header as="h2" inverted textAlign="justified">
-						Discover the Best Shoes
+						Discover The Best Shoes
           </Header>
         </div>
       ) : null}

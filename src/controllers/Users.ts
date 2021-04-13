@@ -286,7 +286,7 @@ export const resetPassword = async (
   }
 }
 
-//Patch/incCart/:userid/
+//Patch/addToCart/:userid/
 export const addProductToCart = async (
   req: Request,
   res: Response,
@@ -296,6 +296,8 @@ export const addProductToCart = async (
     const productId = req.body.id
     const userId = req.params.userId
     const updatedUser = await UserService.addProductToCart(userId, productId)
+    console.log('req.params', req.params)
+    console.log('updatedUser', updatedUser)
     res.json(updatedUser)
   } catch (error) {
     console.log(error)

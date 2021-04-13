@@ -10,6 +10,7 @@ export const FETCH_LOGIN_FAILURE = 'FETCH_LOGIN_FAILURE'
 export const LOGOUT = 'LOGOUT'
 export const GET_USERS = 'GET_USERS'
 export const GOOGLE_LOGIN = 'GOOGLE_LOGIN'
+export const GET_USER_WITH_ITEMS_POPULATE = 'GET_USER_WITH_ITEMS_POPULATE'
 
 export type User = {
 	user: {
@@ -103,6 +104,7 @@ export type UserState = {
 	isValidated: boolean
 	currentUser?: any
 	isGoogleUser: boolean
+	userwithItemsPopulated: User | any
 }
 
 export type UserProps = {
@@ -111,6 +113,17 @@ export type UserProps = {
 
 export type googleLogin = {
 	type: typeof GOOGLE_LOGIN
+}
+
+export type newUser = {
+	user: User
+}
+
+export type userAction = {
+	type: typeof GET_USER_WITH_ITEMS_POPULATE
+	payload: {
+		user: User
+	}
 }
 
 export type UserActions =
@@ -125,3 +138,4 @@ export type UserActions =
 	| LogoutAction
 	| getUserList
 	| googleLogin
+	| userAction

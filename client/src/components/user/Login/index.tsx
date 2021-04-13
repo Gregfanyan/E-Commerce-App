@@ -30,7 +30,7 @@ const Login = ({
 	setSidebarOpened,
 }: any) => {
 	const errorMessage = useSelector(
-		(state: AppState) => state.user.error.message
+		(state: AppState) => state.user?.error.message
 	)
 	const dispatch = useDispatch()
 	const handleClick = () => {
