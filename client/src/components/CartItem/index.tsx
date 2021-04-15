@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Card, Icon, Image, Button, Header, Message } from 'semantic-ui-react'
 
@@ -25,12 +25,19 @@ function CartItem({ cart }: CartItemProps) {
   const handleRemoveProd = () => {
     dispatch(removeProduct(cart))
   }
-  const handleBuyProd = () => {
+  /*   const handleBuyProd = () => {
     dispatch(checkout(cart._id, user.id))
     setTimeout(() => {
       dispatch(removeProduct(cart))
     }, 3000)
-  }
+  } */
+
+  const handleBuyProd = useCallback(() => {
+    dispatch(checkout(cart._id, user.id))
+    setTimeout(() => {
+      dispatch(removeProduct(cart))
+    }, 3000)
+  }, [user, dispatch, cart])
 
   useEffect(() => {
     const timer = setTimeout(() => {
