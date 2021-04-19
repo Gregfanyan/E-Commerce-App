@@ -120,15 +120,19 @@ exports.deleteUser = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
         next(new apiError_1.NotFoundError('did not delete user', error));
     }
 });
-// GET /Users/:users
-exports.findById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        res.json(yield Users_1.default.findById(req.params.userId));
-    }
-    catch (error) {
-        next(new apiError_1.NotFoundError('User by Id did not found', error));
-    }
-});
+function findById(userId) {
+    return models_1.Users.findById(userId)
+        .populate('cart')
+        .exec()
+        .then((user) => {
+        if (!user) {
+            throw new Error(`Users ${userId} not found`);
+        }
+        console.log('user', user);
+        return user;
+    });
+}
+exports.findById = findById;
 // GET /users
 exports.findAll = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -254,12 +258,30 @@ exports.addProductToCart = (req, res, next) => __awaiter(void 0, void 0, void 0,
         const productId = req.body.id;
         const userId = req.params.userId;
         const updatedUser = yield Users_1.default.addProductToCart(userId, productId);
-        console.log('req.params', req.params);
-        console.log('updatedUser', updatedUser);
-        res.json(updatedUser);
+        const { email } = req.body;
+        models_1.Users.findOne({ email }).exec((err, user) => {
+            if (user) {
+                ;
+                (err) => __awaiter(void 0, void 0, void 0, function* () {
+                    if (err)
+                        throw err;
+                    yield user.populate('cart').execPopulate();
+                    res.json({
+                        updatedUser,
+                        user: {
+                            id: user._id,
+                            email: user.email,
+                            firstName: user.firstName,
+                            lastName: user.lastName,
+                            cart: user.cart,
+                            isAdmin: user.isAdmin,
+                        },
+                    });
+                });
+            }
+        });
     }
     catch (error) {
-        console.log(error);
         next(new apiError_1.BadRequestError('Something went wrong', error));
     }
 });
