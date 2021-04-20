@@ -10,7 +10,7 @@ import { getUserWithItemsPopulate } from '../../redux/User/UserActions'
 
 const styles = {
   MenuStyle: {
-    marginTop: '87px',
+    marginTop: '50px',
     listStyleType: 'none',
   },
   listStyle: {
@@ -63,7 +63,7 @@ function Profile({ isTabletOrMobile }: isTabletOrMobileProps) {
           ? {
             backgroundImage:
 								'linear-gradient(to top, #09203f 0%, #537895 100%)',
-            minHeight: '39.2rem',
+            minHeight: '38rem',
 					  }
           : {}),
       }}
@@ -78,7 +78,7 @@ function Profile({ isTabletOrMobile }: isTabletOrMobileProps) {
       <Header as="h1" centered="true" inverted>
         {isAuthenticated && (
           <div>
-						Welcome to your dashboard {currentUser?.firstName}
+						Welcome to your dashboard {currentUser?.firstName}&nbsp;
             {currentUser?.lastName}
           </div>
         )}

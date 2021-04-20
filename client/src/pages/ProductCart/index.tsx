@@ -41,7 +41,7 @@ function ProductCart({ isTabletOrMobile }: isTabletOrMobileProps) {
           ? {
             backgroundImage:
 								'linear-gradient(to top, #09203f 0%, #537895 100%)',
-            minHeight: '39.2rem',
+            minHeight: '38rem',
 					  }
           : {}),
       }}
