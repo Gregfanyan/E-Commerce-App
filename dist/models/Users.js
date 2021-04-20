@@ -1,15 +1,4 @@
 "use strict";
-/* import mongoose, { Document, Schema } from 'mongoose'
-import {ProductDocument} from './Products'
-export type UserDocument = Document & {
-  firstName: string
-  lastName: string
-  password: string
-  email: string
-  isAdmin: boolean
-  cart: ProductDocument[]
-  resetLink: string
-} */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });

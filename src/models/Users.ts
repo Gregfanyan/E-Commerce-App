@@ -1,15 +1,3 @@
-/* import mongoose, { Document, Schema } from 'mongoose'
-import {ProductDocument} from './Products'
-export type UserDocument = Document & {
-  firstName: string
-  lastName: string
-  password: string
-  email: string
-  isAdmin: boolean
-  cart: ProductDocument[]
-  resetLink: string
-} */
-
 import mongoose, { Document, Schema } from 'mongoose'
 
 export type UserDocument = Document & {

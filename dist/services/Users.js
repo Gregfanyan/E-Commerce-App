@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.findById = void 0;
 const Users_1 = __importDefault(require("../models/Users"));
 const Products_1 = __importDefault(require("../models/Products"));
 function create(user) {
@@ -19,6 +20,7 @@ function create(user) {
 }
 function findById(userId) {
     return Users_1.default.findById(userId)
+        .populate('cart')
         .exec()
         .then((user) => {
         if (!user) {
@@ -27,6 +29,7 @@ function findById(userId) {
         return user;
     });
 }
+exports.findById = findById;
 function findAll() {
     return Users_1.default.find().populate('cart').sort({ firstName: 1 }).exec();
 }
@@ -79,31 +82,6 @@ const addProductToCart = (userId, productId) => __awaiter(void 0, void 0, void 0
     }
     return yield user.save();
 });
-/* const addProductToCart = async (
-  userId: string,
-  productId: any
-): Promise<UserDocument> => {
-  const user = await Users.findById(userId).select('-password').exec()
-  if (!user) {
-    throw new Error(`User ${userId} not found`)
-  }
-  const selectedProduct = await Products.findById(productId).exec()
-  if (!selectedProduct) {
-    throw new Error(`Product ${selectedProduct} not found`)
-  }
-  console.log('selectedProduct', selectedProduct)
-
-  const itemAdded = user.cart.find(
-    (item: any) => item.product === selectedProduct.id
-  )
-  console.log('itemAdded', itemAdded)
-
-  if (!itemAdded) {
-    user.cart.push(selectedProduct)
-  }
-  return await user.save()
-}
- */
 exports.default = {
     create,
     findById,

@@ -137,17 +137,17 @@ export const deleteUser = async (
   }
 }
 
-export function findById(userId: string): Promise<UserDocument> {
-  return Users.findById(userId)
-    .populate('cart')
-    .exec()
-    .then((user) => {
-      if (!user) {
-        throw new Error(`Users ${userId} not found`)
-      }
-      console.log('user', user)
-      return user
-    })
+// GET /User/:userId
+export const findById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    res.json(await UserService.findById(req.params.userId))
+  } catch (error) {
+    next(new NotFoundError('User by Id did not found', error))
+  }
 }
 
 // GET /users
@@ -296,27 +296,7 @@ export const addProductToCart = async (
     const productId = req.body.id
     const userId = req.params.userId
     const updatedUser = await UserService.addProductToCart(userId, productId)
-    const { email } = req.body
-
-    Users.findOne({ email }).exec((err, user) => {
-      if (user) {
-        ;async (err: any) => {
-          if (err) throw err
-          await user.populate('cart').execPopulate()
-          res.json({
-            updatedUser,
-            user: {
-              id: user._id,
-              email: user.email,
-              firstName: user.firstName,
-              lastName: user.lastName,
-              cart: user.cart,
-              isAdmin: user.isAdmin,
-            },
-          })
-        }
-      }
-    })
+    res.json(updatedUser)
   } catch (error) {
     next(new BadRequestError('Something went wrong', error))
   }

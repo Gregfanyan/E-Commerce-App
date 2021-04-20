@@ -7,6 +7,7 @@ import { AppState } from '../../types'
 import { Product } from '../../types/ProductType'
 import { isTabletOrMobileProps } from '../../types/ui'
 import { getUserWithItemsPopulate } from '../../redux/User/UserActions'
+
 const styles = {
   MenuStyle: {
     marginTop: '87px',
@@ -16,14 +17,14 @@ const styles = {
     listStyleType: 'none',
   },
   MobileBackIcon: {
-    position: 'absolute',
     left: 0,
     top: '18%',
+    margin: 0,
   },
   backIcon: {
-    position: 'absolute',
     left: 0,
     top: '15%',
+    margin: 0,
   },
 }
 
@@ -47,12 +48,6 @@ function Profile({ isTabletOrMobile }: isTabletOrMobileProps) {
     setCurrentUser(userwithItemsPopulated)
   }, [userwithItemsPopulated, user])
 
-  useEffect(() => {
-    if (!isAuthenticated && !user) {
-      history.push('/')
-    }
-  }, [history, isAuthenticated, user])
-
   function handleClick() {
     if (!history) {
       return <div>No product</div>
@@ -62,10 +57,19 @@ function Profile({ isTabletOrMobile }: isTabletOrMobileProps) {
   }
 
   return (
-    <>
+    <div
+      style={{
+        ...(!isTabletOrMobile
+          ? {
+            backgroundImage:
+								'linear-gradient(to top, #09203f 0%, #537895 100%)',
+            minHeight: '39.2rem',
+					  }
+          : {}),
+      }}
+    >
       <Card.Group
         style={isTabletOrMobile ? styles.MobileBackIcon : styles.backIcon}
-        stackable
       >
         <Button primary onClick={handleClick}>
           <Icon name="arrow left"> </Icon>
@@ -93,15 +97,15 @@ function Profile({ isTabletOrMobile }: isTabletOrMobileProps) {
             currentUser.cart &&
 						currentUser.cart.map((shoes: Product, index: any) => (
 						  <ul style={styles.listStyle} key={index}>
-						    <li>Name: {shoes}</li>
-						    {/* <li>Price: {shoes.price}</li> */}
+						    <li>Name: {shoes.name}</li>
+						    <li>Price: {shoes.price}</li>
 						  </ul>
 						))
           )
         }
         extra={<div> email: {currentUser?.email}</div>}
       ></Card>
-    </>
+    </div>
   )
 }
 

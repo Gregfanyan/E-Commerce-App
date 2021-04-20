@@ -5,8 +5,9 @@ function create(user: UserDocument): Promise<UserDocument> {
   return user.save()
 }
 
-function findById(userId: string): Promise<UserDocument> {
+export function findById(userId: string): Promise<UserDocument> {
   return Users.findById(userId)
+    .populate('cart')
     .exec()
     .then((user) => {
       if (!user) {
@@ -15,6 +16,8 @@ function findById(userId: string): Promise<UserDocument> {
       return user
     })
 }
+
+
 
 function findAll(): Promise<UserDocument[]> {
   return Users.find().populate('cart').sort({ firstName: 1 }).exec()
@@ -80,32 +83,6 @@ const addProductToCart = async (
   }
   return await user.save()
 }
-
-/* const addProductToCart = async (
-  userId: string,
-  productId: any
-): Promise<UserDocument> => {
-  const user = await Users.findById(userId).select('-password').exec()
-  if (!user) {
-    throw new Error(`User ${userId} not found`)
-  }
-  const selectedProduct = await Products.findById(productId).exec()
-  if (!selectedProduct) {
-    throw new Error(`Product ${selectedProduct} not found`)
-  }
-  console.log('selectedProduct', selectedProduct)
-
-  const itemAdded = user.cart.find(
-    (item: any) => item.product === selectedProduct.id
-  )
-  console.log('itemAdded', itemAdded)
-
-  if (!itemAdded) {
-    user.cart.push(selectedProduct)
-  }
-  return await user.save()
-}
- */
 
 export default {
   create,
